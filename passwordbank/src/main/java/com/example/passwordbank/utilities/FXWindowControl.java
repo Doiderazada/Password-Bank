@@ -1,4 +1,6 @@
-package com.example.passwordbank;
+package com.example.passwordbank.utilities;
+
+import com.example.passwordbank.App;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,19 +16,18 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class WindowControlHelper {
+public class FXWindowControl {
 
-    
-    private final double mouseResizeOffset = 2;
     private final Stage primaryStage = App.getStage();
+    private final double mouseResizeOffset = 2;
     private final Button bMinimize, bMaximize, bClose;
-    private Scene activeScene;
     private Parent parentNode;
+    private Scene activeScene;
     private Pane mainPane;
     
     private boolean isResizable;
     private boolean moveNorth, moveSouth;
-    private boolean moveEast, moveWest;
+    private boolean moveEast,  moveWest;
     
     private double mouseXPos,         mouseYPos;
     private double stageWidth,      stageHeight;
@@ -38,7 +39,7 @@ public class WindowControlHelper {
 
 
     
-    public WindowControlHelper(Pane mainPane, Button minimize, Button maximize, Button close) {
+    public FXWindowControl(Pane mainPane, Button minimize, Button maximize, Button close) {
         bClose = close; bMaximize = maximize; bMinimize = minimize;
         this.mainPane = mainPane;
         activeScene = primaryStage.getScene();
@@ -47,7 +48,6 @@ public class WindowControlHelper {
         setActions();
         tips();
     }
-
 
 
 
@@ -74,7 +74,6 @@ public class WindowControlHelper {
         minTip.setAutoHide(false);
         bMinimize.setTooltip(minTip);
     }
-
 
 
 

@@ -1,7 +1,7 @@
 package com.example.passwordbank.controllers;
 
 import com.example.passwordbank.App;
-import com.example.passwordbank.WindowControlHelper;
+import com.example.passwordbank.utilities.FXWindowControl;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class BaseController {
         setActions();
         setStyle();
         primaryStage.setOnShown(event -> {
-            new WindowControlHelper(bPaneMain, buttonMinimize, buttonMaximize, buttonClose);
+            new FXWindowControl(bPaneMain, buttonMinimize, buttonMaximize, buttonClose);
         });
     }
 

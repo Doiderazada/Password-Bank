@@ -8,7 +8,9 @@ module com.example.passwordbank {
 
     opens com.example.passwordbank to javafx.fxml;
     opens com.example.passwordbank.controllers to javafx.fxml;
-    exports com.example.passwordbank.controllers to javafx.graphics;
-    exports com.example.passwordbank to javafx.graphics;
 
+    exports com.example.passwordbank.controllers to javafx.graphics;
+    exports com.example.passwordbank.utilities to javafx.graphics;
+    exports com.example.passwordbank.model to javafx.graphics;
+    exports com.example.passwordbank to javafx.graphics;
 }
