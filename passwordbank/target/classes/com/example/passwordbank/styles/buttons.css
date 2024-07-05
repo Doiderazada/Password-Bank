@@ -1,44 +1,107 @@
 .button-close {
-    -fx-background-image: url("../Close-White.png");
+    -fx-background-image: url("../Close-sign.png");
     -fx-background-color: transparent;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10px;
+    -fx-background-size: 12px;
 }
 .button-close:hover {
-    -fx-background-image: url("../Close-White.png");
+    -fx-background-image: url("../Close-sign.png");
     -fx-background-color: Red;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10px;
+    -fx-background-size: 12px;
 }
 
 .button-maximize {
-    -fx-background-image: url("../Maximize-White.png");
+    -fx-background-image: url("../Maximize-sign.png");
     -fx-background-color: transparent;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10px;
+    -fx-background-size: 12px;
 }
 .button-maximize:hover {
-    -fx-background-image: url("../Maximize-White.png");
+    -fx-background-image: url("../Maximize-sign.png");
     -fx-background-color: rgb(0, 0, 0, 0.3);
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10px;
+    -fx-background-size: 12px;
 }
 
 .button-minimize {
-    -fx-background-image: url("../Minimize-White.png");
+    -fx-background-image: url("../Minimize-sign.png");
     -fx-background-color: transparent;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10px;
+    -fx-background-size: 12px;
 }
 .button-minimize:hover {
-    -fx-background-image: url("../Minimize-White.png");
+    -fx-background-image: url("../Minimize-sign.png");
     -fx-background-color: rgb(0, 0, 0, 0.3);
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 10px;
+    -fx-background-size: 12px;
 }
+
+
+
+
+.button-menu {
+    -fx-background-image: url("../Menu.png");
+    -fx-background-color: transparent;
+    -fx-background-position: left 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+.button-home {
+    -fx-background-image: url("../Home.png");
+    -fx-background-color: transparent;
+    -fx-background-position: left 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+.button-settings {
+    -fx-background-image: url("../Settings.png");
+    -fx-background-color: transparent;
+    -fx-background-position: left 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+.button-password {
+    -fx-background-image: url("../Password.png");
+    -fx-background-color: transparent;
+    -fx-background-position: left 12px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+
+
+
+
+.button-next {
+    -fx-background-image: url("../Right-arrow.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 50px;
+}
+
+.button-prev {
+    -fx-background-image: url("../Left-arrow.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+
+.seachField { 
+    -fx-background-image: url("../Magnifier-smaller.png");
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px; 
+}  

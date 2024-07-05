@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane fx:id="paneMain" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #3b3b3b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.HomeScreenController">
+   <children>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1150.0" spacing="20.0">
+         <children>
+            <Text fx:id="textLastUsed" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Last used passwords">
+               <font>
+                  <Font size="35.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Text>
+            <HBox fx:id="hBoxLastUsed" prefWidth="1180.0" spacing="100.0">
+               <children>
+                  <StackPane fx:id="sPaneLastUsedPassInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="300.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+                           <children>
+                              <Text fx:id="textLastUsedPassIdentfier" strokeType="OUTSIDE" strokeWidth="0.0" text="Password identifier">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="16.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <VBox alignment="CENTER" spacing="15.0">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0">
+                                       <children>
+                                          <Label fx:id="labelLastUsedUser" text="User">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfLastUsedUser" promptText="example.Email@email.com" />
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0">
+                                       <children>
+                                          <Label fx:id="labelLastUsedPassword" text="Password">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <PasswordField fx:id="pfLastUsedPassword" text="password" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </HBox>
+            <Text fx:id="textOldestRegistered" fill="WHITE" layoutX="25.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oldest registered passwords">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <HBox fx:id="hBoxOldestRegistered" layoutX="25.0" layoutY="87.0" prefWidth="1180.0" spacing="100.0">
+               <children>
+                  <StackPane fx:id="sPaneOldRegPassInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="300.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+                           <children>
+                              <Text fx:id="textOldRegPassInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Password identifier">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="16.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <VBox alignment="CENTER" spacing="15.0">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0">
+                                       <children>
+                                          <Label fx:id="labelOldRegUser" text="User">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfOldRegUser" promptText="example.Email@email.com" />
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0">
+                                       <children>
+                                          <Label fx:id="labelOldRegPassword" text="Password">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <PasswordField fx:id="pfOldRegPassword" text="password" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="15.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</Pane>

@@ -1,5 +1,7 @@
 package com.example.passwordbank;
 
+import com.example.passwordbank.controllers.BaseController;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,8 +18,12 @@ public class App extends Application {
     private static Stage primaryStage;
     private static ScreenManager screenManager = new ScreenManager();
     public static boolean darkMode = false;
-    final public static double minH = 724;
-    final public static double minW = 1284;
+    public static boolean stayLoggedIn = false;
+    final public static double minH = 600;
+    final public static double minW = 400;
+    final public static double defH = 724;
+    final public static double defW = 1284;
+    public static BaseController baseCtrlInstance;
     
     public static void main(String[] args) {
         launch();
@@ -30,23 +36,35 @@ public class App extends Application {
         // primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
-        primaryStage.setHeight(minH);
-        primaryStage.setWidth(minW);
-        primaryStage.setMinHeight(minH);
-        primaryStage.setMinWidth(minW);
         
         
-        mainScene = screenManager.loadScreen("startScreen");
+        mainScene = screenManager.loadScreen("start");
         
         primaryStage.setScene(mainScene);
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
+
+    public static void setDefAppSize() {
+        primaryStage.setMinHeight(defH);
+        primaryStage.setMinWidth(defW);
+        primaryStage.setHeight(defH);
+        primaryStage.setWidth(defW);
+    }
+    public static void setMinAppSize() {
+        primaryStage.setMinHeight(minH);
+        primaryStage.setMinWidth(minW);
+        primaryStage.setHeight(minH);
+        primaryStage.setWidth(minW);
+    }
+    
     public static void changeScreen(String sceneName) {
-        primaryStage.setX(primaryStage.getScene().getX());
-        primaryStage.setY(primaryStage.getScene().getY());
+        // setApplicationSize();
+        primaryStage.setX(primaryStage.getX());
+        primaryStage.setY(primaryStage.getY());
         primaryStage.setScene(screenManager.loadScreen(sceneName));
+        primaryStage.centerOnScreen();
     }
 
     public static Stage getStage() {
