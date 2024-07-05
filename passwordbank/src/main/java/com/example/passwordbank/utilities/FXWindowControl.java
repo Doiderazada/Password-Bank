@@ -42,6 +42,7 @@ public class FXWindowControl {
     public FXWindowControl(Pane mainPane, Button minimize, Button maximize, Button close) {
         bClose = close; bMaximize = maximize; bMinimize = minimize;
         this.mainPane = mainPane;
+
         activeScene = primaryStage.getScene();
         parentNode = activeScene.getRoot();
         setScenePadding(true);
@@ -143,25 +144,27 @@ public class FXWindowControl {
                 mouseYPos = arg0.getSceneY();
                 
 
-                if (mouseYPos <= mouseResizeOffset) {
-                    isResizable = moveNorth = true;
-                    moveSouth = !moveNorth;
-                } else moveNorth = false;
+                if (!primaryStage.isMaximized()) {
+                    if (mouseYPos <= mouseResizeOffset) {
+                        isResizable = moveNorth = true;
+                        moveSouth = !moveNorth;
+                    } else moveNorth = false;
 
-                if (stageHeight - mouseYPos <= mouseResizeOffset) {
-                    isResizable = moveSouth = true;
-                    moveNorth = !moveSouth;
-                } else moveSouth = false;
-                
-                if (mouseXPos <= mouseResizeOffset) {
-                    isResizable = moveWest = true;
-                    moveEast = !moveWest;
-                } else moveWest = false;
+                    if (stageHeight - mouseYPos <= mouseResizeOffset) {
+                        isResizable = moveSouth = true;
+                        moveNorth = !moveSouth;
+                    } else moveSouth = false;
+                    
+                    if (mouseXPos <= mouseResizeOffset) {
+                        isResizable = moveWest = true;
+                        moveEast = !moveWest;
+                    } else moveWest = false;
 
-                if ((stageWidth - mouseXPos) <= mouseResizeOffset) {
-                    isResizable = moveEast = true;
-                    moveWest = !moveEast;
-                } else moveEast = false;
+                    if ((stageWidth - mouseXPos) <= mouseResizeOffset) {
+                        isResizable = moveEast = true;
+                        moveWest = !moveEast;
+                    } else moveEast = false;
+                }
 
                 setDirectionToResize();
             };

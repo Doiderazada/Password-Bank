@@ -1,11 +1,10 @@
 package com.example.passwordbank;
 
-
+import com.example.passwordbank.controllers.BaseController;
 import com.example.passwordbank.model.Login;
 import com.example.passwordbank.model.AppUser;
 import com.example.passwordbank.utilities.FilesManager;
 import com.example.passwordbank.utilities.SceneManager;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,13 +19,17 @@ public class App extends Application {
 
     private static Scene mainScene;
     private static Stage primaryStage;
+    public static boolean darkMode = false;
+    public static boolean stayLoggedIn = false;
+    final public static double defH = 724;
+    final public static double defW = 1284;
+    public  static final double minH = 600;
+    public  static final double minW = 400;
+    public static BaseController baseCtrlInstance;
     private static SceneManager sceneManager = new SceneManager();
     private static FilesManager filesManager = new FilesManager();
     public  static AppUser user;
     public  static Login[] logs;
-    public  static boolean darkMode = false;
-    public  static final double minH = 724;
-    public  static final double minW = 1284;
 
     
     public static void main(String[] args) {
@@ -86,12 +89,29 @@ public class App extends Application {
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
-        primaryStage.setHeight(minH);
-        primaryStage.setWidth(minW);
-        primaryStage.setMinHeight(minH);
-        primaryStage.setMinWidth(minW);
+        
+        
+        mainScene = sceneManager.loadScreen("start");
+        
+        primaryStage.setScene(mainScene);
+        primaryStage.show();
         primaryStage.centerOnScreen();
     }
+
+
+    public static void setDefAppSize() {
+        primaryStage.setMinHeight(defH);
+        primaryStage.setMinWidth(defW);
+        primaryStage.setHeight(defH);
+        primaryStage.setWidth(defW);
+    }
+    public static void setMinAppSize() {
+        primaryStage.setMinHeight(minH);
+        primaryStage.setMinWidth(minW);
+        primaryStage.setHeight(minH);
+        primaryStage.setWidth(minW);
+    }
+    
 
 
     public static void changeScreen(String sceneName) {

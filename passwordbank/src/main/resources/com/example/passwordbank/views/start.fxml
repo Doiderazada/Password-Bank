@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="stackPaneMain" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.StartScreenController">
+   <children>
+      <Pane fx:id="pLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #8A8AEE;">
+         <children>
+            <VBox fx:id="vBoxUserInfo" layoutX="75.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Label fx:id="lUsername" text="Username">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tFUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                        <Label fx:id="lHintUsernameStart" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0">
+                     <children>
+                        <Label fx:id="lPassword" text="Password">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="15.0">
+                           <children>
+                              <StackPane>
+                                 <children>
+                                    <TextField fx:id="tFPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                                    <PasswordField fx:id="pFPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                                    <Button fx:id="bViewPass" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" StackPane.alignment="CENTER_RIGHT" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lHintPasswordStart" text="Label" />
+                        <Text fx:id="tForgotPass" focusTraversable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password">
+                           <VBox.margin>
+                              <Insets bottom="3.0" top="3.0" />
+                           </VBox.margin>
+                        </Text>
+                        <CheckBox fx:id="cBoxStayLogged" mnemonicParsing="false" text="Stay logged in">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="3.0" top="3.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Button fx:id="buttonLogReg" alignment="CENTER" layoutX="50.0" layoutY="510.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Login/Register">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Button>
+            <Text fx:id="tWelcome" layoutX="50.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="300.0">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="102.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonClose" focusTraversable="false" layoutX="368.0" layoutY="8.0" mnemonicParsing="false" text="X" />
+         </children>
+      </Pane>
+   </children>
+</StackPane>

@@ -5,6 +5,7 @@ module com.example.passwordbank {
     requires javafx.fxml;
     requires transitive javafx.graphics;
     requires java.desktop;
+    requires animatefx;
 
     opens com.example.passwordbank to javafx.fxml;
     opens com.example.passwordbank.controllers to javafx.fxml;
