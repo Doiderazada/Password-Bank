@@ -19,7 +19,7 @@ public class App extends Application {
 
     private static Scene mainScene;
     private static Stage primaryStage;
-    public static boolean darkMode = false;
+    public static boolean darkMode = true;
     public static boolean stayLoggedIn = false;
     final public static double defH = 724;
     final public static double defW = 1284;
@@ -43,7 +43,8 @@ public class App extends Application {
         configStage(primaryStage);
         setStartAction();
         setCloseAction();
-        mainScene = sceneManager.loadScreen("homeScreen");
+        mainScene = sceneManager.loadScreen("start");
+        
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
@@ -89,12 +90,6 @@ public class App extends Application {
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
-        
-        
-        mainScene = sceneManager.loadScreen("start");
-        
-        primaryStage.setScene(mainScene);
-        primaryStage.show();
         primaryStage.centerOnScreen();
     }
 
@@ -104,6 +99,7 @@ public class App extends Application {
         primaryStage.setMinWidth(defW);
         primaryStage.setHeight(defH);
         primaryStage.setWidth(defW);
+        primaryStage.centerOnScreen();
     }
     public static void setMinAppSize() {
         primaryStage.setMinHeight(minH);
@@ -115,8 +111,8 @@ public class App extends Application {
 
 
     public static void changeScreen(String sceneName) {
-        primaryStage.setX(primaryStage.getScene().getX());
-        primaryStage.setY(primaryStage.getScene().getY());
+        primaryStage.setX(primaryStage.getX());
+        primaryStage.setY(primaryStage.getY());
         primaryStage.setScene(sceneManager.loadScreen(sceneName));
     }
 

@@ -5,7 +5,6 @@ import com.example.passwordbank.App;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -18,12 +17,11 @@ import javafx.util.Duration;
 
 public class FXWindowControl {
 
-    private final Stage primaryStage = App.getStage();
+    private final Stage primaryStage;
     private final double mouseResizeOffset = 2;
     private final Button bMinimize, bMaximize, bClose;
-    private Parent parentNode;
+    private Pane parentNode;
     private Scene activeScene;
-    private Pane mainPane;
     
     private boolean isResizable;
     private boolean moveNorth, moveSouth;
@@ -39,12 +37,11 @@ public class FXWindowControl {
 
 
     
-    public FXWindowControl(Pane mainPane, Button minimize, Button maximize, Button close) {
+    public FXWindowControl(Button minimize, Button maximize, Button close) {
         bClose = close; bMaximize = maximize; bMinimize = minimize;
-        this.mainPane = mainPane;
-
+        primaryStage = App.getStage();
         activeScene = primaryStage.getScene();
-        parentNode = activeScene.getRoot();
+        parentNode = (Pane) activeScene.getRoot();
         setScenePadding(true);
         setActions();
         tips();
@@ -94,11 +91,11 @@ public class FXWindowControl {
         });
         parentNode.setOnMouseDragged(doResizing());
         parentNode.setOnMouseReleased(event -> {
-            if (primaryStage.getHeight() < App.minH) {
-                primaryStage.setHeight(App.minH);
+            if (primaryStage.getHeight() < App.defH) {
+                primaryStage.setHeight(App.defH);
             }
-            if (primaryStage.getWidth() < App.minW) {
-                primaryStage.setWidth(App.minW);
+            if (primaryStage.getWidth() < App.defW) {
+                primaryStage.setWidth(App.defW);
             }
         });
     }
@@ -111,8 +108,8 @@ public class FXWindowControl {
             @Override
             public void handle(MouseEvent arg0) {
                 if (primaryStage.isMaximized()) {
-                    primaryStage.setWidth(App.minW);
-                    primaryStage.setHeight(App.minH);
+                    primaryStage.setWidth(App.defW);
+                    primaryStage.setHeight(App.defH);
                     primaryStage.centerOnScreen();
                     setScenePadding(true);
                     primaryStage.setMaximized(false);
@@ -135,7 +132,7 @@ public class FXWindowControl {
                 {
                     isResizable = false;
                     moveNorth = moveEast = moveSouth = moveWest = false;
-                    mainPane.setCursor(Cursor.DEFAULT);
+                    parentNode.setCursor(Cursor.DEFAULT);
                 }
                 
                 stageHeight = primaryStage.getHeight();
@@ -183,7 +180,7 @@ public class FXWindowControl {
                         case N:
                             newHeight = stageHeight - (arg0.getScreenY() - lastMouseYPos);
                             
-                            if (newHeight > App.minH) {
+                            if (newHeight > App.defH) {
                                 primaryStage.setY(arg0.getScreenY());
                                 primaryStage.setHeight(newHeight);
                                 lastStageYPos = arg0.getScreenY();
@@ -191,7 +188,7 @@ public class FXWindowControl {
                                 primaryStage.setY(lastStageYPos);
                                 primaryStage.setHeight(newHeight);
                                 if (arg0.getScreenY() == lastStageYPos) {
-                                    primaryStage.setHeight(App.minH);
+                                    primaryStage.setHeight(App.defH);
                                 }
                             }
                             stageHeight = primaryStage.getHeight();
@@ -201,7 +198,7 @@ public class FXWindowControl {
                         case E:
                             newWidth = stageWidth + (arg0.getScreenX() - lastMouseXPos);
 
-                            if (newWidth > App.minW) primaryStage.setWidth(newWidth);
+                            if (newWidth > App.defW) primaryStage.setWidth(newWidth);
                             else primaryStage.setWidth(newWidth);
 
                             stageWidth = primaryStage.getWidth();
@@ -211,7 +208,7 @@ public class FXWindowControl {
                         case S:
                             newHeight = stageHeight + (arg0.getScreenY() - lastMouseYPos);
 
-                            if (newHeight > App.minH) primaryStage.setHeight(newHeight);
+                            if (newHeight > App.defH) primaryStage.setHeight(newHeight);
                             else primaryStage.setHeight(newHeight);
                             
                             stageHeight = primaryStage.getHeight();
@@ -221,7 +218,7 @@ public class FXWindowControl {
                         case W:
                             newWidth = primaryStage.getWidth() - (arg0.getScreenX() - lastMouseXPos);
                             
-                            if (newWidth > App.minW) {
+                            if (newWidth > App.defW) {
                                 primaryStage.setX(arg0.getScreenX());
                                 primaryStage.setWidth(newWidth);
                                 lastStageXPos = arg0.getScreenX();
@@ -237,7 +234,7 @@ public class FXWindowControl {
                             newHeight = stageHeight - (arg0.getScreenY() - lastMouseYPos);
                             newWidth  = stageWidth  + (arg0.getScreenX() - lastMouseXPos);
 
-                            if (newHeight > App.minH) {
+                            if (newHeight > App.defH) {
                                 primaryStage.setY(arg0.getScreenY());
                                 primaryStage.setHeight(newHeight);
                                 lastStageYPos = arg0.getScreenY();
@@ -245,11 +242,11 @@ public class FXWindowControl {
                                 primaryStage.setY(lastStageYPos);
                                 primaryStage.setHeight(newHeight);
                                 if (arg0.getScreenY() == lastStageYPos) {
-                                    primaryStage.setHeight(App.minH);
+                                    primaryStage.setHeight(App.defH);
                                 }
                             }
 
-                            if (newWidth > App.minW) primaryStage.setWidth(newWidth);
+                            if (newWidth > App.defW) primaryStage.setWidth(newWidth);
                             else primaryStage.setWidth(newWidth);
 
                             stageHeight = primaryStage.getHeight();
@@ -262,7 +259,7 @@ public class FXWindowControl {
                             newHeight = stageHeight - (arg0.getScreenY() - lastMouseYPos);
                             newWidth  = stageWidth  - (arg0.getScreenX() - lastMouseXPos);
                             
-                            if (newHeight > App.minH) {
+                            if (newHeight > App.defH) {
                                 primaryStage.setY(arg0.getScreenY());
                                 primaryStage.setHeight(newHeight);
                                 lastStageYPos = arg0.getScreenY();
@@ -270,11 +267,11 @@ public class FXWindowControl {
                                 primaryStage.setY(lastStageYPos);
                                 primaryStage.setHeight(newHeight);
                                 if (arg0.getScreenY() == lastStageYPos) {
-                                    primaryStage.setHeight(App.minH);
+                                    primaryStage.setHeight(App.defH);
                                 }
                             }
 
-                            if (newWidth > App.minW) {
+                            if (newWidth > App.defW) {
                                 primaryStage.setX(arg0.getScreenX());
                                 primaryStage.setWidth(newWidth);
                                 lastStageXPos = arg0.getScreenX();
@@ -293,9 +290,9 @@ public class FXWindowControl {
                             newHeight = stageHeight + (arg0.getScreenY() - lastMouseYPos);
                             newWidth = stageWidth + (arg0.getScreenX() - lastMouseXPos);
 
-                            if (newHeight > App.minH) primaryStage.setHeight(newHeight);
+                            if (newHeight > App.defH) primaryStage.setHeight(newHeight);
                             else primaryStage.setHeight(newHeight);
-                            if (newWidth > App.minW) primaryStage.setWidth(newWidth);
+                            if (newWidth > App.defW) primaryStage.setWidth(newWidth);
                             else primaryStage.setWidth(newWidth);
                             
                             stageHeight = primaryStage.getHeight();
@@ -306,12 +303,13 @@ public class FXWindowControl {
 
                         case SW:
                             newHeight = stageHeight + (arg0.getScreenY() - lastMouseYPos);
-                            newWidth = primaryStage.getWidth() - (arg0.getScreenX() - lastMouseXPos);
+                            newWidth = stageWidth - (arg0.getScreenX() - lastMouseXPos);
+
                             
-                            if (newHeight > App.minH) primaryStage.setHeight(newHeight);
+                            if (newHeight > App.defH) primaryStage.setHeight(newHeight);
                             else primaryStage.setHeight(newHeight);
 
-                            if (newWidth > App.minW) {
+                            if (newWidth > App.defW) {
                                 primaryStage.setX(arg0.getScreenX());
                                 primaryStage.setWidth(newWidth);
                                 lastStageXPos = arg0.getScreenX();
@@ -320,7 +318,9 @@ public class FXWindowControl {
                                 primaryStage.setWidth(newWidth);
                             }
                             
+                            
                             stageHeight = primaryStage.getHeight();
+                            stageWidth = primaryStage.getWidth();
                             lastMouseXPos = arg0.getScreenX();
                             lastMouseYPos = arg0.getScreenY();
                             break;
@@ -338,10 +338,10 @@ public class FXWindowControl {
 
     private void setScenePadding(boolean set) {
         if (set) {
-            mainPane.setPadding(new Insets(mouseResizeOffset));
+            parentNode.setPadding(new Insets(mouseResizeOffset));
             activeScene.setFill(Color.rgb(0, 0, 0, 0.02));
         } else {
-            mainPane.setPadding(new Insets(0));
+            parentNode.setPadding(new Insets(0));
             activeScene.setFill(null);
         }
     }

@@ -68,9 +68,12 @@ public class BaseController {
         changePage(homePane);
         setActions();
         setStyle();
-        primaryStage.setOnShown(event -> {
-            new FXWindowControl(bPaneMain, buttonMinimize, buttonMaximize, buttonClose);
-        });
+        
+        new Thread(() -> {
+            try {Thread.sleep(200);} 
+            catch (InterruptedException e) {e.printStackTrace();}
+            new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
+        }).start();
     }
 
 
@@ -179,8 +182,8 @@ public class BaseController {
                 if ((arg0.getClickCount() == 2) && 
                     (arg0.getButton() == MouseButton.PRIMARY)) {
                     if (primaryStage.isMaximized()) {
-                        primaryStage.setHeight(App.minH);
-                        primaryStage.setWidth(App.minW);
+                        primaryStage.setHeight(App.defH);
+                        primaryStage.setWidth(App.defW);
                         primaryStage.setMaximized(false);
                         primaryStage.centerOnScreen();
                     } else primaryStage.setMaximized(true);
@@ -274,5 +277,8 @@ public class BaseController {
 
 
 
-    public void setStyle(){}
+    public void setStyle(){
+        setButtonsStyle();
+        createMenuText();
+    }
 }

@@ -8,9 +8,6 @@ import animatefx.animation.Shake;
 import animatefx.animation.SlideAnimation;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -23,7 +20,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -479,8 +475,8 @@ public class StartScreenController {
     }
 
     private void goToApp() {
-        App.setDefAppSize();
         App.changeScreen("base");
+        App.setDefAppSize();
     }
 
 
