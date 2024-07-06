@@ -19,18 +19,20 @@ public class FXWindowControl {
 
     private final Stage primaryStage;
     private final double mouseResizeOffset = 2;
+    private final double mouseDragOffset = mouseResizeOffset + 25;
     private final Button bMinimize, bMaximize, bClose;
     private Pane parentNode;
     private Scene activeScene;
     
-    private boolean isResizable;
-    private boolean moveNorth, moveSouth;
-    private boolean moveEast,  moveWest;
+    private boolean moveNorth,      moveSouth;
+    private boolean moveEast,       moveWest;
+    private boolean isResizable,    isDraggable;
     
     private double mouseXPos,         mouseYPos;
     private double stageWidth,      stageHeight;
     private double lastMouseXPos, lastMouseYPos;
     private double lastStageXPos, lastStageYPos;
+    private double moveOffSetX,     moveOffSetY;
     private ResizeDirection dir;
 
 
@@ -76,11 +78,15 @@ public class FXWindowControl {
 
 
     private void setActions() {
+        bClose.getStyleClass().setAll("button-close");
+        bMaximize.getStyleClass().setAll("button-maximize");
+        bMinimize.getStyleClass().setAll("button-minimize");
+
         bClose.setOnMouseClicked(event -> {primaryStage.close();});
         bMaximize.setOnMouseClicked(maximizeActicons());
         bMinimize.setOnMouseClicked(event -> {primaryStage.setIconified(true);});
 
-        parentNode.setOnMouseMoved(resizeControl());
+        parentNode.setOnMouseMoved(positionControl());
         parentNode.setOnMousePressed(event -> {
             lastMouseXPos = event.getScreenX();
             lastMouseYPos = event.getScreenY();
@@ -88,8 +94,10 @@ public class FXWindowControl {
             lastStageYPos = primaryStage.getY();
             stageHeight = primaryStage.getHeight();
             stageWidth = primaryStage.getWidth();
+            moveOffSetX = primaryStage.getX() - event.getScreenX();
+            moveOffSetY = primaryStage.getY() - event.getScreenY();
         });
-        parentNode.setOnMouseDragged(doResizing());
+        parentNode.setOnMouseDragged(doStageAction());
         parentNode.setOnMouseReleased(event -> {
             if (primaryStage.getHeight() < App.defH) {
                 primaryStage.setHeight(App.defH);
@@ -98,6 +106,7 @@ public class FXWindowControl {
                 primaryStage.setWidth(App.defW);
             }
         });
+        parentNode.setOnMouseClicked(toggleMaxMin());
     }
 
 
@@ -125,12 +134,33 @@ public class FXWindowControl {
 
 
 
-    private EventHandler<MouseEvent> resizeControl() {
+    private EventHandler<MouseEvent> toggleMaxMin() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent arg0) {
+                if ((arg0.getClickCount() == 2) && 
+                    (arg0.getButton() == MouseButton.PRIMARY && isDraggable)) {
+                    if (primaryStage.isMaximized()) {
+                        primaryStage.setHeight(App.defH);
+                        primaryStage.setWidth(App.defW);
+                        primaryStage.setMaximized(false);
+                        setScenePadding(true);
+                    } else primaryStage.setMaximized(true);
+                } 
+            }
+        }; 
+    }
+
+
+
+
+
+    private EventHandler<MouseEvent> positionControl() {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
                 {
-                    isResizable = false;
+                    isResizable = isDraggable = false;
                     moveNorth = moveEast = moveSouth = moveWest = false;
                     parentNode.setCursor(Cursor.DEFAULT);
                 }
@@ -142,6 +172,12 @@ public class FXWindowControl {
                 
 
                 if (!primaryStage.isMaximized()) {
+                    if ((mouseYPos <= mouseDragOffset) && 
+                        (mouseYPos > mouseResizeOffset)) {
+                        isDraggable = true;
+                        return;
+                    }
+
                     if (mouseYPos <= mouseResizeOffset) {
                         isResizable = moveNorth = true;
                         moveSouth = !moveNorth;
@@ -170,7 +206,7 @@ public class FXWindowControl {
 
 
 
-    private EventHandler<MouseEvent> doResizing() {
+    private EventHandler<MouseEvent> doStageAction() {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
@@ -328,7 +364,12 @@ public class FXWindowControl {
                         default:
                             break;
                     };
-                };
+                }
+
+                if (isDraggable && arg0.getButton().equals(MouseButton.PRIMARY)) {
+                    primaryStage.setX(arg0.getScreenX() + moveOffSetX);
+                    primaryStage.setY(arg0.getScreenY() + moveOffSetY);
+                }
             };
         };
     }

@@ -19,15 +19,15 @@ public class App extends Application {
 
     private static Scene mainScene;
     private static Stage primaryStage;
-    public static boolean darkMode = true;
-    public static boolean stayLoggedIn = false;
-    final public static double defH = 724;
-    final public static double defW = 1284;
-    public  static final double minH = 600;
-    public  static final double minW = 400;
-    public static BaseController baseCtrlInstance;
     private static SceneManager sceneManager = new SceneManager();
     private static FilesManager filesManager = new FilesManager();
+    public  static final double defH = 724;
+    public  static final double defW = 1284;
+    public  static final double minH = 600;
+    public  static final double minW = 400;
+    public  static boolean darkMode = true;
+    public  static boolean stayLoggedIn = false;
+    public  static BaseController baseCtrlInstance;
     public  static AppUser user;
     public  static Login[] logs;
 
@@ -70,8 +70,7 @@ public class App extends Application {
     private final void setCloseAction() {
         primaryStage.setOnCloseRequest(event -> {
             user.setDarkMode(darkMode);
-            filesManager.savePassFile();
-            filesManager.saveUserFile();
+            filesManager.closeFiles(user, logs);
         });   
     }
 

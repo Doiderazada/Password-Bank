@@ -21,7 +21,7 @@ public class SceneManager {
             return screen;
 
         } catch (IOException e) {
-            System.out.println("ERRO: Erro ao carregar a tela... ");
+            System.out.println("ERROR: There was an error trying to load the desired file... ");
             System.out.println(e.getMessage() + "\n\n");
             e.printStackTrace();
         }

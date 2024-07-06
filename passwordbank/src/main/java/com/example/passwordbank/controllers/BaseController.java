@@ -5,15 +5,11 @@ import java.io.IOException;
 import com.example.passwordbank.App;
 import com.example.passwordbank.utilities.FXWindowControl;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -23,7 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class BaseController {
 
@@ -53,11 +48,6 @@ public class BaseController {
     private final double minXMenu = 50;
     private final double maxXMenu = 230;
     private boolean menuMaximized = false;
-    private final double mouseDragOffset = 25;
-    private final Stage primaryStage = App.getStage();
-    
-    private double moveOffSetX, moveOffSetY, mousePosition;
-    private boolean isDraggable;
 
 
 
@@ -84,7 +74,6 @@ public class BaseController {
         buttonHome.setOnMouseClicked(event -> {changePage(homePane);});
         buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
         buttonSettings.setOnMouseClicked(event -> {changePage(settPane);});
-        gPaneWindowTop.setOnMouseClicked(toggleMaxMin());
         
         buttonMenu.setOnMouseClicked(event -> {
             if (menuMaximized) {
@@ -97,25 +86,8 @@ public class BaseController {
                 editMenuButtonsSize(menuMaximized);
             }
         });
-
-
-        // gPaneWindowTop.setOnMouseEntered(event -> {isDraggable = true;});
-        // gPaneWindowTop.setOnMouseExited (event -> {isDraggable = false;});
-        gPaneWindowTop.setOnMouseMoved(draggingControl());
-        gPaneWindowTop.setOnMousePressed(pressingControl());
-        gPaneWindowTop.setOnMouseDragged(doDragging());
     }
 
-
-    
-
-
-
-
-    protected void changePage(Pane nextPane) {
-        stackPaneMain.getChildren().clear();
-        stackPaneMain.getChildren().add(nextPane);
-    }
 
 
 
@@ -174,72 +146,14 @@ public class BaseController {
 
 
 
-
-    private EventHandler<MouseEvent> toggleMaxMin() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                if ((arg0.getClickCount() == 2) && 
-                    (arg0.getButton() == MouseButton.PRIMARY)) {
-                    if (primaryStage.isMaximized()) {
-                        primaryStage.setHeight(App.defH);
-                        primaryStage.setWidth(App.defW);
-                        primaryStage.setMaximized(false);
-                        primaryStage.centerOnScreen();
-                    } else primaryStage.setMaximized(true);
-                } 
-            }
-        }; 
-    }
-
-    private EventHandler<MouseEvent> pressingControl() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                moveOffSetX = primaryStage.getX() - arg0.getScreenX();
-                moveOffSetY = primaryStage.getY() - arg0.getScreenY();
-            }
-        };
-    }
-
-    private EventHandler<MouseEvent> draggingControl() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                isDraggable =  false;
-                gPaneWindowTop.setCursor(Cursor.DEFAULT);
-                mousePosition = arg0.getY();
-
-                if (mousePosition <= mouseDragOffset) {
-                    isDraggable = true;
-                } else isDraggable = false;
-            }
-        };
-    }
-    private EventHandler<MouseEvent> doDragging() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                if (isDraggable && (arg0.getButton() == MouseButton.PRIMARY)) {
-                    primaryStage.setX(arg0.getScreenX() + moveOffSetX);
-                    primaryStage.setY(arg0.getScreenY() + moveOffSetY);
-                }
-            }
-        };
-    }
-
-
-
     private void setButtonsStyle(){
-        buttonClose.getStyleClass().setAll("button-close");
-        buttonMaximize.getStyleClass().setAll("button-maximize");
-        buttonMinimize.getStyleClass().setAll("button-minimize");
-
         buttonHome.getStyleClass().setAll("button-home");
         buttonMenu.getStyleClass().setAll("button-menu");
         buttonPassword.getStyleClass().setAll("button-password");
         buttonSettings.getStyleClass().setAll("button-settings");
     }
+
+
 
     private void loadMainPages() {
         try {
@@ -273,6 +187,13 @@ public class BaseController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    
+
+    protected void changePage(Pane nextPane) {
+        stackPaneMain.getChildren().clear();
+        stackPaneMain.getChildren().add(nextPane);
     }
 
 
