@@ -340,10 +340,10 @@ public class WindowControlHelper {
     private void setScenePadding(boolean set) {
         if (set) {
             mainPane.setPadding(new Insets(mouseResizeOffset));
-            activeScene.setFill(Color.rgb(0, 0, 0, 0.02));
+            // activeScene.setFill(Color.rgb(0, 0, 0, 0.02));
         } else {
             mainPane.setPadding(new Insets(0));
-            activeScene.setFill(null);
+            // activeScene.setFill(null);
         }
     }
 

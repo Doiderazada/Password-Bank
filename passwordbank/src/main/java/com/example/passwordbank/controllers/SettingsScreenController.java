@@ -37,7 +37,7 @@ public class SettingsScreenController {
 
     private void setActions() {
         buttonAbout.setOnMouseClicked(event -> {
-            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane(""));
+            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("about"));
         });
         buttonAppearence.setOnMouseClicked(event -> {
             if (App.darkMode) {

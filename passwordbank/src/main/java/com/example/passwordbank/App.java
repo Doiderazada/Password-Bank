@@ -4,6 +4,7 @@ import com.example.passwordbank.controllers.BaseController;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -41,6 +42,7 @@ public class App extends Application {
         mainScene = screenManager.loadScreen("start");
         
         primaryStage.setScene(mainScene);
+        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
@@ -60,10 +62,10 @@ public class App extends Application {
     }
     
     public static void changeScreen(String sceneName) {
-        // setApplicationSize();
         primaryStage.setX(primaryStage.getX());
         primaryStage.setY(primaryStage.getY());
         primaryStage.setScene(screenManager.loadScreen(sceneName));
+        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
         primaryStage.centerOnScreen();
     }
 

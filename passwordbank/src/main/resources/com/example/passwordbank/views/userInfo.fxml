@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="gPaneUserInfo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1400.0" prefWidth="1200.0" style="-fx-background-color: #3b3b3b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.UserInfoScreenController">
+<GridPane fx:id="gPaneUserInfo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1400.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.UserInfoScreenController">
    <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="1000.0" />
@@ -34,9 +34,9 @@
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="250.0" valignment="CENTER" vgrow="NEVER" />
    </rowConstraints>
    <children>
-      <Button fx:id="buttonBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" stylesheets="@../styles/buttons.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Button fx:id="buttonBack" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" stylesheets="@../styles/buttons.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
       <Text fx:id="textUserInfo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User Info" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <font>
@@ -85,17 +85,13 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" spacing="5.0">
+                              <StackPane>
                                  <children>
-                                    <StackPane>
-                                       <children>
-                                          <TextField fx:id="tFieldPassword" />
-                                          <PasswordField fx:id="pFieldPassword" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="265.0" text="password" />
-                                       </children>
-                                    </StackPane>
-                                    <Button fx:id="buttonShowPass" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+                                    <TextField fx:id="tFieldPassword" />
+                                    <PasswordField fx:id="pFieldPassword" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="265.0" />
+                                    <Button fx:id="buttonShowPass" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" stylesheets="@../styles/buttons.css" StackPane.alignment="CENTER_RIGHT" />
                                  </children>
-                              </HBox>
+                              </StackPane>
                               <Label fx:id="labelHintPass" text="Label" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
@@ -240,7 +236,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
-            <Button fx:id="buttonSaveChanges" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Save changes">
+            <Button fx:id="buttonSaveChanges" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" stylesheets="@../styles/buttons.css" text="Save changes">
                <font>
                   <Font size="15.0" />
                </font>
@@ -259,8 +255,20 @@
             </Text>
             <HBox alignment="CENTER" spacing="200.0">
                <children>
-                  <Button fx:id="buttonLogout" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Logout" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="buttonDeleteAcc" alignment="CENTER" layoutX="456.0" layoutY="60.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Delete account" />
+                  <Button fx:id="buttonLogout" alignment="CENTER" contentDisplay="TEXT_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="225.0" stylesheets="@../styles/buttons.css" textFill="#8a59ee" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding></Button>
+                  <Button fx:id="buttonDeleteAcc" alignment="CENTER" contentDisplay="TEXT_ONLY" graphicTextGap="25.0" layoutX="456.0" layoutY="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="225.0" stylesheets="@../styles/buttons.css" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding></Button>
                </children>
             </HBox>
          </children>

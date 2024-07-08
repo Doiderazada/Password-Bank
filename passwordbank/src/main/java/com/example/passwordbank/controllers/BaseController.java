@@ -27,17 +27,17 @@ import javafx.stage.Stage;
 
 public class BaseController {
 
-    @FXML public Button buttonClose;
-    @FXML public Button buttonMaximize;
-    @FXML public Button buttonMinimize;
-
+    @FXML private Button buttonClose;
+    @FXML private Button buttonMaximize;
+    @FXML private Button buttonMinimize;    
+    @FXML private BorderPane bPaneMain;
     @FXML private Button buttonHome;
     @FXML private Button buttonMenu;
     @FXML private Button buttonPassword;
     @FXML private Button buttonSettings;
-    @FXML private BorderPane bPaneMain;
     @FXML private GridPane gPaneMenu;
-    @FXML private GridPane gPaneWindowTop;
+    @FXML private GridPane gPaneTitleBar;
+    @FXML private GridPane gPaneTop;
     @FXML private ScrollPane sPaneMain;
     @FXML private StackPane stackPaneMain;
 
@@ -50,9 +50,9 @@ public class BaseController {
     private final Text passText = new Text();
     private final Text settText = new Text();
     
+    private boolean menuMaximized = false;
     private final double minXMenu = 50;
     private final double maxXMenu = 230;
-    private boolean menuMaximized = false;
     private final double mouseDragOffset = 25;
     private final Stage primaryStage = App.getStage();
     
@@ -90,7 +90,7 @@ public class BaseController {
         buttonHome.setOnMouseClicked(event -> {changePage(homePane);});
         buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
         buttonSettings.setOnMouseClicked(event -> {changePage(settPane);});
-        gPaneWindowTop.setOnMouseClicked(toggleMaxMin());
+        gPaneTitleBar.setOnMouseClicked(toggleMaxMin());
         
         buttonMenu.setOnMouseClicked(event -> {
             if (menuMaximized) {
@@ -107,9 +107,9 @@ public class BaseController {
 
         // gPaneWindowTop.setOnMouseEntered(event -> {isDraggable = true;});
         // gPaneWindowTop.setOnMouseExited (event -> {isDraggable = false;});
-        gPaneWindowTop.setOnMouseMoved(draggingControl());
-        gPaneWindowTop.setOnMousePressed(pressingControl());
-        gPaneWindowTop.setOnMouseDragged(doDragging());
+        gPaneTitleBar.setOnMouseMoved(draggingControl());
+        gPaneTitleBar.setOnMousePressed(pressingControl());
+        gPaneTitleBar.setOnMouseDragged(doDragging());
     }
 
 
@@ -213,7 +213,7 @@ public class BaseController {
             @Override
             public void handle(MouseEvent arg0) {
                 isDraggable =  false;
-                gPaneWindowTop.setCursor(Cursor.DEFAULT);
+                gPaneTitleBar.setCursor(Cursor.DEFAULT);
                 mousePosition = arg0.getY();
 
                 if (mousePosition <= mouseDragOffset) {

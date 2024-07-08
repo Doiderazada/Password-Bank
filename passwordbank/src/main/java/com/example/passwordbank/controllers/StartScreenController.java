@@ -8,9 +8,6 @@ import animatefx.animation.Shake;
 import animatefx.animation.SlideAnimation;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -23,7 +20,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -254,6 +250,7 @@ public class StartScreenController {
             tFPasswordRepReg.setVisible(false);
             pFPasswordRepReg.setVisible(true);
         });
+        buttonBackStartPage.getStyleClass().setAll("button-LeftArrow");
         buttonBackStartPage.setOnMouseClicked(event -> {
             App.getStage().setWidth(pLogin.getWidth());
             animatePageTransition(panePage1, pLogin, false);
@@ -685,27 +682,27 @@ public class StartScreenController {
     private void loadNextPages() {
 
         try {
-            FXMLLoader loader1 = new FXMLLoader(App.class.getResource("views/registerScreen1.fxml"));
+            FXMLLoader loader1 = new FXMLLoader(App.class.getResource("views/register1.fxml"));
             loader1.setController(this);
             Parent root1 = loader1.load();
             panePage1 = (Pane) root1;
 
-            FXMLLoader loader2 = new FXMLLoader(App.class.getResource("views/registerScreen2.fxml"));
+            FXMLLoader loader2 = new FXMLLoader(App.class.getResource("views/register2.fxml"));
             loader2.setController(this);
             Parent root2 = loader2.load();
             panePage2 = (Pane) root2;
 
-            FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/recoveryFirstScreen.fxml"));
+            FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/recoveryInfoPres.fxml"));
             loader3.setController(this);
             Parent root3 = loader3.load();
             panePage3 = (Pane) root3;
 
-            FXMLLoader loader4 = new FXMLLoader(App.class.getResource("views/recoveryInfoScreen1.fxml"));
+            FXMLLoader loader4 = new FXMLLoader(App.class.getResource("views/recoveryInfo1.fxml"));
             loader4.setController(this);
             Parent root4 = loader4.load();
             panePage4 = (Pane) root4;
             
-            FXMLLoader loader5 = new FXMLLoader(App.class.getResource("views/recoveryInfoScreen2.fxml"));
+            FXMLLoader loader5 = new FXMLLoader(App.class.getResource("views/recoveryInfo2.fxml"));
             loader5.setController(this);
             Parent root5 = loader5.load();
             panePage5 = (Pane) root5;
