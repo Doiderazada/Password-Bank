@@ -7,6 +7,7 @@ import com.example.passwordbank.utilities.FilesManager;
 import com.example.passwordbank.utilities.SceneManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -43,8 +44,8 @@ public class App extends Application {
         configStage(primaryStage);
         setStartAction();
         setCloseAction();
+
         mainScene = sceneManager.loadScreen("start");
-        
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
@@ -113,6 +114,8 @@ public class App extends Application {
         primaryStage.setX(primaryStage.getX());
         primaryStage.setY(primaryStage.getY());
         primaryStage.setScene(sceneManager.loadScreen(sceneName));
+        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
+        primaryStage.centerOnScreen();
     }
 
 }

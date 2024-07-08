@@ -1,6 +1,7 @@
 package com.example.passwordbank.utilities;
 
 import com.example.passwordbank.App;
+import com.example.passwordbank.model.Login;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -49,6 +50,7 @@ public class PasswordFXElement {
     private final double innVBoxH = 60;
 
     // private final String style = "-fx-fill: Black; -fx-stroke: White; -fx-stroke-width: 2px;";
+    private final String cssFile = "styles/buttons.css";
 
 
 
@@ -58,11 +60,11 @@ public class PasswordFXElement {
         setActions();
     }
 
-    public PasswordFXElement(String identifier, String userName, String password) {
+    public PasswordFXElement(Login login) {
         this();
-        setIdentifier(identifier);
-        setUser(userName);
-        setPassword(password);
+        setIdentifier("");
+        setUser("");
+        setPassword("");
     }
 
 
@@ -161,6 +163,8 @@ public class PasswordFXElement {
         pFPass.setEditable(false);
 
         bViewPass.setPrefSize(tFieldH, tFieldH);
+        bViewPass.getStylesheets().setAll(App.class.getResource(cssFile).toExternalForm());
+        bViewPass.getStyleClass().setAll("button-HidePass");
         StackPane.setAlignment(bViewPass, Pos.CENTER_RIGHT);
 
         hBoxButtons.setAlignment(Pos.CENTER_RIGHT);
@@ -168,7 +172,11 @@ public class PasswordFXElement {
         hBoxButtons.setPadding(new Insets(0, 25, 0, 0));
 
         buttonDelete.setPrefSize(30, 30);
+        buttonDelete.getStylesheets().setAll(App.class.getResource(cssFile).toExternalForm());
+        buttonDelete.getStyleClass().setAll("button-Delete");
         buttonEdit.setPrefSize(30, 30);
+        buttonEdit.getStylesheets().setAll(App.class.getResource(cssFile).toExternalForm());
+        buttonEdit.getStyleClass().setAll("button-Delete");
 
         
         mainStackPane.getChildren().addAll(mainRectangle, mainVBox);
@@ -183,16 +191,16 @@ public class PasswordFXElement {
 
 
     private void setActions() {
-        bViewPass.getStylesheets().add(App.class.getResource("styles/buttons.css").toExternalForm());
-        // bViewPass.getStyleClass().setAll("");
 
         bViewPass.setOnMousePressed(event -> {
             tFPass.setText(pFPass.getText());
             pFPass.setVisible(false);
+            bViewPass.getStyleClass().setAll("button-ViewPass");
         });
         bViewPass.setOnMouseReleased(event -> {
             tFPass.clear();
             pFPass.setVisible(true);
+            bViewPass.getStyleClass().setAll("button-HidePass");
         });
 
         tFUser.setOnMouseClicked(event -> {

@@ -10,9 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -57,7 +59,7 @@ public class BaseController {
         loadMainPages();
         changePage(homePane);
         setActions();
-        setStyle();
+        // setStyle();
         
         new Thread(() -> {
             try {Thread.sleep(200);} 
@@ -198,8 +200,27 @@ public class BaseController {
 
 
 
-    public void setStyle(){
+    private void setStyle() {
+        bPaneMain.setBackground(Background.EMPTY);
+        if (App.darkMode) 
+             gPaneMenu.setBackground(Background.fill(Color.valueOf("#3B3B3B")));
+        else gPaneMenu.setBackground(Background.fill(Color.valueOf("#8A8A8A")));
+        
+
         setButtonsStyle();
         createMenuText();
+        setStyle(sPaneMain, stackPaneMain);
+    }
+
+    public static void setStyle(Region... panes){
+        if (App.darkMode) {
+            for (Region pane : panes) {
+                pane.setBackground(Background.fill(Color.valueOf("#292929")));
+            }
+        } else {
+            for (Region pane : panes) {
+                pane.setBackground(Background.fill(Color.WHITE));
+            }
+        }
     }
 }

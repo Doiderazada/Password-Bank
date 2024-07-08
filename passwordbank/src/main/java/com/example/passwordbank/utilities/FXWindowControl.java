@@ -11,7 +11,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -82,9 +81,9 @@ public class FXWindowControl {
         bMaximize.getStyleClass().setAll("button-maximize");
         bMinimize.getStyleClass().setAll("button-minimize");
 
-        bClose.setOnMouseClicked(event -> {primaryStage.close();});
-        bMaximize.setOnMouseClicked(maximizeActicons());
-        bMinimize.setOnMouseClicked(event -> {primaryStage.setIconified(true);});
+        bClose.setOnMouseClicked(event -> primaryStage.close());
+        bMaximize.setOnMouseClicked(event -> doMaximizing());
+        bMinimize.setOnMouseClicked(event -> primaryStage.setIconified(true));
 
         parentNode.setOnMouseMoved(positionControl());
         parentNode.setOnMousePressed(event -> {
@@ -106,54 +105,42 @@ public class FXWindowControl {
                 primaryStage.setWidth(App.defW);
             }
         });
-        parentNode.setOnMouseClicked(toggleMaxMin());
+        parentNode.setOnMouseClicked(toggleMaximize());
     }
 
 
 
-    
-    private EventHandler<MouseEvent> maximizeActicons() {
+
+
+
+    private EventHandler<MouseEvent> toggleMaximize() {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
-                if (primaryStage.isMaximized()) {
-                    primaryStage.setWidth(App.defW);
-                    primaryStage.setHeight(App.defH);
-                    primaryStage.centerOnScreen();
-                    setScenePadding(true);
-                    primaryStage.setMaximized(false);
-                } else {
-                    setScenePadding(false);
-                    primaryStage.setMaximized(true);
-                    primaryStage.centerOnScreen();
+                if ((arg0.getClickCount() == 2) && 
+                    (arg0.getSceneY() <= 25) &&
+                    (arg0.getButton() == MouseButton.PRIMARY)) {
+                    doMaximizing();
                 }
             }
         };
     }
 
 
-
-
-    private EventHandler<MouseEvent> toggleMaxMin() {
-        return new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent arg0) {
-                if ((arg0.getClickCount() == 2) && 
-                    (arg0.getButton() == MouseButton.PRIMARY && isDraggable)) {
-                    if (primaryStage.isMaximized()) {
-                        primaryStage.setHeight(App.defH);
-                        primaryStage.setWidth(App.defW);
-                        primaryStage.setMaximized(false);
-                        setScenePadding(true);
-                    } else primaryStage.setMaximized(true);
-                } 
-            }
-        }; 
+    private void doMaximizing() {
+        if (primaryStage.isMaximized()) {
+            primaryStage.setWidth(App.defW);
+            primaryStage.setHeight(App.defH);
+            setScenePadding(true);
+            primaryStage.setMaximized(false);
+        } else {
+            setScenePadding(false);
+            primaryStage.setMaximized(true);
+        }
     }
 
 
-
-
+    
 
     private EventHandler<MouseEvent> positionControl() {
         return new EventHandler<MouseEvent>() {
@@ -378,13 +365,8 @@ public class FXWindowControl {
 
 
     private void setScenePadding(boolean set) {
-        if (set) {
-            parentNode.setPadding(new Insets(mouseResizeOffset));
-            activeScene.setFill(Color.rgb(0, 0, 0, 0.02));
-        } else {
-            parentNode.setPadding(new Insets(0));
-            activeScene.setFill(null);
-        }
+        if (set) parentNode.setPadding(new Insets(mouseResizeOffset));
+        else parentNode.setPadding(new Insets(0));
     }
 
 
