@@ -90,6 +90,12 @@ public class App extends Application {
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
+        
+        
+        mainScene = screenManager.loadScreen("start");
+        
+        primaryStage.setScene(mainScene);
+        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
         primaryStage.centerOnScreen();
     }
 

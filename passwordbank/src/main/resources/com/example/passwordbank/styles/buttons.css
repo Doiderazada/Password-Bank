@@ -81,13 +81,21 @@
 
 
 
-
 .button-next {
     -fx-background-image: url("../Right-arrow.png");
     -fx-background-color: transparent;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 50px;
+    -fx-background-size: 45px;
+    -fx-background-radius: 5px;
+}
+.button-next:hover {
+    -fx-background-image: url("../Right-arrow.png");
+    -fx-background-color: rgb(0,0,0, 0.1);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 45px;
+    -fx-background-radius: 5px;
 }
 
 .button-prev {
@@ -96,7 +104,159 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
+    -fx-background-radius: 5px;
 }
+.button-prev:hover {
+    -fx-background-image: url("../Left-arrow.png");
+    -fx-background-color: rgb(0,0,0, 0.1);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+}
+
+
+
+
+.button-viewPass {
+    -fx-background-image: url("../Opened-eye.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+.button-hidePass {
+    -fx-background-image: url("../Closed-eye.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+
+
+
+.button-PDF-white {
+    -fx-background-image: url("../PDF-Icon-white.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+}
+.button-PDF-white:hover {
+    -fx-background-image: url("../PDF-Icon-white.png");
+    -fx-background-color: rgb(0, 0, 0, 0.1);
+    -fx-background-position: right;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+}
+
+.button-PDF-black {
+    -fx-background-image: url("../PDF-Icon-black.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-PDF-black:hover {
+    -fx-background-image: url("../PDF-Icon-black.png");
+    -fx-background-color: rgb(0, 0, 0,  0.1);
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+
+
+
+.button-Logout {
+    -fx-background-image: url("../Logout.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: #8A59EE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-Logout:hover {
+    -fx-background-image: url("../Logout.png");
+    -fx-background-color: rgb(0,0,0, 0.1);
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: #8A59EE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.button-Delete {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-Delete:hover {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: rgb(0, 0, 0, 0.1);
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+
+
+.button-LeftArrow {
+    -fx-background-image: url("../Left-arrow-white.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 15px;
+    -fx-background-radius: 5px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-LeftArrow:hover {
+    -fx-background-image: url("../Left-arrow-white.png");
+    -fx-background-color: rgb(0, 0, 0, 0.1);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 15px;
+    -fx-background-radius: 5px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+/* .button-CloseStart {
+    -fx-background-image: url("../Right-arrow.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+} */
+
+
 
 
 .seachField { 

@@ -24,17 +24,17 @@ import javafx.scene.text.Text;
 
 public class BaseController {
 
-    @FXML public Button buttonClose;
-    @FXML public Button buttonMaximize;
-    @FXML public Button buttonMinimize;
-
+    @FXML private Button buttonClose;
+    @FXML private Button buttonMaximize;
+    @FXML private Button buttonMinimize;    
+    @FXML private BorderPane bPaneMain;
     @FXML private Button buttonHome;
     @FXML private Button buttonMenu;
     @FXML private Button buttonPassword;
     @FXML private Button buttonSettings;
-    @FXML private BorderPane bPaneMain;
     @FXML private GridPane gPaneMenu;
-    @FXML private GridPane gPaneWindowTop;
+    @FXML private GridPane gPaneTitleBar;
+    @FXML private GridPane gPaneTop;
     @FXML private ScrollPane sPaneMain;
     @FXML private StackPane stackPaneMain;
 
@@ -201,12 +201,11 @@ public class BaseController {
 
 
     private void setStyle() {
-        bPaneMain.setBackground(Background.EMPTY);
+        bPaneMain.setBackground(Background.fill(Color.TRANSPARENT));
         if (App.darkMode) 
              gPaneMenu.setBackground(Background.fill(Color.valueOf("#3B3B3B")));
         else gPaneMenu.setBackground(Background.fill(Color.valueOf("#8A8A8A")));
         
-
         setButtonsStyle();
         createMenuText();
         setStyle(sPaneMain, stackPaneMain);

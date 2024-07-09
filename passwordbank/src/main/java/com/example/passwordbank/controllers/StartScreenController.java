@@ -3,6 +3,7 @@ package com.example.passwordbank.controllers;
 import java.io.IOException;
 
 import com.example.passwordbank.App;
+// import com.example.passwordbank.model.AppUser;
 
 import animatefx.animation.Shake;
 import animatefx.animation.SlideAnimation;
@@ -107,9 +108,9 @@ public class StartScreenController {
      */
     @FXML private Button buttonBackPageRec3;
     @FXML private Button buttonFinish;
-    @FXML private ChoiceBox<?> cBoxQuestion1;
-    @FXML private ChoiceBox<?> cBoxQuestion2;
-    @FXML private ChoiceBox<?> cBoxQuestion3;
+    @FXML private ChoiceBox<String> cBoxQuestion1;
+    @FXML private ChoiceBox<String> cBoxQuestion2;
+    @FXML private ChoiceBox<String> cBoxQuestion3;
     @FXML private Label lAnswer1;
     @FXML private Label lAnswer2;
     @FXML private Label lAnswer3;
@@ -134,6 +135,7 @@ public class StartScreenController {
     private final String labelStyleBad    = "-fx-text-fill: red;";
     private final String emailRegexGroup  = "((?>@gmail\\.com)|(?>@outlook\\.com)|(?>@yahoo\\.com)|(?>@hotmail\\.com))$";
     private final String genericRegexText = "^[\\w^(.\\-_)]+";
+    // private final AppUser user = App.user;
     private String password;
     private String username;
     private String mainEmail;
@@ -250,6 +252,7 @@ public class StartScreenController {
             tFPasswordRepReg.setVisible(false);
             pFPasswordRepReg.setVisible(true);
         });
+        buttonBackStartPage.getStyleClass().setAll("button-LeftArrow");
         buttonBackStartPage.setOnMouseClicked(event -> {
             App.getStage().setWidth(pLogin.getWidth());
             animatePageTransition(panePage1, pLogin, false);
@@ -465,12 +468,23 @@ public class StartScreenController {
     }
 
     private void finishRegistration() {
-        cBoxQuestion1.getSelectionModel().getSelectedItem();
-        cBoxQuestion2.getSelectionModel().getSelectedItem();
-        cBoxQuestion3.getSelectionModel().getSelectedItem();
+        question1 = cBoxQuestion1.getSelectionModel().getSelectedItem();
+        question2 = cBoxQuestion2.getSelectionModel().getSelectedItem();
+        question3 = cBoxQuestion3.getSelectionModel().getSelectedItem();
         answer1 = tAAnswer1.getText();
         answer2 = tAAnswer2.getText();
         answer3 = tAAnswer3.getText();
+        // user.setAnswer1(answer1);
+        // user.setAnswer2(answer2);
+        // user.setAnswer3(answer3);
+        // user.setQuestion1(question1);
+        // user.setQuestion2(question2);
+        // user.setQuestion3(question3);
+        // user.setUserEmail(mainEmail);
+        // user.setPassword(password);
+        // if (!phoneNum.isBlank()) {
+        //     user.setMobileNumber(phoneNum);
+        // }
         goToApp();
     }
 
@@ -681,27 +695,27 @@ public class StartScreenController {
     private void loadNextPages() {
 
         try {
-            FXMLLoader loader1 = new FXMLLoader(App.class.getResource("views/registerScreen1.fxml"));
+            FXMLLoader loader1 = new FXMLLoader(App.class.getResource("views/register1.fxml"));
             loader1.setController(this);
             Parent root1 = loader1.load();
             panePage1 = (Pane) root1;
 
-            FXMLLoader loader2 = new FXMLLoader(App.class.getResource("views/registerScreen2.fxml"));
+            FXMLLoader loader2 = new FXMLLoader(App.class.getResource("views/register2.fxml"));
             loader2.setController(this);
             Parent root2 = loader2.load();
             panePage2 = (Pane) root2;
 
-            FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/recoveryFirstScreen.fxml"));
+            FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/recoveryInfoPres.fxml"));
             loader3.setController(this);
             Parent root3 = loader3.load();
             panePage3 = (Pane) root3;
 
-            FXMLLoader loader4 = new FXMLLoader(App.class.getResource("views/recoveryInfoScreen1.fxml"));
+            FXMLLoader loader4 = new FXMLLoader(App.class.getResource("views/recoveryInfo1.fxml"));
             loader4.setController(this);
             Parent root4 = loader4.load();
             panePage4 = (Pane) root4;
             
-            FXMLLoader loader5 = new FXMLLoader(App.class.getResource("views/recoveryInfoScreen2.fxml"));
+            FXMLLoader loader5 = new FXMLLoader(App.class.getResource("views/recoveryInfo2.fxml"));
             loader5.setController(this);
             Parent root5 = loader5.load();
             panePage5 = (Pane) root5;

@@ -67,6 +67,9 @@ public class UserInfoScreenController {
             App.changeScreen("start");
         });
         buttonBack.getStyleClass().setAll("button-prev");
+        buttonDeleteAcc.getStyleClass().setAll("button-Delete");
+        buttonLogout.getStyleClass().setAll("button-Logout");
     }
+
 
 }
