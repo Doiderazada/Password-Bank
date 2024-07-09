@@ -489,7 +489,7 @@ public class StartScreenController {
     }
 
     private void goToApp() {
-        App.changeScreen("base");
+        App.changePage("base");
         App.setDefAppSize();
     }
 

@@ -64,7 +64,7 @@ public class UserInfoScreenController {
         buttonLogout.setOnMouseClicked(event -> {
             App.stayLoggedIn = false;
             App.setMinAppSize();
-            App.changeScreen("start");
+            App.changePage("start");
         });
         buttonBack.getStyleClass().setAll("button-prev");
         buttonDeleteAcc.getStyleClass().setAll("button-Delete");

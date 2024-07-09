@@ -18,7 +18,6 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
 
-    private static Scene mainScene;
     private static Stage primaryStage;
     private static SceneManager sceneManager = new SceneManager();
     private static FilesManager filesManager = new FilesManager();
@@ -45,8 +44,10 @@ public class App extends Application {
         setStartAction();
         setCloseAction();
 
-        mainScene = sceneManager.loadScreen("start");
+        Scene mainScene = sceneManager.loadScreen("start");
         primaryStage.setScene(mainScene);
+        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
@@ -76,6 +77,7 @@ public class App extends Application {
     }
 
 
+
     private void setStage(Stage stage) {
         primaryStage = stage;
     }
@@ -83,21 +85,17 @@ public class App extends Application {
         return primaryStage;
     }
     public static Scene getScene() {
-        return mainScene;
+        return primaryStage.getScene();
     }
+
+
 
     private void configStage(Stage primaryStage) {
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
-        
-        
-        mainScene = screenManager.loadScreen("start");
-        
-        primaryStage.setScene(mainScene);
-        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
-        primaryStage.centerOnScreen();
     }
+
 
 
     public static void setDefAppSize() {
@@ -116,12 +114,9 @@ public class App extends Application {
     
 
 
-    public static void changeScreen(String sceneName) {
-        primaryStage.setX(primaryStage.getX());
-        primaryStage.setY(primaryStage.getY());
+    public static void changePage(String sceneName) {
         primaryStage.setScene(sceneManager.loadScreen(sceneName));
         primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
         primaryStage.centerOnScreen();
     }
-
 }
