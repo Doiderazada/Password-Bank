@@ -1,28 +1,138 @@
 package com.example.passwordbank.controllers;
 
+import animatefx.animation.Shake;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.scene.layout.Border;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ModalPasswordController {
     
     @FXML private Button buttonCancel;
     @FXML private Button buttonSave;
     @FXML private Button buttonViewPass;
+    @FXML private Label lHIntIdentifier;
     @FXML private Label lHIntUsername;
     @FXML private Label lHintPassword;
+    @FXML private Label labelIdentifier;
     @FXML private Label labelPassword;
     @FXML private Label labelUsername;
     @FXML private PasswordField pFPassword;
+    @FXML private TextField tFIdentifier;
     @FXML private TextField tFPassword;
     @FXML private TextField tFUsername;
-    @FXML private Text textIdentifier;
+
+
+    // private static Login login;
 
 
     public void initialize() {
-
+        setFields();
+        setActions();
     }
+
+
+    private void setFields() {
+        // tFIdentifier.setText(login.getIdentifier());
+        // tFUsername.setText(login.getUsername());
+        // pFPassword.setText(login.getPassword());
+    }
+
+    private void setActions() {
+        buttonCancel.setOnMouseClicked(event -> {
+            Stage stage = (Stage) buttonCancel.getScene().getWindow();
+            stage.close();
+        });
+        buttonSave.setOnMouseClicked(event -> saveChanges());
+        buttonViewPass.setOnMousePressed(event -> {
+            tFPassword.setText(pFPassword.getText());
+            pFPassword.setVisible(false);
+            buttonViewPass.getStyleClass().setAll("button-HidePass");
+        });
+        buttonViewPass.setOnMouseReleased(event -> {
+            tFPassword.clear();
+            pFPassword.setVisible(true);
+            buttonViewPass.getStyleClass().setAll("button-ViewPass");
+        });
+        tFIdentifier.setOnKeyTyped(event -> {
+            tFIdentifier.setBorder(Border.EMPTY);
+            lHIntIdentifier.setVisible(false);
+        });
+        tFUsername.setOnKeyTyped(event -> {
+            tFUsername.setBorder(Border.EMPTY);
+            lHIntUsername.setVisible(false);
+        });
+        pFPassword.setOnKeyTyped(event -> {
+            pFPassword.setBorder(Border.EMPTY);
+            lHintPassword.setVisible(false);
+        });
+
+        lHIntIdentifier.setVisible(false);
+        lHIntUsername.setVisible(false);
+        lHintPassword.setVisible(false);
+    }
+
+    private void saveChanges() {
+        if (verifyFields()) {
+            // login.setIdentifier(tFIdentifier.getText());
+            // login.setUsername(tFUsername.getText());
+            // login.setPassword(pFPassword.getText());
+        }
+    }
+
+
+    private boolean verifyFields() {
+        if (tFIdentifier.getText().isBlank()) {
+            Shake shake = new Shake(tFIdentifier);
+            tFIdentifier.setBorder(Border.stroke(Color.RED));
+            lHIntIdentifier.setText("The field cannot be empty");
+            lHIntIdentifier.setTextFill(Color.RED);
+            lHIntIdentifier.setVisible(true);
+            shake.setSpeed(2);
+            shake.play();
+            return false;
+        }
+        
+        if (tFUsername.getText().isBlank()) {
+            Shake shake = new Shake(tFUsername);
+            tFUsername.setBorder(Border.stroke(Color.RED));
+            lHIntUsername.setText("The field cannot be empty");
+            lHIntUsername.setTextFill(Color.RED);
+            lHIntUsername.setVisible(true);
+            shake.setSpeed(2);
+            shake.play();
+            return false;
+        }
+        
+        if (pFPassword.getText().isBlank()) {
+            Shake shake1 = new Shake(pFPassword);
+            Shake shake2 = new Shake(tFPassword);
+            Shake shake3 = new Shake(buttonViewPass);
+            pFPassword.setBorder(Border.stroke(Color.RED));
+            lHintPassword.setText("The field cannot be empty");
+            lHintPassword.setTextFill(Color.RED);
+            lHintPassword.setVisible(true);
+            shake1.setSpeed(2);
+            shake1.play();
+            shake2.setSpeed(2);
+            shake2.play();
+            shake3.setSpeed(2);
+            shake3.play();
+            return false;
+        }
+
+        return true;
+    }
+
+    // public static void setLoginToShow(Login loginToShow) {
+    //     login = loginToShow;
+    // }
+
+    // public static Login getLogin() {
+    //     return login;
+    // }
 }

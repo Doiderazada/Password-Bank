@@ -3,8 +3,6 @@ package com.example.passwordbank.controllers;
 import java.io.IOException;
 
 import com.example.passwordbank.App;
-import com.example.passwordbank.WindowControlHelper;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -67,19 +67,13 @@ public class BaseController {
         loadMainPages();
         changePage(homePane);
         setActions();
-        setButtonsStyle();
-        createMenuText();
+        setStyle();
         
-
-        Thread fxRun = new Thread(() -> {
-            try {
-                Thread.sleep(100);
-                new WindowControlHelper(bPaneMain, buttonMinimize, buttonMaximize, buttonClose);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        fxRun.start();
+        // new Thread(() -> {
+        //     try {Thread.sleep(200);} 
+        //     catch (InterruptedException e) {e.printStackTrace();}
+        //     new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
+        // }).start();
     }
 
 
@@ -112,16 +106,6 @@ public class BaseController {
         gPaneTitleBar.setOnMouseDragged(doDragging());
     }
 
-
-    
-
-
-
-
-    protected void changePage(Pane nextPane) {
-        stackPaneMain.getChildren().clear();
-        stackPaneMain.getChildren().add(nextPane);
-    }
 
 
 
@@ -283,5 +267,33 @@ public class BaseController {
 
 
 
-    public void setStyle(){}
+    protected void changePage(Pane nextPane) {
+        stackPaneMain.getChildren().clear();
+        stackPaneMain.getChildren().add(nextPane);
+    }
+
+
+
+    private void setStyle() {
+        bPaneMain.setBackground(Background.fill(Color.TRANSPARENT));
+        if (App.darkMode) 
+             gPaneMenu.setBackground(Background.fill(Color.valueOf("#3B3B3B")));
+        else gPaneMenu.setBackground(Background.fill(Color.valueOf("#8A8A8A")));
+        
+        setButtonsStyle();
+        createMenuText();
+        setStyle(sPaneMain, stackPaneMain);
+    }
+
+    public static void setStyle(Region... panes){
+        if (App.darkMode) {
+            for (Region pane : panes) {
+                pane.setBackground(Background.fill(Color.valueOf("#292929")));
+            }
+        } else {
+            for (Region pane : panes) {
+                pane.setBackground(Background.fill(Color.WHITE));
+            }
+        }
+    }
 }
