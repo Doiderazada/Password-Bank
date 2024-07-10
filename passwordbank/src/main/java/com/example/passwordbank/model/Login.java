@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Login {
 
+    private String identifier;
     private String userName;
     private Password password;
     private Date creationDate;
@@ -22,6 +23,12 @@ public class Login {
     }
 
 
+    public String getIdentifier() {
+        return this.identifier;
+    }
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
 
     public String getUserName() {
@@ -37,14 +44,15 @@ public class Login {
     }
     public void setPassword(String password) {
         this.password = new Password(password);
-        // this.password.setPass(password);
+        Date lastEdited = new Date();
+        setLastEditDate(lastEdited);
     }
 
 
     public Date getCreationDate() {
         return creationDate;
     }
-    public void setCreationDate(Date creationDate) {
+    private void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -52,10 +60,7 @@ public class Login {
     public Date getLastEditDate() {
         return lastEditDate;
     }
-    public void setLastEditDate(Date lastEditDate) {
+    private void setLastEditDate(Date lastEditDate) {
         this.lastEditDate = lastEditDate;
     }
-
-
-    
 }
