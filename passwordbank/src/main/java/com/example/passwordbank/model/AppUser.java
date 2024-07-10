@@ -2,9 +2,11 @@ package com.example.passwordbank.model;
 
 public abstract class AppUser {
 
-    private String userEmail;
-    private String mobileNumber;
+    private String mainEmail;
     private Password password;
+    private String username;
+    private String altEmail;
+    private String mobileNumber;
     private String question1;
     private String question2;
     private String question3;
@@ -12,6 +14,7 @@ public abstract class AppUser {
     private String answer2;
     private String answer3;
     private boolean darkMode;
+    private boolean stayLoggedIn;
 
 
 
@@ -19,10 +22,11 @@ public abstract class AppUser {
     public AppUser() {    
     }
 
-    public AppUser(String userEmail, String mobileNumber, String password, String question1,
-            String question2, String question3, String answer1, String answer2, String answer3, boolean darkMode) {
-        setUserEmail(userEmail);
+    public AppUser(String mainEmail, String password, String username, String altEmail, String mobileNumber, String question1,
+                   String question2, String question3, String answer1, String answer2, String answer3, boolean darkMode) {
+        setMainEmail(mainEmail);
         setPassword(password);
+        setUsername(username);
         setMobileNumber(mobileNumber);
         setQuestion1(question1);
         setQuestion2(question2);
@@ -40,12 +44,40 @@ public abstract class AppUser {
 
 
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getMainEmail() {
+        return mainEmail;
     }
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setMainEmail(String userEmail) {
+        this.mainEmail = userEmail;
     }
+
+
+
+    public Password getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = new Password(password);
+    }
+
+
+
+    public String getUsername() {
+        return this.username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
+
+    public String getAltEmail() {
+        return this.altEmail;
+    }
+    public void setAltEmail(String altEmail) {
+        this.altEmail = altEmail;
+    }
+
 
 
     public String getMobileNumber() {
@@ -55,13 +87,6 @@ public abstract class AppUser {
         this.mobileNumber = mobileNumber;
     }
 
-
-    public Password getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = new Password(password);
-    }
 
 
     public String getQuestion1() {
@@ -120,8 +145,10 @@ public abstract class AppUser {
     }
 
 
-
-
-    
-
+    public boolean isStayLoggedIn() {
+        return this.stayLoggedIn;
+    }
+    public void setStayLogged(boolean stayLogged) {
+        this.stayLoggedIn = stayLogged;
+    }
 }
