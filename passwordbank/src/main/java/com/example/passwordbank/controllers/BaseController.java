@@ -47,9 +47,9 @@ public class BaseController {
     private final Text passText = new Text();
     private final Text settText = new Text();
     
+    private boolean menuMaximized = false;
     private final double minXMenu = 50;
     private final double maxXMenu = 230;
-    private boolean menuMaximized = false;
 
 
 
@@ -59,7 +59,7 @@ public class BaseController {
         loadMainPages();
         changePage(homePane);
         setActions();
-        // setStyle();
+        setStyle();
         
         new Thread(() -> {
             try {Thread.sleep(200);} 
@@ -120,29 +120,21 @@ public class BaseController {
     }
 
     private void createMenuText(){
-        menuText.setStroke(Color.BLACK);
         menuText.setText("Menu");
         menuText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         menuText.setFill(Color.WHITE);
-        menuText.setStrokeWidth(.8);
 
-        homeText.setStroke(Color.BLACK);
         homeText.setText("Home");
         homeText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         homeText.setFill(Color.WHITE);
-        homeText.setStrokeWidth(.8);       
         
-        passText.setStroke(Color.BLACK);
         passText.setText("Passwords");
         passText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         passText.setFill(Color.WHITE);
-        passText.setStrokeWidth(.8);       
-        
-        settText.setStroke(Color.BLACK);
+
         settText.setText("Settings");
         settText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         settText.setFill(Color.WHITE);
-        settText.setStrokeWidth(.8);       
     }
 
 

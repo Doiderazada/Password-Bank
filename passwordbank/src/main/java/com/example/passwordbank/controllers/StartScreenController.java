@@ -154,13 +154,12 @@ public class StartScreenController {
         App.getStage().setOnShown(event -> {
             loadNextPages();
         });
-        // if (!App.haveUser) 
-        {
-            // vBoxUserInfo.setVisible(false);
-            // buttonLogReg.setLayoutY(400);
-            // buttonLogReg.setText("Create account");
-            // tWelcome.setLayoutY(280);
-            // tWelcome.setText("Create an account to start using the application!");
+        if (!App.haveUser) {
+            vBoxUserInfo.setVisible(false);
+            buttonLogReg.setLayoutY(400);
+            buttonLogReg.setText("Create account");
+            tWelcome.setLayoutY(280);
+            tWelcome.setText("Create an account to start using the application!");
         }
     }
 
@@ -185,7 +184,7 @@ public class StartScreenController {
         buttonClose.setOnMouseClicked(event -> App.getStage().close());
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
-        if (App.darkMode) {
+        if (App.haveUser) {
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
                 if (event.getCode().equals(KeyCode.ENTER)) {
@@ -527,7 +526,7 @@ public class StartScreenController {
             lHintUsernameStart.setText("Username cannot be empty");
             animateFieldsError(tFUsername, null, lHintUsernameStart, null);
             return false;
-        } else if (!tFUsername.getText().equals("jemanoel.je@gmail.com")) {
+        } else if (!tFUsername.getText().equals("1234")) {
             lHintUsernameStart.setText("Username is wrong");
             animateFieldsError(tFUsername, null, lHintUsernameStart, null);
             return false;
