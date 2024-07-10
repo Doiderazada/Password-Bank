@@ -69,7 +69,7 @@
       </GridPane>
    </left>
    <center>
-      <ScrollPane fx:id="sPaneMain" fitToHeight="true" fitToWidth="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="sPaneMain" fitToHeight="true" fitToWidth="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <content>
             <StackPane fx:id="stackPaneMain" minHeight="-Infinity" minWidth="-Infinity" />
         </content>
