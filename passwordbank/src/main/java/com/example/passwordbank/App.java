@@ -7,7 +7,6 @@ import com.example.passwordbank.utilities.FilesManager;
 import com.example.passwordbank.utilities.SceneManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,13 +20,14 @@ public class App extends Application {
     private static Stage primaryStage;
     private static SceneManager sceneManager = new SceneManager();
     private static FilesManager filesManager = new FilesManager();
+    public  static BaseController baseCtrlInstance;
     public  static final double defH = 724;
     public  static final double defW = 1284;
     public  static final double minH = 600;
     public  static final double minW = 400;
+    public  static boolean haveUser;
     public  static boolean darkMode = true;
     public  static boolean stayLoggedIn = false;
-    public  static BaseController baseCtrlInstance;
     public  static AppUser user;
     public  static Login[] logs;
 
@@ -40,14 +40,12 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         setStage(stage);
-        configStage(primaryStage);
+        configStage();
         setStartAction();
         setCloseAction();
 
         Scene mainScene = sceneManager.loadScreen("start");
         primaryStage.setScene(mainScene);
-        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
-        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 
@@ -56,6 +54,7 @@ public class App extends Application {
 
     private void setStartAction() {
         if (FilesManager.haveUser) {
+            haveUser = true;
             user = filesManager.openUserFile();
             user.getPassword().retrievePass();
             darkMode = user.isDarkMode();
@@ -90,10 +89,11 @@ public class App extends Application {
 
 
 
-    private void configStage(Stage primaryStage) {
+    private void configStage() {
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
+        primaryStage.centerOnScreen();
     }
 
 
@@ -116,7 +116,6 @@ public class App extends Application {
 
     public static void changePage(String sceneName) {
         primaryStage.setScene(sceneManager.loadScreen(sceneName));
-        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
         primaryStage.centerOnScreen();
     }
 }
