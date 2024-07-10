@@ -66,6 +66,8 @@ public class UserInfoScreenController {
             App.setMinAppSize();
             App.changePage("start");
         });
+        buttonLogout.setText("Log out");
+        buttonDeleteAcc.setText("Delete account");
         buttonBack.getStyleClass().setAll("button-Prev");
         buttonDeleteAcc.getStyleClass().setAll("button-Delete");
         buttonLogout.getStyleClass().setAll("button-Logout");

@@ -184,7 +184,7 @@ public class StartScreenController {
         buttonClose.setOnMouseClicked(event -> App.getStage().close());
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
-        if (App.darkMode) {
+        if (App.haveUser) {
             buttonLogReg.setText("Login");
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
