@@ -132,6 +132,7 @@ public class BaseController {
         passText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         passText.setFill(Color.WHITE);
 
+
         settText.setText("Settings");
         settText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         settText.setFill(Color.WHITE);

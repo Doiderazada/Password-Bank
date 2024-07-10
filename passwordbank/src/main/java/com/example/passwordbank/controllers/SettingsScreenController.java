@@ -61,8 +61,8 @@ public class SettingsScreenController {
 
 
     private void setButtonsStyle() {
-        buttonAbout.getStyleClass().setAll("button-next");
-        buttonUserInfo.getStyleClass().setAll("button-next");
+        buttonAbout.getStyleClass().setAll("button-Next");
+        buttonUserInfo.getStyleClass().setAll("button-Next");
     }
 
 }

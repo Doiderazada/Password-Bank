@@ -1,5 +1,7 @@
 package com.example.passwordbank.controllers;
 
+import com.example.passwordbank.App;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
@@ -19,8 +21,18 @@ public class AboutScreenController {
 
 
     public void initialize() {
+        setActions();
         buttonPDF.setText("Open user guide");
-        buttonPDF.getStyleClass().setAll("button-PDF-black");
     }
-
+    
+    
+    private void setActions() {
+        if (App.darkMode) {
+            buttonPDF.getStyleClass().setAll("button-PDF-white");
+        } else {
+            buttonPDF.getStyleClass().setAll("button-PDF-black");
+        }
+        buttonBack.getStyleClass().setAll("button-Prev");
+        buttonBack.setOnMouseClicked(event -> App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("settings")));
+    }
 }

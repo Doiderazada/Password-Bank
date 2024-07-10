@@ -184,7 +184,7 @@ public class StartScreenController {
         buttonClose.setOnMouseClicked(event -> App.getStage().close());
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
-        if (App.haveUser) {
+        if (App.darkMode) {
             buttonLogReg.setText("Login");
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
@@ -350,6 +350,7 @@ public class StartScreenController {
         buttonNextPageRecovery2.getStyleClass().setAll("button-RightArrow");
 
         buttonSkipRecovery.setOnMouseClicked(event -> goToApp());
+        buttonSkipRecovery.setOnKeyPressed(event -> {if(event.getCode().equals(KeyCode.ENTER)) goToApp();});
         buttonNextPageRecovery2.setOnMouseClicked(event -> goToPage4());
         buttonNextPageRecovery2.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) goToPage4();
