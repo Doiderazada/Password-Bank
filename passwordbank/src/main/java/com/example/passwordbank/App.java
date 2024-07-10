@@ -22,13 +22,14 @@ public class App extends Application {
     private static Stage primaryStage;
     private static SceneManager sceneManager = new SceneManager();
     private static FilesManager filesManager = new FilesManager();
+    public  static BaseController baseCtrlInstance;
     public  static final double defH = 724;
     public  static final double defW = 1284;
     public  static final double minH = 600;
     public  static final double minW = 400;
+    public  static boolean haveUser;
     public  static boolean darkMode = true;
     public  static boolean stayLoggedIn = false;
-    public  static BaseController baseCtrlInstance;
     public  static AppUser user;
     public  static Login[] logs;
 
@@ -41,7 +42,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         setStage(stage);
-        configStage(primaryStage);
+        configStage();
         setStartAction();
         setCloseAction();
 
@@ -55,6 +56,7 @@ public class App extends Application {
 
     private void setStartAction() {
         if (FilesManager.haveUser) {
+            haveUser = true;
             user = filesManager.openUserFile();
             user.getPassword().retrievePass();
             darkMode = user.isDarkMode();
@@ -76,6 +78,7 @@ public class App extends Application {
     }
 
 
+
     private void setStage(Stage stage) {
         primaryStage = stage;
     }
@@ -83,15 +86,18 @@ public class App extends Application {
         return primaryStage;
     }
     public static Scene getScene() {
-        return mainScene;
+        return primaryStage.getScene();
     }
 
-    private void configStage(Stage primaryStage) {
+
+
+    private void configStage() {
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
     }
+
 
 
     public static void setDefAppSize() {
@@ -114,7 +120,6 @@ public class App extends Application {
         primaryStage.setX(primaryStage.getX());
         primaryStage.setY(primaryStage.getY());
         primaryStage.setScene(sceneManager.loadScreen(sceneName));
-        primaryStage.getScene().setFill(Color.rgb(0, 0, 0, 0.01));
         primaryStage.centerOnScreen();
     }
 

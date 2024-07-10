@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import com.example.passwordbank.App;
+// import com.example.passwordbank.controllers.ModalPasswordController;
 import com.example.passwordbank.model.Login;
 
 import javafx.fxml.FXMLLoader;
@@ -59,8 +60,12 @@ public class ModalManager {
 
         Scene modalScene = new Scene(modalRoot);
         modalStage.setScene(modalScene);
-        modalStage.showAndWait();
         
+        // ModalPasswordController.setLoginToShow(managedLogin);
+
+        modalStage.showAndWait();
+
+        // setLoginUpdated(ModalPasswordController.getLogin());
     }
 
 
@@ -68,7 +73,7 @@ public class ModalManager {
         return this.managedLogin;
     }
 
-    private void setLoginUpdated(Login updatedLogin) {
-        this.managedLogin = updatedLogin;
-    }
+    // private void setLoginUpdated(Login updatedLogin) {
+    //     this.managedLogin = updatedLogin;
+    // }
 }
