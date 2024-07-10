@@ -24,6 +24,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class StartScreenController {
@@ -154,13 +155,6 @@ public class StartScreenController {
         App.getStage().setOnShown(event -> {
             loadNextPages();
         });
-        if (!App.haveUser) {
-            vBoxUserInfo.setVisible(false);
-            buttonLogReg.setLayoutY(400);
-            buttonLogReg.setText("Create account");
-            tWelcome.setLayoutY(280);
-            tWelcome.setText("Create an account to start using the application!");
-        }
     }
 
 
@@ -168,23 +162,30 @@ public class StartScreenController {
     
 
     private void startPageActions() {
+        buttonLogReg.getStyleClass().setAll("button-LogReg");
+        bViewPass.getStyleClass().setAll("button-HidePass");
 
         bViewPass.setOnMousePressed(event -> {
+            bViewPass.requestFocus();
             String pass = pFPassword.getText();
             tFPassword.setText(pass);
             pFPassword.setVisible(false);
             tFPassword.setVisible(true);
+            bViewPass.getStyleClass().setAll("button-ViewPass");
         });
         bViewPass.setOnMouseReleased(event -> {
+            bViewPass.focusedProperty().not();
             String pass = tFPassword.getText();
             pFPassword.setText(pass);
             tFPassword.setVisible(false);
             pFPassword.setVisible(true);
+            bViewPass.getStyleClass().setAll("button-HidePass");
         });
         buttonClose.setOnMouseClicked(event -> App.getStage().close());
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
         if (App.haveUser) {
+            buttonLogReg.setText("Login");
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
                 if (event.getCode().equals(KeyCode.ENTER)) {
@@ -192,6 +193,11 @@ public class StartScreenController {
                 }
             });
         } else {
+            tWelcome.setLayoutY(280);
+            tWelcome.setText("Create an account to start using the application!");
+            vBoxUserInfo.setVisible(false);
+            buttonLogReg.setLayoutY(400);
+            buttonLogReg.setText("Create account");
             buttonLogReg.setOnMouseClicked(event -> goToPage1());
             buttonLogReg.setOnKeyPressed(event -> {
                 if (event.getCode().equals(KeyCode.ENTER)) goToPage1();
@@ -211,6 +217,10 @@ public class StartScreenController {
                 App.stayLoggedIn = true;
             } else App.stayLoggedIn = false;
         });
+        tForgotPass.focusedProperty().addListener((a, b, c) -> {
+            if (c) tForgotPass.setFill(Color.BLUE);
+            else tForgotPass.setFill(Color.WHITE);
+        });
         tForgotPass.setOnMouseClicked(event -> {
 
         });
@@ -226,28 +236,34 @@ public class StartScreenController {
 
 
     private void registerPage1Actions() {
- 
+        bViewPassReg.getStyleClass().setAll("button-HidePass");
+        bViewPassRepReg.getStyleClass().setAll("button-HidePass");
+        
         bViewPassReg.setOnMousePressed(event -> {
-            String pass = pFPasswordReg.getText();
-            tFPasswordReg.setText(pass);
+            bViewPassReg.getStyleClass().setAll("button-ViewPass");
+            bViewPassReg.requestFocus();
+            tFPasswordReg.setText(pFPasswordReg.getText());
             pFPasswordReg.setVisible(false);
             tFPasswordReg.setVisible(true);
         });
         bViewPassReg.setOnMouseReleased(event -> {
-            String pass = tFPasswordReg.getText();
-            pFPasswordReg.setText(pass);
+            bViewPassReg.getStyleClass().setAll("button-HidePass");
+            bViewPassReg.focusedProperty().not();
+            tFPasswordReg.clear();
             tFPasswordReg.setVisible(false);
             pFPasswordReg.setVisible(true);
         });
         bViewPassRepReg.setOnMousePressed(event -> {
-            String pass = pFPasswordRepReg.getText();
-            tFPasswordRepReg.setText(pass);
+            bViewPassRepReg.getStyleClass().setAll("button-ViewPass");
+            bViewPassRepReg.requestFocus();
+            tFPasswordRepReg.setText(pFPasswordRepReg.getText());
             pFPasswordRepReg.setVisible(false);
             tFPasswordRepReg.setVisible(true);
         });
         bViewPassRepReg.setOnMouseReleased(event -> {
-            String pass = tFPasswordRepReg.getText();
-            pFPasswordRepReg.setText(pass);
+            bViewPassRepReg.getStyleClass().setAll("button-HidePass");
+            bViewPassRepReg.focusedProperty().not();
+            tFPasswordRepReg.clear();
             tFPasswordRepReg.setVisible(false);
             pFPasswordRepReg.setVisible(true);
         });
@@ -257,6 +273,7 @@ public class StartScreenController {
             animatePageTransition(panePage1, pLogin, false);
             startPageActions();
         });
+        buttonNextPageReg.getStyleClass().setAll("button-RightArrow");
         buttonNextPageReg.setOnMouseClicked(event -> goToPage2());
         buttonNextPageReg.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) goToPage2();
@@ -295,6 +312,8 @@ public class StartScreenController {
     
 
     private void registerPage2Actions() {
+        buttonBackPageReg.getStyleClass().setAll("button-LeftArrow");
+        buttonNextPageRecovery.getStyleClass().setAll("button-RightArrow");
 
         buttonBackPageReg.setOnMouseClicked(event -> {
             animatePageTransition(panePage2, panePage1, false);
@@ -310,7 +329,8 @@ public class StartScreenController {
         });
         cBoxUsername.setOnMouseClicked(event -> checkBoxSelect1());
         cBoxUsername.setOnKeyReleased(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) {
+            if (event.getCode().equals(KeyCode.ENTER) || 
+                event.getCode().equals(KeyCode.SPACE)) {
                 checkBoxSelect1();
             }
         });
@@ -326,6 +346,8 @@ public class StartScreenController {
 
 
     private void recoveryInfoPageActions() {
+        buttonSkipRecovery.getStyleClass().setAll("button-Skip");
+        buttonNextPageRecovery2.getStyleClass().setAll("button-RightArrow");
 
         buttonSkipRecovery.setOnMouseClicked(event -> goToApp());
         buttonNextPageRecovery2.setOnMouseClicked(event -> goToPage4());
@@ -342,6 +364,7 @@ public class StartScreenController {
 
 
     private void recoveryPage1Actions() {
+        buttonNextPageRecovery3.getStyleClass().setAll("button-RightArrow");
 
         buttonNextPageRecovery3.setOnMouseClicked(event -> goToPage5());
         buttonNextPageRecovery3.setOnKeyPressed(event -> {
@@ -364,7 +387,8 @@ public class StartScreenController {
         });
         cBoxAltEmail.setOnMouseClicked(event -> checkBoxSelect2());
         cBoxAltEmail.setOnKeyReleased(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) {
+            if (event.getCode().equals(KeyCode.ENTER) || 
+                event.getCode().equals(KeyCode.SPACE)) {
                 checkBoxSelect2();
             }
         });
@@ -386,6 +410,8 @@ public class StartScreenController {
 
 
     private void recoveryPage2Actions() {
+        buttonBackPageRec3.getStyleClass().setAll("button-LeftArrow");
+        buttonFinish.getStyleClass().setAll("button-Finish2");
 
         buttonBackPageRec3.setOnMouseClicked(event -> {
             App.getStage().setHeight(600);
