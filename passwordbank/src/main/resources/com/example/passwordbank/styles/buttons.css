@@ -158,7 +158,7 @@
 .button-PDF-white {
     -fx-background-image: url("../PDF-Icon-white.png");
     -fx-background-color: transparent;
-    -fx-background-position: right;
+    -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 35px;
     -fx-border-color: white;
@@ -168,7 +168,7 @@
 .button-PDF-white:hover {
     -fx-background-image: url("../PDF-Icon-white.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: right;
+    -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 35px;
     -fx-border-color: white;
