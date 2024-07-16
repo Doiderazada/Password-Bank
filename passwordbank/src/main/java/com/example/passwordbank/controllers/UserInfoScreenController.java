@@ -54,22 +54,56 @@ public class UserInfoScreenController {
 
     public void initialize() {
         setActions();
+        setTexts();
+        setTextTheme();
+        setButtonsStyle();
     }
 
 
+    
+    
     private void setActions() {
         buttonBack.setOnMouseClicked(event -> {
             App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("settings"));
         });
         buttonLogout.setOnMouseClicked(event -> {
             App.stayLoggedIn = false;
+            App.getStage().hide();
             App.setMinAppSize();
-            App.changeScreen("start");
+            App.changePage("start");
+            App.getStage().show();
         });
+    }
+    
+    private void setButtonsStyle() {
         buttonBack.getStyleClass().setAll("button-Prev");
         buttonDeleteAcc.getStyleClass().setAll("button-Delete");
         buttonLogout.getStyleClass().setAll("button-Logout");
+        buttonSaveChanges.getStyleClass().setAll("button-SaveChange");
+        buttonShowPass.getStyleClass().setAll("button-HidePass");
+    }
+    
+    private void setTexts() {
+        buttonLogout.setText("Log out");
+        buttonDeleteAcc.setText("Delete account");
+        buttonSaveChanges.setText("Save changes");
+        labelA1.setText("Answer 1");
+        labelA2.setText("Answer 2");
+        labelA3.setText("Answer 3");
+        labelAltEmail.setText("Alternative email");
+        labelHintPass.setVisible(false);
+        labelHintUsername.setVisible(false);
+        labelMainEmail.setText("Main email");
+        labelPassword.setText("Password");
+        labelPhoneNum.setText("Phone number");
+        labelQ1.setText("Question 1");
+        labelQ2.setText("Question 2");
+        labelQ3.setText("Question 3");
     }
 
-
+    protected void setTextTheme() {
+        BaseController.setTextTheme(new Text[] {textAccountInfo, textQuestions, textRecovery, textUserInfo}, 
+                                    new Label[] {labelA1, labelA2, labelA3, labelAltEmail, labelHintPass, labelHintUsername, 
+                                                 labelMainEmail, labelPassword, labelPhoneNum, labelQ1, labelQ2, labelQ3});
+    }
 }

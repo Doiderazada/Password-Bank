@@ -3,12 +3,14 @@ package com.example.passwordbank.controllers;
 import java.io.IOException;
 
 import com.example.passwordbank.App;
-// import com.example.passwordbank.model.AppUser;
+import com.example.passwordbank.model.AppUser;
+import com.example.passwordbank.model.Password;
 
 import animatefx.animation.Shake;
 import animatefx.animation.SlideAnimation;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -136,7 +138,7 @@ public class StartScreenController {
     private final String labelStyleBad    = "-fx-text-fill: red;";
     private final String emailRegexGroup  = "((?>@gmail\\.com)|(?>@outlook\\.com)|(?>@yahoo\\.com)|(?>@hotmail\\.com))$";
     private final String genericRegexText = "^[\\w^(.\\-_)]+";
-    // private final AppUser user = App.user;
+    private AppUser user;
     private String password;
     private String username;
     private String mainEmail;
@@ -151,10 +153,11 @@ public class StartScreenController {
     
 
     public void initialize() {
-        startPageActions();
         App.getStage().setOnShown(event -> {
-            loadNextPages();
+            if (!App.haveUser) loadNextPages();
         });
+        if (App.haveUser) user = App.user;
+        startPageActions();
     }
 
 
@@ -181,7 +184,7 @@ public class StartScreenController {
             pFPassword.setVisible(true);
             bViewPass.getStyleClass().setAll("button-HidePass");
         });
-        buttonClose.setOnMouseClicked(event -> App.getStage().close());
+        buttonClose.setOnMouseClicked(event -> Platform.exit());
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
         if (App.darkMode) {
@@ -216,6 +219,14 @@ public class StartScreenController {
             if (cBoxStayLogged.isSelected()) {
                 App.stayLoggedIn = true;
             } else App.stayLoggedIn = false;
+        });
+        cBoxStayLogged.setOnKeyReleased(event -> {
+            if (event.getCode().equals(KeyCode.ENTER) ||
+                event.getCode().equals(KeyCode.SPACE) ) {
+                if (cBoxStayLogged.isSelected()) {
+                    App.stayLoggedIn = true;
+                } else App.stayLoggedIn = false;
+            }
         });
         tForgotPass.focusedProperty().addListener((a, b, c) -> {
             if (c) tForgotPass.setFill(Color.BLUE);
@@ -349,8 +360,16 @@ public class StartScreenController {
         buttonSkipRecovery.getStyleClass().setAll("button-Skip");
         buttonNextPageRecovery2.getStyleClass().setAll("button-RightArrow");
 
-        buttonSkipRecovery.setOnMouseClicked(event -> goToApp());
-        buttonSkipRecovery.setOnKeyPressed(event -> {if(event.getCode().equals(KeyCode.ENTER)) goToApp();});
+        buttonSkipRecovery.setOnMouseClicked(event -> {
+            createAccount();
+            goToApp();
+        });
+        buttonSkipRecovery.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)) { 
+                createAccount();
+                goToApp();
+            }
+        });
         buttonNextPageRecovery2.setOnMouseClicked(event -> goToPage4());
         buttonNextPageRecovery2.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) goToPage4();
@@ -412,13 +431,14 @@ public class StartScreenController {
 
     private void recoveryPage2Actions() {
         buttonBackPageRec3.getStyleClass().setAll("button-LeftArrow");
-        buttonFinish.getStyleClass().setAll("button-Finish2");
+        buttonFinish.getStyleClass().setAll("button-Finish");
 
         buttonBackPageRec3.setOnMouseClicked(event -> {
             App.getStage().setHeight(600);
             animatePageTransition(panePage5, panePage4, false);
         });
         buttonFinish.setOnMouseClicked(event -> {if (verifyQuestionFields()) finishRegistration();});
+        buttonFinish.setOnKeyTyped(event -> {if (verifyQuestionFields()) finishRegistration();});
         tAAnswer1.setOnMouseClicked(event -> {
             tAAnswer1.setStyle(null);
             tAAnswer1.clear();
@@ -493,6 +513,17 @@ public class StartScreenController {
         }
     }
 
+
+    private void createAccount() {
+        user = new AppUser();
+        App.user = user;
+        user.setMainEmail(mainEmail);
+        user.setPassword(password);
+        user.setUsername(username);
+        user.setRecoverInfo(false);
+    }
+
+
     private void finishRegistration() {
         question1 = cBoxQuestion1.getSelectionModel().getSelectedItem();
         question2 = cBoxQuestion2.getSelectionModel().getSelectedItem();
@@ -500,17 +531,19 @@ public class StartScreenController {
         answer1 = tAAnswer1.getText();
         answer2 = tAAnswer2.getText();
         answer3 = tAAnswer3.getText();
-        // user.setAnswer1(answer1);
-        // user.setAnswer2(answer2);
-        // user.setAnswer3(answer3);
-        // user.setQuestion1(question1);
-        // user.setQuestion2(question2);
-        // user.setQuestion3(question3);
-        // user.setUserEmail(mainEmail);
-        // user.setPassword(password);
-        // if (!phoneNum.isBlank()) {
-        //     user.setMobileNumber(phoneNum);
-        // }
+        phoneNum = tFPhoneNum.getText();
+        createAccount();
+        user.setAltEmail(altEmail);
+        user.setAnswer1(answer1);
+        user.setAnswer2(answer2);
+        user.setAnswer3(answer3);
+        user.setQuestion1(question1);
+        user.setQuestion2(question2);
+        user.setQuestion3(question3);
+        user.setRecoverInfo(true);
+        if (!tFPhoneNum.getText().isBlank()) {
+            user.setMobileNumber(phoneNum);
+        }
         goToApp();
     }
 
@@ -553,7 +586,7 @@ public class StartScreenController {
             lHintUsernameStart.setText("Username cannot be empty");
             animateFieldsError(tFUsername, null, lHintUsernameStart, null);
             return false;
-        } else if (!tFUsername.getText().equals("1234")) {
+        } else if (!tFUsername.getText().equals(user.getUsername())) {
             lHintUsernameStart.setText("Username is wrong");
             animateFieldsError(tFUsername, null, lHintUsernameStart, null);
             return false;
@@ -563,7 +596,7 @@ public class StartScreenController {
             lHintPasswordStart.setText("Password field cannot be empty");
             animateFieldsError(tFPassword, pFPassword, lHintPasswordStart, bViewPass);
             return false;
-        } else if (!pFPassword.getText().equals("1234")) {
+        } else if (!Password.comparePasswords(pFPassword.getText(), user.getPassword())) {
             lHintPasswordStart.setText("Wrong password");
             animateFieldsError(tFPassword, pFPassword, lHintPasswordStart, bViewPass);
             return false;

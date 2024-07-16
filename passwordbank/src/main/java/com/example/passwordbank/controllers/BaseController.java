@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
@@ -22,12 +23,12 @@ import javafx.scene.text.Text;
 
 public class BaseController {
 
-    @FXML private Button buttonClose;
-    @FXML private Button buttonMaximize;
-    @FXML private Button buttonMinimize;    
     @FXML private BorderPane bPaneMain;
+    @FXML private Button buttonClose;
     @FXML private Button buttonHome;
+    @FXML private Button buttonMaximize;
     @FXML private Button buttonMenu;
+    @FXML private Button buttonMinimize;
     @FXML private Button buttonPassword;
     @FXML private Button buttonSettings;
     @FXML private GridPane gPaneMenu;
@@ -37,7 +38,9 @@ public class BaseController {
     @FXML private StackPane stackPaneMain;
 
     private Pane homePane;
+    private HomeScreenController homeCtrl;
     private Pane passPane;
+    private PasswordScreenController passCtrl;
     private Pane settPane;
     
     private final Text menuText = new Text();
@@ -51,7 +54,6 @@ public class BaseController {
 
 
 
-    @FXML 
     public void initialize() {
         App.baseCtrlInstance = this;
         loadMainPages();
@@ -71,7 +73,11 @@ public class BaseController {
 
 
     private void setActions() {
-        buttonHome.setOnMouseClicked(event -> {changePage(homePane);});
+        buttonHome.setOnMouseClicked(event -> {
+            homeCtrl.findMostUsedPass();
+            homeCtrl.findOldestPass();
+            changePage(homePane);
+        });
         buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
         buttonSettings.setOnMouseClicked(event -> {changePage(settPane);});
         
@@ -153,10 +159,12 @@ public class BaseController {
         try {
             FXMLLoader loader1 = new FXMLLoader(App.class.getResource("views/home.fxml"));
             Parent root1 = loader1.load();
+            homeCtrl = loader1.getController();
             homePane = (Pane) root1;
             
             FXMLLoader loader2 = new FXMLLoader(App.class.getResource("views/passwords.fxml"));
             Parent root2 = loader2.load();
+            passCtrl = loader2.getController();
             passPane = (Pane) root2;
             
             FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/settings.fxml"));
@@ -164,8 +172,8 @@ public class BaseController {
             settPane = (Pane) root3;
             
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            // e.printStackTrace();
         }
         
     }
@@ -192,26 +200,34 @@ public class BaseController {
 
 
 
-    private void setStyle() {
+    protected void setStyle() {
         bPaneMain.setBackground(Background.fill(Color.TRANSPARENT));
         if (App.darkMode) 
              gPaneMenu.setBackground(Background.fill(Color.valueOf("#3B3B3B")));
         else gPaneMenu.setBackground(Background.fill(Color.valueOf("#8A8A8A")));
         
+        homeCtrl.setTextTheme();
+        passCtrl.setTextTheme();
         setButtonsStyle();
         createMenuText();
-        setStyle(sPaneMain, stackPaneMain);
+        setStyle(sPaneMain, stackPaneMain, homePane, passPane, settPane);
     }
 
     public static void setStyle(Region... panes){
         if (App.darkMode) {
-            for (Region pane : panes) {
-                pane.setBackground(Background.fill(Color.valueOf("#292929")));
-            }
+            for (Region pane : panes) {pane.setBackground(Background.fill(Color.valueOf("#292929")));}
         } else {
-            for (Region pane : panes) {
-                pane.setBackground(Background.fill(Color.WHITE));
-            }
+            for (Region pane : panes) {pane.setBackground(Background.fill(Color.WHITE));}
+        }
+    }
+
+    public static void setTextTheme(Text[] texts, Label... labels) {
+        if (App.darkMode) {
+            for (Label label : labels)  {label.setTextFill(Color.WHITE);}
+            for (Text text : texts)     {text.setFill(Color.WHITE);}
+        } else {
+            for (Label label : labels)  {label.setTextFill(Color.BLACK);}
+            for (Text text : texts)     {text.setFill(Color.BLACK);}
         }
     }
 }
