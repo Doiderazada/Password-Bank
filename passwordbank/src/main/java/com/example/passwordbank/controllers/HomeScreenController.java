@@ -25,14 +25,9 @@ public class HomeScreenController {
 
     @FXML
     public void initialize() {
-        setActions();
         setTexts();
         setTextTheme();
-
-        gPaneLastUsed.getColumnConstraints().add(cons);
-        gPaneLastUsed.setVgap(60);
-        gPaneOldstReg.getColumnConstraints().add(cons);
-        gPaneOldstReg.setVgap(60);
+        setUpGridPanes();
         findMostUsedPass();
         findOldestPass();
     }
@@ -41,9 +36,13 @@ public class HomeScreenController {
     
 
 
-    private void setActions() {
-        
+    private void setUpGridPanes() {
+        gPaneLastUsed.getColumnConstraints().add(cons);
+        gPaneLastUsed.setVgap(60);
+        gPaneOldstReg.getColumnConstraints().add(cons);
+        gPaneOldstReg.setVgap(60);;
     }
+
 
 
 

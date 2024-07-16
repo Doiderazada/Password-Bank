@@ -84,13 +84,12 @@ public class BaseController {
         buttonMenu.setOnMouseClicked(event -> {
             if (menuMaximized) {
                 gPaneMenu.setPrefWidth(minXMenu);
-                menuMaximized = false;
                 editMenuButtonsSize(menuMaximized);
             } else {
                 gPaneMenu.setPrefWidth(maxXMenu);
-                menuMaximized = true;
                 editMenuButtonsSize(menuMaximized);
             }
+            menuMaximized = !menuMaximized;
         });
     }
 
@@ -101,21 +100,19 @@ public class BaseController {
 
     private void editMenuButtonsSize(boolean isMenuMaximized) {
         if (isMenuMaximized) {
-            buttonMenu.setPrefSize(maxXMenu-10, 40);
             buttonHome.setPrefSize(maxXMenu-10, 40);
+            buttonMenu.setPrefSize(maxXMenu-10, 40);
             buttonPassword.setPrefSize(maxXMenu-10, 40);
             buttonSettings.setPrefSize(maxXMenu-10, 40);
-            
             buttonHome.setGraphic(homeText);
             buttonMenu.setGraphic(menuText);
             buttonPassword.setGraphic(passText);
             buttonSettings.setGraphic(settText);
         } else {
-            buttonMenu.setPrefSize(50, 40);
             buttonHome.setPrefSize(50, 40);
+            buttonMenu.setPrefSize(50, 40);
             buttonPassword.setPrefSize(50, 40);
             buttonSettings.setPrefSize(50, 40);
-
             buttonHome.setGraphic(null);
             buttonMenu.setGraphic(null);
             buttonPassword.setGraphic(null);
@@ -123,37 +120,34 @@ public class BaseController {
         }
     }
 
+
+
     private void createMenuText(){
         menuText.setText("Menu");
         menuText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         menuText.setFill(Color.WHITE);
-
         homeText.setText("Home");
         homeText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         homeText.setFill(Color.WHITE);
-        
         passText.setText("Passwords");
         passText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         passText.setFill(Color.WHITE);
-
         settText.setText("Settings");
         settText.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 24));
         settText.setFill(Color.WHITE);
     }
 
-
-
-
     private void setButtonsStyle(){
         buttonClose.getStyleClass().setAll("button-close");
         buttonMaximize.getStyleClass().setAll("button-maximize");
         buttonMinimize.getStyleClass().setAll("button-minimize");
-
         buttonHome.getStyleClass().setAll("button-home");
         buttonMenu.getStyleClass().setAll("button-menu");
         buttonPassword.getStyleClass().setAll("button-password");
         buttonSettings.getStyleClass().setAll("button-settings");
     }
+
+
 
     private void loadMainPages() {
         try {
@@ -170,12 +164,7 @@ public class BaseController {
             FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/settings.fxml"));
             Parent root3 = loader3.load();
             settPane = (Pane) root3;
-            
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            // e.printStackTrace();
-        }
-        
+        } catch (IOException e) {System.out.println(e.getMessage());         e.printStackTrace();}
     }
 
     protected Pane loadPane(String pageName) {
@@ -185,9 +174,7 @@ public class BaseController {
             root = loader.load();
             Pane paneToLoad = (Pane) root;
             return paneToLoad;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {System.out.println(e.getMessage());        e.printStackTrace();}
         return null;
     }
 
@@ -214,11 +201,9 @@ public class BaseController {
     }
 
     public static void setStyle(Region... panes){
-        if (App.darkMode) {
-            for (Region pane : panes) {pane.setBackground(Background.fill(Color.valueOf("#292929")));}
-        } else {
-            for (Region pane : panes) {pane.setBackground(Background.fill(Color.WHITE));}
-        }
+        if (App.darkMode) 
+             {for (Region pane : panes) {pane.setBackground(Background.fill(Color.valueOf("#292929")));}} 
+        else {for (Region pane : panes) {pane.setBackground(Background.fill(Color.WHITE));}}
     }
 
     public static void setTextTheme(Text[] texts, Label... labels) {

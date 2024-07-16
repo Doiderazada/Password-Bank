@@ -191,9 +191,8 @@ public class StartScreenController {
             buttonLogReg.setText("Login");
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
-                if (event.getCode().equals(KeyCode.ENTER)) {
-                    if (verifyStartFields()) {goToApp();}
-                }
+                if (event.getCode().equals(KeyCode.ENTER) && verifyStartFields()) 
+                    {goToApp();}
             });
         } else {
             tWelcome.setLayoutY(280);
@@ -202,9 +201,7 @@ public class StartScreenController {
             buttonLogReg.setLayoutY(400);
             buttonLogReg.setText("Create account");
             buttonLogReg.setOnMouseClicked(event -> goToPage1());
-            buttonLogReg.setOnKeyPressed(event -> {
-                if (event.getCode().equals(KeyCode.ENTER)) goToPage1();
-            });
+            buttonLogReg.setOnKeyPressed(event -> {if (event.getCode().equals(KeyCode.ENTER)) goToPage1();});
         }
         tFUsername.setOnKeyTyped(event -> {
             tFUsername.setStyle(null);
@@ -286,9 +283,7 @@ public class StartScreenController {
         });
         buttonNextPageReg.getStyleClass().setAll("button-RightArrow");
         buttonNextPageReg.setOnMouseClicked(event -> goToPage2());
-        buttonNextPageReg.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) goToPage2();
-        });
+        buttonNextPageReg.setOnKeyPressed(event -> {if (event.getCode().equals(KeyCode.ENTER)) goToPage2();});
         tFEmailReg.setOnKeyTyped(event -> {
             tFEmailReg.setStyle(null);
             lHintEmailReg.setStyle(null);
@@ -330,9 +325,7 @@ public class StartScreenController {
             animatePageTransition(panePage2, panePage1, false);
         });
         buttonNextPageRecovery.setOnMouseClicked(event -> goToPage3());
-        buttonNextPageRecovery.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) goToPage3();
-        });
+        buttonNextPageRecovery.setOnKeyPressed(event -> {if (event.getCode().equals(KeyCode.ENTER)) goToPage3();});
         tFUsernameReg.setOnKeyTyped(event -> {
             tFUsernameReg.setStyle(null);
             lHintUsernameReg.setStyle(null);
@@ -360,20 +353,12 @@ public class StartScreenController {
         buttonSkipRecovery.getStyleClass().setAll("button-Skip");
         buttonNextPageRecovery2.getStyleClass().setAll("button-RightArrow");
 
-        buttonSkipRecovery.setOnMouseClicked(event -> {
-            createAccount();
-            goToApp();
-        });
+        buttonSkipRecovery.setOnMouseClicked(event -> {createAccount();            goToApp();});
         buttonSkipRecovery.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.ENTER)) { 
-                createAccount();
-                goToApp();
-            }
-        });
+            if(event.getCode().equals(KeyCode.ENTER)) {createAccount();            goToApp();}});
         buttonNextPageRecovery2.setOnMouseClicked(event -> goToPage4());
         buttonNextPageRecovery2.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) goToPage4();
-        });
+            if (event.getCode().equals(KeyCode.ENTER)) goToPage4();});
         textRegRec1.setText("Please, fill the following fields to help secure your account. \nDon't worry, you can do it latter");
     }
 
@@ -388,8 +373,7 @@ public class StartScreenController {
 
         buttonNextPageRecovery3.setOnMouseClicked(event -> goToPage5());
         buttonNextPageRecovery3.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) goToPage5();
-        });
+            if (event.getCode().equals(KeyCode.ENTER)) goToPage5();});
         tFAltEmailRec.setOnKeyTyped(event -> {
             tFAltEmailRec.setStyle(null);
             lHintAltEmailRec.setStyle(null);
@@ -438,7 +422,7 @@ public class StartScreenController {
             animatePageTransition(panePage5, panePage4, false);
         });
         buttonFinish.setOnMouseClicked(event -> {if (verifyQuestionFields()) finishRegistration();});
-        buttonFinish.setOnKeyTyped(event -> {if (verifyQuestionFields()) finishRegistration();});
+        buttonFinish.setOnKeyTyped(event ->     {if (verifyQuestionFields()) finishRegistration();});
         tAAnswer1.setOnMouseClicked(event -> {
             tAAnswer1.setStyle(null);
             tAAnswer1.clear();
@@ -500,13 +484,10 @@ public class StartScreenController {
     private void goToPage5() {
         if (verifyRecoverFields()) {
             mainEmail = tFMainEmailRec.getText();
-            if (cBoxAltEmail.isSelected()) {
-                altEmail = mainEmail;
-            } else altEmail = tFAltEmailRec.getText();
+            if (cBoxAltEmail.isSelected()) {altEmail = mainEmail;} 
+            else altEmail = tFAltEmailRec.getText();
             
-            if (!tFPhoneNum.getText().isBlank()) {
-                phoneNum = tFPhoneNum.getText();
-            }
+            if (!tFPhoneNum.getText().isBlank()) {phoneNum = tFPhoneNum.getText();}
             App.getStage().setHeight(720);
             animatePageTransition(panePage4, panePage5, true);
             recoveryPage2Actions();
@@ -548,8 +529,7 @@ public class StartScreenController {
     }
 
     private void goToApp() {
-        App.setDefAppSize();
-        App.changeScreen("base");
+        App.setDefAppSize();    App.changeScreen("base");
     }
 
 
@@ -561,10 +541,7 @@ public class StartScreenController {
             username = mainEmail;
             tFUsernameReg.setStyle(null);
             lHintUsernameReg.setVisible(false);
-        } else {
-            tFUsernameReg.clear();
-            username = null;
-        }
+        } else {tFUsernameReg.clear();  username = null;}
     }
 
     private void checkBoxSelect2() {
@@ -637,7 +614,6 @@ public class StartScreenController {
             animateFieldsError(tFPasswordRepReg, pFPasswordRepReg, lHintPassRepReg, bViewPassRepReg);
             return false;
         }
-        
         return true;
     }
 
@@ -664,7 +640,6 @@ public class StartScreenController {
             animateFieldsError(tFAltEmailRec, null, lHintAltEmailRec, null);
             return false;
         }
-
         return true;
     }
 
@@ -683,7 +658,6 @@ public class StartScreenController {
             shake.play();
             return false;
         }
-        
         if (tAAnswer2.getText().isBlank()) {
             Shake shake = new Shake(tAAnswer2);
             tAAnswer2.setStyle(tFieldErrorStyle + labelStyleBad);
@@ -694,7 +668,6 @@ public class StartScreenController {
             shake.play();
             return false;
         }
-        
         if (tAAnswer3.getText().isBlank()) {
             Shake shake = new Shake(tAAnswer3);
             tAAnswer3.setStyle(tFieldErrorStyle + labelStyleBad);
@@ -705,7 +678,6 @@ public class StartScreenController {
             shake.play();
             return false;
         }
-
         return true;
     }
 
@@ -723,9 +695,7 @@ public class StartScreenController {
             pField.setStyle(tFieldErrorStyle);
             shake2.play();
             shake3.play();
-        } else {
-            tField.setStyle(tFieldErrorStyle);
-        }
+        } else {tField.setStyle(tFieldErrorStyle);}
         shake.play();
     }
 
@@ -750,9 +720,7 @@ public class StartScreenController {
 
 
 
-
     private void loadNextPages() {
-
         try {
             FXMLLoader loader1 = new FXMLLoader(App.class.getResource("views/register1.fxml"));
             loader1.setController(this);
@@ -781,8 +749,7 @@ public class StartScreenController {
 
         } catch (IOException e) {
             System.out.println("Error: An error happened trying to load next pages");
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            System.out.println(e.getMessage());                    e.printStackTrace();
         }
     }
 }

@@ -35,9 +35,7 @@ public class PasswordScreenController {
         setTexts();
         setTextTheme();
         setButtonsStyle();
-        gPanePassReg.getColumnConstraints().add(cons);
-        gPanePassReg.setHgap(60);
-        gPanePassReg.setVgap(80);
+        setUpGridPanes();
 
         if (logins != null) printLogins();
         
@@ -54,6 +52,15 @@ public class PasswordScreenController {
     
     
     
+    private void setUpGridPane() {
+        gPanePassReg.getColumnConstraints().add(cons);
+        gPanePassReg.setHgap(60);
+        gPanePassReg.setVgap(80);
+    }
+
+
+
+
     private void printLogins() {
         int rowCount = 0, colCount = 0;
         gPanePassReg.getChildren().clear();
@@ -74,15 +81,9 @@ public class PasswordScreenController {
     private void setActions() {
         buttonAddPass.setOnMouseClicked(event -> createNewPass());
         tFSearchPass.setOnKeyTyped(event -> {
-            if (tFSearchPass.getText().length() >= 3) {
-                searchPass();
-            }
-
+            if (tFSearchPass.getText().length() >= 3) {searchPass();}
             logins = App.logs;
-            
-            if (tFSearchPass.getText().isEmpty()) {
-                printLogins();
-            }
+            if (tFSearchPass.getText().isEmpty()) {printLogins();}
         });
     }
     
@@ -105,9 +106,6 @@ public class PasswordScreenController {
         modal = null;
         newLogin = null;
     }
-
-
-
 
     private void searchPass() {
         String searchedPass = tFSearchPass.getText();

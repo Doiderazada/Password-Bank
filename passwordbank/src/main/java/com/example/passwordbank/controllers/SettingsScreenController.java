@@ -33,28 +33,19 @@ public class SettingsScreenController {
 
 
     private void setActions() {
-        buttonAbout.setOnMouseClicked(event -> {
-            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("about"));
-        });
+        buttonAbout.setOnMouseClicked(event -> changeTo("about"));
         buttonAppearence.setOnMouseClicked(event -> {
-            if (App.darkMode) {
-                App.darkMode = false;
-                buttonAppearence.getStyleClass().setAll("button-LightMode");
-                App.baseCtrlInstance.setStyle();
-                setTextTheme();
-            } else {
-                App.darkMode = true;
-                buttonAppearence.getStyleClass().setAll("button-DarkMode");
-                App.baseCtrlInstance.setStyle();
-                setTextTheme();
-            }
+            App.darkMode = !App.darkMode;
+            App.baseCtrlInstance.setStyle();
+            setButtonsStyle();setTextTheme();
         });
-        buttonUserInfo.setOnMouseClicked(event -> {
-            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("userInfo"));
-        });
-
+        buttonUserInfo.setOnMouseClicked(event -> changeTo("userInfo"));
     }
 
+
+    private void changeTo(String page) {
+        App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane(page));
+    }
 
 
     private void setButtonsStyle() {
