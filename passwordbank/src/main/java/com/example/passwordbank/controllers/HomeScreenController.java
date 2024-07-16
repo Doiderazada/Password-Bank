@@ -28,7 +28,8 @@ public class HomeScreenController {
         setTexts();
         setTextTheme();
         setUpGridPanes();
-        if (App.logs != null) {
+        if (App.logs != null &&
+            App.logs.size() >= 3) {
             findMostUsedPass();
             findOldestPass();
         }
@@ -59,7 +60,7 @@ public class HomeScreenController {
 
     
     protected void findMostUsedPass() {
-        if (App.logs != null) {
+        if (App.logs != null && App.logs.size() >= 3) {
             LoginList logins = App.logs;
             LoginList updatedList = LoginList.getMostUsed(logins);
             int colCount = 0;
@@ -73,7 +74,7 @@ public class HomeScreenController {
     }
     
     protected void findOldestPass() {
-        if (App.logs != null) {
+        if (App.logs != null && App.logs.size() >= 3) {
             LoginList logins = App.logs;
             LoginList updatedList = LoginList.getOldestEdited(logins);
             int colCount = 0;

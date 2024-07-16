@@ -76,8 +76,8 @@ public class BaseController {
 
     private void setActions() {
         buttonHome.setOnMouseClicked(event -> {
-            // homeCtrl.findMostUsedPass();
-            // homeCtrl.findOldestPass();
+            homeCtrl.findMostUsedPass();
+            homeCtrl.findOldestPass();
             changePage(homePane);
         });
         buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
