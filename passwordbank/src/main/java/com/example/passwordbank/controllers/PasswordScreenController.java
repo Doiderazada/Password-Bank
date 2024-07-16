@@ -93,15 +93,17 @@ public class PasswordScreenController {
 
 
     private void createNewPass() {
-        if (App.logs == null) {
-            logins = new LoginList();
-            App.logs = logins;
-        }
         ModalManager modal = new ModalManager(null, buttonAddPass, ModalState.CREATE);
         modal.showModal();
         Login newLogin = new Login();
         newLogin = modal.getLoginUpdated();
-        logins.add(newLogin);
+        if (newLogin != null) {
+            if (App.logs == null) {
+                logins = new LoginList();
+                App.logs = logins;
+            }
+            logins.add(newLogin);
+        }
         printLogins();
         modal = null;
         newLogin = null;

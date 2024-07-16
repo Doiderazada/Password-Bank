@@ -28,8 +28,10 @@ public class HomeScreenController {
         setTexts();
         setTextTheme();
         setUpGridPanes();
-        findMostUsedPass();
-        findOldestPass();
+        if (App.logs != null) {
+            findMostUsedPass();
+            findOldestPass();
+        }
     }
     
     
@@ -71,14 +73,16 @@ public class HomeScreenController {
     }
     
     protected void findOldestPass() {
-        LoginList logins = App.logs;
-        LoginList updatedList = LoginList.getOldestEdited(logins);
-        int colCount = 0;
-
-        gPaneOldstReg.getChildren().clear();
-        for (Login login : updatedList) {
-            PasswordFXElement pass = new PasswordFXElement(login);
-            gPaneOldstReg.add(pass.getRoot(), colCount++, 0);
+        if (App.logs != null) {
+            LoginList logins = App.logs;
+            LoginList updatedList = LoginList.getOldestEdited(logins);
+            int colCount = 0;
+    
+            gPaneOldstReg.getChildren().clear();
+            for (Login login : updatedList) {
+                PasswordFXElement pass = new PasswordFXElement(login);
+                gPaneOldstReg.add(pass.getRoot(), colCount++, 0);
+            }
         }
     }
 }

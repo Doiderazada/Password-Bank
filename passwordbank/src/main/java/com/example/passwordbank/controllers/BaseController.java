@@ -76,8 +76,8 @@ public class BaseController {
 
     private void setActions() {
         buttonHome.setOnMouseClicked(event -> {
-            homeCtrl.findMostUsedPass();
-            homeCtrl.findOldestPass();
+            // homeCtrl.findMostUsedPass();
+            // homeCtrl.findOldestPass();
             changePage(homePane);
         });
         buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
@@ -86,11 +86,10 @@ public class BaseController {
         buttonMenu.setOnMouseClicked(event -> {
             if (menuMaximized) {
                 gPaneMenu.setPrefWidth(minXMenu);
-                editMenuButtonsSize(menuMaximized);
             } else {
                 gPaneMenu.setPrefWidth(maxXMenu);
-                editMenuButtonsSize(menuMaximized);
             }
+            editMenuButtonsSize(menuMaximized);
             menuMaximized = !menuMaximized;
         });
     }
@@ -199,6 +198,7 @@ public class BaseController {
         passCtrl.setTextTheme();
         setButtonsStyle();
         createMenuText();
+        editMenuButtonsSize(menuMaximized);
         setStyle(sPaneMain, stackPaneMain, homePane, passPane, settPane);
     }
 

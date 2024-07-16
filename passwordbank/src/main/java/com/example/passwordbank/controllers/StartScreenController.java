@@ -496,7 +496,7 @@ public class StartScreenController {
 
 
     private void createAccount() {
-        user = new AppUser();
+        this.user = new AppUser();
         App.user = user;
         user.setMainEmail(mainEmail);
         user.setPassword(password);
@@ -529,7 +529,10 @@ public class StartScreenController {
     }
 
     private void goToApp() {
-        App.setDefAppSize();    App.changePage("base");
+        App.getStage().hide();
+        App.setDefAppSize();  
+        App.changePage("base");
+        App.getStage().show();
     }
 
 

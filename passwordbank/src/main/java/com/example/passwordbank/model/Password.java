@@ -5,6 +5,9 @@ import java.util.Random;
 
 public class Password implements Serializable{
 
+    @SuppressWarnings("unused")
+    private static final long serialVersion = 1000000011L;
+
     private String plainPass;
     private String protectedPass;
     private String salt;

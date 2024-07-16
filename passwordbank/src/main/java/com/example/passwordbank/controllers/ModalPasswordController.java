@@ -57,7 +57,7 @@ public class ModalPasswordController {
 
     private void setActions() {
         buttonViewPass.getStyleClass().setAll("button-HidePass");
-        buttonSave.getStyleClass().setAll("button-SaveChange2");
+        buttonSave.getStyleClass().setAll("button-SaveChange");
         buttonCancel.getStyleClass().setAll("button-Cancel");
         buttonCancel.setOnMouseClicked(event -> closeModal());
         buttonSave.setOnMouseClicked(event -> saveChanges());
