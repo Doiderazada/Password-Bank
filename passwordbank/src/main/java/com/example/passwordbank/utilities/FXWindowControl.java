@@ -2,6 +2,7 @@ package com.example.passwordbank.utilities;
 
 import com.example.passwordbank.App;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -81,7 +82,7 @@ public class FXWindowControl {
         bMaximize.getStyleClass().setAll("button-maximize");
         bMinimize.getStyleClass().setAll("button-minimize");
 
-        bClose.setOnMouseClicked(event -> primaryStage.close());
+        bClose.setOnMouseClicked(event -> Platform.exit());
         bMaximize.setOnMouseClicked(event -> doMaximizing());
         bMinimize.setOnMouseClicked(event -> primaryStage.setIconified(true));
 

@@ -1,9 +1,12 @@
 package com.example.passwordbank;
 
+import java.util.Collections;
 import com.example.passwordbank.controllers.BaseController;
+
 import com.example.passwordbank.model.Login;
 import com.example.passwordbank.model.AppUser;
 import com.example.passwordbank.utilities.FilesManager;
+import com.example.passwordbank.utilities.LoginList;
 import com.example.passwordbank.utilities.SceneManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -41,15 +44,27 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) {
+        primaryStage = stage;
         setStage(stage);
         configStage();
         setStartAction();
-        setCloseAction();
 
-        mainScene = sceneManager.loadScreen("start");
+        if (stayLoggedIn) {
+            mainScene = sceneManager.loadScene("base");
+            setDefAppSize();
+        }
+        else {
+            mainScene = sceneManager.loadScene("start");
+            setMinAppSize();
+        }
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
+    @Override
+    public void stop() {
+        closeApplication();
+    }
+
 
     
 
@@ -60,22 +75,36 @@ public class App extends Application {
             user = filesManager.openUserFile();
             user.getPassword().retrievePass();
             darkMode = user.isDarkMode();
+            stayLoggedIn = user.isStayLoggedIn();
         }
 
         if (FilesManager.havePass) {
             logs = filesManager.openLoginsFile();
+            Collections.sort(logs);
             for (Login login : logs) {
                 login.getPassword().retrievePass();
             }
         }
     }
 
-    private final void setCloseAction() {
-        primaryStage.setOnCloseRequest(event -> {
+    private final void closeApplication() {
+        if(user != null) {
+            System.out.println("Saving files");
+            user.getPassword().protectPassword();
+            if (logs != null) {
+                Collections.sort(logs);
+                for (Login login : logs) {
+                    login.getPassword().protectPassword();
+                }
+            }
             user.setDarkMode(darkMode);
+            user.setStayLogged(stayLoggedIn);
             filesManager.closeFiles(user, logs);
-        });   
+        }   
+        System.out.println("Closing Application...");
     }
+
+
 
 
 
@@ -88,6 +117,8 @@ public class App extends Application {
     public static Scene getScene() {
         return primaryStage.getScene();
     }
+
+
 
 
 
@@ -119,7 +150,7 @@ public class App extends Application {
     public static void changeScreen(String sceneName) {
         primaryStage.setX(primaryStage.getX());
         primaryStage.setY(primaryStage.getY());
-        primaryStage.setScene(sceneManager.loadScreen(sceneName));
+        primaryStage.setScene(sceneManager.loadScene(sceneName));
         primaryStage.centerOnScreen();
     }
 

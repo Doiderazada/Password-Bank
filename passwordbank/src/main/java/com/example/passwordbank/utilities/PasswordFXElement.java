@@ -51,20 +51,23 @@ public class PasswordFXElement {
 
     // private final String style = "-fx-fill: Black; -fx-stroke: White; -fx-stroke-width: 2px;";
     private final String cssFile = "styles/buttons.css";
+    private Login login;
 
 
 
-    public PasswordFXElement() {
+    // public PasswordFXElement() {
+    //     createComponents();
+    //     setComponents();
+    //     setActions();
+    // }
+
+    public PasswordFXElement(Login login) {
+        // this();
+        this.login = login;
         createComponents();
         setComponents();
         setActions();
-    }
-
-    public PasswordFXElement(Login login) {
-        this();
-        setIdentifier("");
-        setUser("");
-        setPassword("");
+        completeFields();
     }
 
 
@@ -90,8 +93,8 @@ public class PasswordFXElement {
     }
 
     private void setComponents() {
-
         mainStackPane.setAlignment(Pos.CENTER);
+        mainStackPane.setPrefSize(350, 250);
         mainStackPane.setMinHeight(mainStackPane.getPrefHeight());
         mainStackPane.setMinWidth(mainStackPane.getPrefWidth());
         mainStackPane.setMaxHeight(mainStackPane.getPrefHeight());
@@ -104,7 +107,7 @@ public class PasswordFXElement {
         mainRectangle.setFocusTraversable(false);
         mainRectangle.setArcWidth(20);
         mainRectangle.setArcHeight(20);
-        mainRectangle.setFill(Color.BLUEVIOLET);
+        mainRectangle.setFill(Color.valueOf("#8A59EE"));
         mainRectangle.setStroke(Color.WHITE);
         mainRectangle.setStrokeWidth(1.5);
         mainRectangle.setStrokeType(StrokeType.INSIDE);
@@ -126,7 +129,6 @@ public class PasswordFXElement {
         userVBox.setMinHeight(innVBoxH);
         userVBox.setMaxWidth(innVBoxW);
         userVBox.setMaxHeight(innVBoxH);
-        // userVBox.setAlignment(Pos.CENTER_LEFT);
         
         labelUser.setFocusTraversable(false);
         labelUser.setText("Login");
@@ -142,7 +144,6 @@ public class PasswordFXElement {
         passVBox.setMinHeight(innVBoxH);
         passVBox.setMaxWidth(innVBoxW);
         passVBox.setMaxHeight(innVBoxH);
-        // passVBox.setAlignment(Pos.CENTER_LEFT);
 
         labelPass.setFocusTraversable(false);
         labelPass.setText("Password");
@@ -173,10 +174,10 @@ public class PasswordFXElement {
 
         buttonDelete.setPrefSize(30, 30);
         buttonDelete.getStylesheets().setAll(App.class.getResource(cssFile).toExternalForm());
-        buttonDelete.getStyleClass().setAll("button-Delete");
+        buttonDelete.getStyleClass().setAll("button-DeletePass");
         buttonEdit.setPrefSize(30, 30);
         buttonEdit.getStylesheets().setAll(App.class.getResource(cssFile).toExternalForm());
-        buttonEdit.getStyleClass().setAll("button-Delete");
+        buttonEdit.getStyleClass().setAll("button-EditPass");
 
         
         mainStackPane.getChildren().addAll(mainRectangle, mainVBox);
@@ -204,6 +205,7 @@ public class PasswordFXElement {
         });
 
         tFUser.setOnMouseClicked(event -> {
+            this.login.increaseCount();
             Clipboard clipboard = Clipboard.getSystemClipboard();
             ClipboardContent content = new ClipboardContent();
             content.putString(tFUser.getText());
@@ -216,8 +218,20 @@ public class PasswordFXElement {
             tip.setShowDuration(Duration.millis(800));
             tip.show(bViewPass, event.getScreenX(), event.getScreenY());
         });
+
+        buttonEdit.setOnMouseClicked(event -> {
+            ModalManager modal = new ModalManager(login, bViewPass, ModalState.EDIT);
+            modal.showModal();
+            this.login = modal.getLoginUpdated();
+            completeFields();
+        });
     }
 
+    private void completeFields() {
+        setIdentifier(login.getIdentifier());
+        setUser(login.getUserName());
+        setPassword(login.getPassword().getPass());
+    }
 
     public void setIdentifier(String identifier) {
         this.textIdentifier.setText(identifier);
