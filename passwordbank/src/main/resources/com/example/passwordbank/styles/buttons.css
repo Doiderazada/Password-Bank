@@ -264,26 +264,96 @@
 }
 .button-Delete:hover {
     -fx-background-image: url("../Delete.png");
-    -fx-background-color: #0000002a;
+    -fx-background-color: rgb(0, 0, 0, 0.1);
     -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 40px;
+    -fx-background-radius: 5px;
     -fx-border-color: RED; 
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
+<<<<<<< Updated upstream
+=======
 .button-Delete:focus-visible {
     -fx-background-image: url("../Delete.png");
     -fx-background-color: #0000002a;
     -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 40px;
+    -fx-background-radius: 5px;
     -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-DeletePass {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-DeletePass:hover {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-DeletePass:focus-visible {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-EditPass {
+    -fx-background-image: url("../Edit.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-border-color: WHITE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-EditPass:hover {
+    -fx-background-image: url("../Edit.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-EditPass:focus-visible {
+    -fx-background-image: url("../Edit.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE; 
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
 
 
+
+>>>>>>> Stashed changes
 
 
 
@@ -313,6 +383,8 @@
 .button-RightArrow {
     -fx-background-image: url("../Right-arrow.png");
     -fx-background-color: transparent;
+<<<<<<< Updated upstream
+=======
     -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
@@ -378,6 +450,113 @@
     -fx-border-radius: 5px;
 }
 
+.button-SaveChange {
+    -fx-background-image: url("../Finish.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #8A59EE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
+}
+.button-SaveChange:hover {
+    -fx-background-image: url("../Finish.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #8A59EE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
+}
+.button-SaveChange:focus-visible {
+    -fx-background-image: url("../Finish.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #8A59EE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
+}
+.button-SaveChange2 {
+    -fx-background-image: url("../Finish-2.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
+}
+.button-SaveChange2:hover {
+    -fx-background-image: url("../Finish-2.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
+}
+.button-SaveChange2:focus-visible {
+    -fx-background-image: url("../Finish-2.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
+}
+.button-Cancel {
+    -fx-background-color: transparent;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: RED;
+}
+.button-Cancel:hover {
+    -fx-background-color: #ff00002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: RED;
+}
+.button-Cancel:focus-visible {
+    -fx-background-color: #ff00002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: RED;
+    -fx-text-alignment: center 10px left;
+}
+
 .button-Finish {
     -fx-background-image: url("../Finish.png");
     -fx-background-color: transparent;
@@ -405,61 +584,69 @@
     -fx-background-color: #0000002a;
     -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 120px;
+    -fx-background-size: 30px;
     -fx-background-radius: 5px;
     -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
 
-.button-Finish2 {
-    -fx-background-image: url("../Finish-2.png");
+
+
+
+.button-DarkMode {
+    -fx-background-image: url("../DarkMode.png");
     -fx-background-color: transparent;
-    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
+    -fx-background-position: center;
+    -fx-background-size: 100px;
+}
+.button-LightMode {
+    -fx-background-image: url("../LightMode.png");
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100px;
+}
+
+
+
+.button-AddPass {
+    -fx-background-image: url("../Add-pass.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
     -fx-background-radius: 5px;
     -fx-border-color: #8A59EE;
-    -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-border-width: 2px;
 }
-.button-Finish2:hover {
-    -fx-background-image: url("../Finish-2.png");
+.button-AddPass:hover {
+    -fx-background-image: url("../Add-pass.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: right 20px center;
+    -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
     -fx-background-radius: 5px;
     -fx-border-color: #8A59EE;
-    -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-border-width: 2px;
 }
-.button-Finish2:focus-visible {
-    -fx-background-image: url("../Finish-2.png");
+.button-AddPass:focus-visible {
+    -fx-background-image: url("../Add-pass.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: right 20px center;
+    -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 120px;
     -fx-background-radius: 5px;
     -fx-border-color: #8A59EE;
-    -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-border-width: 2px;
 }
-
-
-
 
 
 .button-CloseStart {
     -fx-background-image: url("../Start-close.png");
     -fx-background-color: transparent;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 22px;
-}
-.button-CloseStart:hover {
-    -fx-background-image: url("../Start-close.png");
-    -fx-background-color: #ff000088;
+>>>>>>> Stashed changes
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 22px;
