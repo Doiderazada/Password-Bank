@@ -1,6 +1,6 @@
 package com.example.passwordbank.model;
 
-public abstract class AppUser {
+public class AppUser {
 
     private String mainEmail;
     private Password password;

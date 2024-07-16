@@ -26,43 +26,45 @@ public class SettingsScreenController {
 
     public void initialize() {
         setActions();
-        setText();
+        setTexts();
+        setTextTheme();
         setButtonsStyle();
     }
 
 
-
-
-
-
     private void setActions() {
-        buttonAbout.setOnMouseClicked(event -> {
-            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("about"));
-        });
+        buttonAbout.setOnMouseClicked(event -> changeTo("about"));
         buttonAppearence.setOnMouseClicked(event -> {
-            if (App.darkMode) {
-                App.darkMode = false;
-            } else {
-                App.darkMode = true;
-            }
+            App.darkMode = !App.darkMode;
+            App.baseCtrlInstance.setStyle();
+            setButtonsStyle();setTextTheme();
         });
-        buttonUserInfo.setOnMouseClicked(event -> {
-            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("userInfo"));
-        });
-
+        buttonUserInfo.setOnMouseClicked(event -> changeTo("userInfo"));
     }
 
 
-    public void setText() {
+    private void changeTo(String page) {
+        App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane(page));
+    }
+
+
+    private void setButtonsStyle() {
+        if (App.darkMode) {buttonAppearence.getStyleClass().setAll("button-DarkMode");}
+        else {buttonAppearence.getStyleClass().setAll("button-LightMode");}
+        buttonAbout.getStyleClass().setAll("button-Next");
+        buttonUserInfo.getStyleClass().setAll("button-Next");
+    }
+
+
+    public void setTexts() {
         labelAbout.setText("Informations about the program such as application guide, version, and related informations");
         labelAppearence.setText("Click the button to switch bettween Dark and Light Mode");
         labelUserInfo.setText("All the informations related to the user, as the application Username and password");
     }
 
 
-    private void setButtonsStyle() {
-        buttonAbout.getStyleClass().setAll("button-Next");
-        buttonUserInfo.getStyleClass().setAll("button-Next");
+    private void setTextTheme() {
+        BaseController.setTextTheme(new Text[] {textAbout, textAppearence, textSettings, textUserInfo},
+                                    new Label[] {labelAbout, labelAppearence, labelUserInfo});
     }
-
 }
