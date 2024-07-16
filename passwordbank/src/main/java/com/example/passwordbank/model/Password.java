@@ -1,8 +1,9 @@
 package com.example.passwordbank.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Password {
+public class Password implements Serializable{
 
     private String plainPass;
     private String protectedPass;
@@ -10,7 +11,7 @@ public class Password {
     private String pepper;
     private int[] pattern;
 
-    
+    public Password() {}
 
     public Password(String plainPass) {
         setPass(plainPass);
@@ -21,7 +22,7 @@ public class Password {
     public void setPass(String pass) {
         this.plainPass = pass;
     }
-    private String getPass() {
+    public String getPass() {
         return this.plainPass;
     }
 
@@ -118,7 +119,7 @@ public class Password {
 
         String finalPass = String.valueOf(rawChar);
 
-        plainPass = finalPass;
+        setPass(finalPass);
     }
 
 

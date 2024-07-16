@@ -2,24 +2,32 @@ package com.example.passwordbank.model;
 
 import java.util.Date;
 
-public class Login {
+import java.io.Serializable;
+
+public final class Login implements Serializable, Comparable<Login> {
+
+    @SuppressWarnings("unused")
+    private static final long serialVersion = 1000000111L;
 
     private String identifier;
     private String userName;
     private Password password;
     private Date creationDate;
     private Date lastEditDate;
+    private int useCount;
 
 
-
-
-    public Login(String userName, String password) {
-        setUserName(userName);
-        setPassword(password);
-
+    public Login() {
         Date date = new Date();
         setCreationDate(date);
-        setLastEditDate(date);
+    }
+
+    public Login(String userName, String password) {
+        Date date = new Date();
+        setCreationDate(date);
+
+        setUserName(userName);
+        setPassword(password);
     }
 
 
@@ -29,7 +37,6 @@ public class Login {
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
-
 
     public String getUserName() {
         return userName;
@@ -62,5 +69,22 @@ public class Login {
     }
     private void setLastEditDate(Date lastEditDate) {
         this.lastEditDate = lastEditDate;
+    }
+
+
+    public int getUseCount() {
+        return this.useCount;
+    }
+    public void setUseCount(int useCount) {
+        this.useCount = useCount;
+    }
+    public void increaseCount(){
+        this.useCount++;
+    }
+
+    
+    @Override
+    public int compareTo(Login login) {
+        return this.getIdentifier().compareTo(login.getIdentifier());
     }
 }

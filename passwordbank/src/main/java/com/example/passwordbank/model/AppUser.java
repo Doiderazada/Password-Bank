@@ -1,6 +1,11 @@
 package com.example.passwordbank.model;
 
-public class AppUser {
+import java.io.Serializable;
+
+public class AppUser implements Serializable {
+
+    @SuppressWarnings("unused")
+    private static final long serialVersion = 1000000001L; 
 
     private String mainEmail;
     private Password password;
@@ -22,6 +27,8 @@ public class AppUser {
 
     public AppUser() {    
     }
+
+    
 
     public AppUser(String mainEmail, String password, String username, String altEmail, String mobileNumber, String question1,
                    String question2, String question3, String answer1, String answer2, String answer3, boolean darkMode) {
@@ -45,6 +52,10 @@ public class AppUser {
 
 
 
+
+
+
+
     public String getMainEmail() {
         return mainEmail;
     }
@@ -55,7 +66,7 @@ public class AppUser {
 
 
     public Password getPassword() {
-        return password;
+        return this.password;
     }
     public void setPassword(String password) {
         this.password = new Password(password);
@@ -79,15 +90,12 @@ public class AppUser {
         this.altEmail = altEmail;
     }
 
-
-
     public String getMobileNumber() {
-        return mobileNumber;
+        return this.mobileNumber;
     }
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setMobileNumber(String number) {
+        this.mobileNumber = number;
     }
-
 
 
     public String getQuestion1() {
@@ -144,6 +152,7 @@ public class AppUser {
     public void setDarkMode(boolean darkMode) {
         this.darkMode = darkMode;
     }
+
 
 
     public boolean isStayLoggedIn() {
