@@ -1,32 +1,32 @@
 package com.example.passwordbank.utilities;
 
 import java.io.IOException;
-import java.net.URL;
 
 import com.example.passwordbank.App;
-// import com.example.passwordbank.controllers.ModalPasswordController;
+import com.example.passwordbank.controllers.ModalPasswordController;
 import com.example.passwordbank.model.Login;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 public class ModalManager {
 
-    Login managedLogin;
-    URL modalFile = App.class.getResource("modal");
-    Pane modalRoot;
-    Node rootNode;
+    private Login managedLogin;
+    private Pane modalRoot;
+    private Node rootNode;
+    private ModalState state;
 
 
 
-    public ModalManager(Login login, Node rootNode) {
+    public ModalManager(Login login, Node rootNode, ModalState state) {
         loadModal();
+        this.state = state;
         managedLogin = login;
         this.rootNode = rootNode;
     }
@@ -35,12 +35,13 @@ public class ModalManager {
 
     private void loadModal() {
         try {
-            FXMLLoader loader = new FXMLLoader(modalFile);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("views/modal.fxml"));
             modalRoot = (Pane) loader.load();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println(e.getLocalizedMessage());
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
         }
     }
 
@@ -51,21 +52,34 @@ public class ModalManager {
         modalStage.initModality(Modality.APPLICATION_MODAL);
         modalStage.initStyle(StageStyle.UNDECORATED);
 
-        Window appWindow = rootNode.getScene().getWindow();
+        Scene modalScene = new Scene(modalRoot);
+        modalScene.setFill(Color.rgb(0, 0, 0, 0.05));
+        modalStage.setScene(modalScene);
+        modalStage.sizeToScene();
+        
+        Stage appWindow = (Stage) rootNode.getScene().getWindow();
         double modalX, modalY;
-        modalX = ((appWindow.getX() + appWindow.getWidth()/2) - (modalRoot.getWidth()/2));
-        modalY = ((appWindow.getY() + appWindow.getHeight()/2) - (modalRoot.getHeight()/2));
+        modalX = ((appWindow.getX() + appWindow.getWidth()/2) - 200 /* <- half modal width */);
+        modalY = ((appWindow.getY() + appWindow.getHeight()/2) - 200 /* <- half modal height*/);
         modalStage.setX(modalX);
         modalStage.setY(modalY);
 
-        Scene modalScene = new Scene(modalRoot);
-        modalStage.setScene(modalScene);
-        
-        // ModalPasswordController.setLoginToShow(managedLogin);
 
-        modalStage.showAndWait();
-
-        // setLoginUpdated(ModalPasswordController.getLogin());
+        switch (state) {
+            case CREATE:
+                ModalPasswordController.setLoginToShow(null);
+                modalStage.showAndWait();
+                if (ModalPasswordController.getLogin() != null) {
+                    setLoginUpdated(ModalPasswordController.getLogin());
+                }
+                break;
+                case EDIT:
+                ModalPasswordController.setLoginToShow(managedLogin);
+                modalStage.showAndWait();
+                setLoginUpdated(ModalPasswordController.getLogin());
+                break;
+        }
+        ModalPasswordController.setLoginToShow(null);
     }
 
 
@@ -73,7 +87,7 @@ public class ModalManager {
         return this.managedLogin;
     }
 
-    // private void setLoginUpdated(Login updatedLogin) {
-    //     this.managedLogin = updatedLogin;
-    // }
+    private void setLoginUpdated(Login updatedLogin) {
+        this.managedLogin = updatedLogin;
+    }
 }

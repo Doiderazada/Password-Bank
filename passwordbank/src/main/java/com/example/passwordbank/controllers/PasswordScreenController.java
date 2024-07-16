@@ -35,7 +35,7 @@ public class PasswordScreenController {
         setTexts();
         setTextTheme();
         setButtonsStyle();
-        setUpGridPanes();
+        setUpGridPane();
 
         if (logins != null) printLogins();
         

@@ -1,5 +1,6 @@
 package com.example.passwordbank.utilities;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,18 +8,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import com.example.passwordbank.model.Login;
+import java.nio.file.Files;
 import com.example.passwordbank.model.AppUser;
 
 public final class FilesManager {
 
-    private final String filesDirectory = "C:\\Users\\%username%\\AppData\\Local\\Password-Bank\\";
-    private final String userFileName = "User.pbu";
-    private final String passFileName = "PassReg.pbl";
+    private final String filesDirectory = System.getProperty("user.home")+"\\AppData\\Local\\Password-Bank\\";
+    private final String userFileName = "User.bin";
+    private final String passFileName = "PassReg.bin";
 
-    private static AppUser user;
-    private static Login[] logs;
+    private static AppUser user = null;
+    private static LoginList logs = null;
     private File userFile;
     private File passFile;
     public static boolean haveUser;
@@ -28,10 +28,10 @@ public final class FilesManager {
 
     
     public FilesManager() {
-        userFile = new File(filesDirectory + userFileName);
+        userFile = new File(filesDirectory, userFileName);
         haveUser = userFile.exists();
 
-        passFile = new File(filesDirectory + passFileName);
+        passFile = new File(filesDirectory, passFileName);
         havePass = passFile.exists();
     }
 
@@ -41,12 +41,15 @@ public final class FilesManager {
 
     public AppUser openUserFile() {
         try {
+            user = null;
             FileInputStream fileInput = new FileInputStream(userFile);
             ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-            user = (AppUser) objectInput.readObject();
-
-            fileInput.close();
+            AppUser newUser = (AppUser) objectInput.readObject();
+ 
             objectInput.close();
+            fileInput.close();
+
+            user = newUser;
             
         } catch (FileNotFoundException e) {
             System.out.println("The specified file was not found in your system. \n");
@@ -65,7 +68,8 @@ public final class FilesManager {
     private void saveUserFile() {
         try {
             FileOutputStream fileOutput = new FileOutputStream(userFile);
-            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+            BufferedOutputStream buffOut = new BufferedOutputStream(fileOutput);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(buffOut);
             objectOutput.writeObject(user);
 
             objectOutput.close();
@@ -73,17 +77,19 @@ public final class FilesManager {
 
         } catch (IOException e) {
             System.out.println("It was not possible to write the Object on the output. \n");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
 
 
 
-    public Login[] openLoginsFile() {
+    public LoginList openLoginsFile() {
         try {
             FileInputStream fileInput = new FileInputStream(passFile);
             ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-            logs = (Login[]) objectInput.readObject();
+            logs = (LoginList) objectInput.readObject();
 
             fileInput.close();
             objectInput.close();
@@ -104,12 +110,12 @@ public final class FilesManager {
 
     private void savePassFile() {
         try {
-            FileOutputStream fileOutput = new FileOutputStream(userFile);
+            FileOutputStream fileOutput = new FileOutputStream(passFile);
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
             objectOutput.writeObject(logs);
 
-            objectOutput.close();
             fileOutput.close();
+            objectOutput.close();
             
         } catch (IOException e) {
             System.out.println("It was not possible to write the Object on the output. \n");
@@ -118,10 +124,15 @@ public final class FilesManager {
 
 
 
-    public void closeFiles(AppUser aUser, Login[] logins) {
+    public void closeFiles(AppUser aUser, LoginList logins) {
         user = aUser;
         logs = logins;
-        saveUserFile();
-        savePassFile();
+        if (!haveUser) {
+            File newPath = new File(filesDirectory);
+            try   {Files.createDirectory(newPath.toPath());} 
+            catch (IOException e) {e.printStackTrace();}
+        }
+        if (user != null) saveUserFile();
+        if (logs != null) savePassFile();
     }
 }

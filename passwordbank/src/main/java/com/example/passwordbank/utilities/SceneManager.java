@@ -13,12 +13,12 @@ public class SceneManager {
     
     private Scene screen;
 
-    public Scene loadScreen(String name) {
+    public Scene loadPage(String name) {
         
         try {
-            FXMLLoader screenLoader = new FXMLLoader(App.class.getResource("views/" + name + ".fxml"));
-            Parent rootScreen = screenLoader.load();
-            screen = new Scene(rootScreen);
+            FXMLLoader sceneLoader = new FXMLLoader(App.class.getResource("views/" + name + ".fxml"));
+            Parent rootScene = sceneLoader.load();
+            screen = new Scene(rootScene);
             screen.setFill(Color.rgb(0, 0, 0, 0.01));
             return screen;
 
