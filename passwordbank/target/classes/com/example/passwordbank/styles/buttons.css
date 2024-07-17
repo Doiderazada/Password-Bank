@@ -47,25 +47,6 @@
 
 
 
-.button-ViewPass {
-    -fx-background-image: url("../Opened-eye.png");
-    -fx-background-color: transparent;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-}
-.button-HidePass {
-    -fx-background-image: url("../Closed-eye.png");
-    -fx-background-color: transparent;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-}
-
-
-
-
-
 .button-menu {
     -fx-background-image: url("../Menu.png");
     -fx-background-color: transparent;
@@ -73,7 +54,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
 }
-
 .button-home {
     -fx-background-image: url("../Home.png");
     -fx-background-color: transparent;
@@ -81,7 +61,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
 }
-
 .button-settings {
     -fx-background-image: url("../Settings.png");
     -fx-background-color: transparent;
@@ -89,7 +68,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
 }
-
 .button-password {
     -fx-background-image: url("../Password.png");
     -fx-background-color: transparent;
@@ -154,6 +132,88 @@
 
 
 
+.button-ViewPass {
+    -fx-background-image: url("../Opened-eye.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+.button-HidePass {
+    -fx-background-image: url("../Closed-eye.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
+
+
+
+
+.button-DeletePass {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-DeletePass:hover {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-DeletePass:focus-visible {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-EditPass {
+    -fx-background-image: url("../Edit.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-border-color: WHITE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-EditPass:hover {
+    -fx-background-image: url("../Edit.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-EditPass:focus-visible {
+    -fx-background-image: url("../Edit.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 20px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
 
 .button-PDF-white {
     -fx-background-image: url("../PDF-Icon-white.png");
@@ -219,8 +279,6 @@
 
 
 
-
-
 .button-Logout {
     -fx-background-image: url("../Logout.png");
     -fx-background-color: transparent;
@@ -251,7 +309,6 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
-
 .button-Delete {
     -fx-background-image: url("../Delete.png");
     -fx-background-color: transparent;
@@ -284,69 +341,41 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
-.button-DeletePass {
-    -fx-background-image: url("../Delete.png");
+.button-SaveChange {
+    -fx-background-image: url("../Finish.png");
     -fx-background-color: transparent;
-    -fx-background-position: center;
+    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 20px;
-    -fx-border-color: RED; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-DeletePass:hover {
-    -fx-background-image: url("../Delete.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 20px;
+    -fx-background-size: 30px;
     -fx-background-radius: 5px;
-    -fx-border-color: RED; 
+    -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
 }
-.button-DeletePass:focus-visible {
-    -fx-background-image: url("../Delete.png");
+.button-SaveChange:hover {
+    -fx-background-image: url("../Finish.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: center;
+    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 20px;
+    -fx-background-size: 30px;
     -fx-background-radius: 5px;
-    -fx-border-color: RED; 
+    -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
 }
-.button-EditPass {
-    -fx-background-image: url("../Edit.png");
-    -fx-background-color: transparent;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 20px;
-    -fx-border-color: WHITE; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-EditPass:hover {
-    -fx-background-image: url("../Edit.png");
+.button-SaveChange:focus-visible {
+    -fx-background-image: url("../Finish.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: center;
+    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 20px;
+    -fx-background-size: 30px;
     -fx-background-radius: 5px;
-    -fx-border-color: WHITE; 
+    -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-}
-.button-EditPass:focus-visible {
-    -fx-background-image: url("../Edit.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 20px;
-    -fx-background-radius: 5px;
-    -fx-border-color: WHITE; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
 }
 
 
@@ -550,6 +579,81 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
+
+
+
+
+
+.button-Cancel {
+    -fx-background-color: transparent;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: RED;
+}
+.button-Cancel:hover {
+    -fx-background-color: #ff00002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: RED;
+}
+.button-Cancel:focus-visible {
+    -fx-background-color: #ff00002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: RED;
+    -fx-text-alignment: center 10px left;
+}
+.button-SavePass {
+    -fx-background-image: url("../Finish-white.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
+}
+.button-SavePass:hover {
+    -fx-background-image: url("../Finish-white.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
+}
+.button-SavePass:focus-visible {
+    -fx-background-image: url("../Finish-white.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: WHITE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
+}
+
+
 
 
 
