@@ -1,7 +1,5 @@
 package com.example.passwordbank.controllers;
 
-import java.util.Map;
-
 import com.example.passwordbank.App;
 import com.example.passwordbank.model.Login;
 import com.example.passwordbank.utilities.LoginList;
@@ -25,7 +23,6 @@ public class PasswordScreenController {
     @FXML private Text textRegPass;
 
     private LoginList logins = App.logs;
-    Map<Object, Object> gridPaneProperties;
     int colsMin = 3, colsMax = 4, limCount = 3;
     int minW = 350, minH = 300;
     ColumnConstraints cons = new ColumnConstraints(350, 350, 350);
@@ -35,7 +32,7 @@ public class PasswordScreenController {
         setTexts();
         setTextTheme();
         setButtonsStyle();
-        setUpGridPanes();
+        setUpGridPane();
 
         if (logins != null) printLogins();
         
@@ -93,16 +90,18 @@ public class PasswordScreenController {
 
 
     private void createNewPass() {
-        if (App.logs == null) {
-            logins = new LoginList();
-            App.logs = logins;
-        }
         ModalManager modal = new ModalManager(null, buttonAddPass, ModalState.CREATE);
         modal.showModal();
         Login newLogin = new Login();
         newLogin = modal.getLoginUpdated();
-        logins.add(newLogin);
-        printLogins();
+        if (newLogin != null) {
+            if (App.logs == null) {
+                logins = new LoginList();
+                App.logs = logins;
+            }
+            logins.add(newLogin);
+            printLogins();
+        }
         modal = null;
         newLogin = null;
     }

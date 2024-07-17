@@ -68,10 +68,8 @@ public class UserInfoScreenController {
         });
         buttonLogout.setOnMouseClicked(event -> {
             App.stayLoggedIn = false;
-            App.getStage().hide();
             App.setMinAppSize();
             App.changePage("start");
-            App.getStage().show();
         });
     }
     

@@ -3,6 +3,8 @@ package com.example.passwordbank.controllers;
 import java.io.IOException;
 
 import com.example.passwordbank.App;
+import com.example.passwordbank.utilities.FXWindowControl;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -61,8 +63,11 @@ public class BaseController {
         setActions();
         setStyle();
         
+        App.getStage().setOnShowing(event -> {
+            new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
+        });
         // new Thread(() -> {
-        //     try {Thread.sleep(200);} 
+        //     try {Thread.sleep(500);} 
         //     catch (InterruptedException e) {e.printStackTrace();}
         //     new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
         // }).start();
@@ -78,18 +83,15 @@ public class BaseController {
             homeCtrl.findOldestPass();
             changePage(homePane);
         });
-        buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
-        buttonSettings.setOnMouseClicked(event -> {changePage(settPane);});
+        buttonPassword.setOnMouseClicked(event -> changePage(passPane));
+        buttonSettings.setOnMouseClicked(event -> changePage(settPane));
         
         buttonMenu.setOnMouseClicked(event -> {
-            if (menuMaximized) {
-                gPaneMenu.setPrefWidth(minXMenu);
-                editMenuButtonsSize(menuMaximized);
-            } else {
-                gPaneMenu.setPrefWidth(maxXMenu);
-                editMenuButtonsSize(menuMaximized);
-            }
             menuMaximized = !menuMaximized;
+            if (menuMaximized) 
+                 {gPaneMenu.setPrefWidth(maxXMenu);} 
+            else {gPaneMenu.setPrefWidth(minXMenu);}
+            editMenuButtonsSize(menuMaximized);
         });
     }
 
@@ -178,7 +180,7 @@ public class BaseController {
         return null;
     }
 
-
+    
 
     protected void changePage(Pane nextPane) {
         stackPaneMain.getChildren().clear();
@@ -197,6 +199,7 @@ public class BaseController {
         passCtrl.setTextTheme();
         setButtonsStyle();
         createMenuText();
+        editMenuButtonsSize(menuMaximized);
         setStyle(sPaneMain, stackPaneMain, homePane, passPane, settPane);
     }
 

@@ -187,7 +187,7 @@ public class StartScreenController {
         buttonClose.setOnMouseClicked(event -> Platform.exit());
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
-        if (App.darkMode) {
+        if (App.haveUser) {
             buttonLogReg.setText("Login");
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
@@ -496,7 +496,7 @@ public class StartScreenController {
 
 
     private void createAccount() {
-        user = new AppUser();
+        this.user = new AppUser();
         App.user = user;
         user.setMainEmail(mainEmail);
         user.setPassword(password);
@@ -529,7 +529,8 @@ public class StartScreenController {
     }
 
     private void goToApp() {
-        App.setDefAppSize();    App.changeScreen("base");
+        App.setDefAppSize();  
+        App.changePage("base");
     }
 
 
