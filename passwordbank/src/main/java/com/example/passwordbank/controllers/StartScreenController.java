@@ -529,10 +529,8 @@ public class StartScreenController {
     }
 
     private void goToApp() {
-        App.getStage().hide();
         App.setDefAppSize();  
         App.changePage("base");
-        App.getStage().show();
     }
 
 

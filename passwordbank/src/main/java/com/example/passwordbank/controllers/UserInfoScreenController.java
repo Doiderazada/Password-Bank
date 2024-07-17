@@ -71,7 +71,6 @@ public class UserInfoScreenController {
             App.getStage().hide();
             App.setMinAppSize();
             App.changePage("start");
-            App.getStage().show();
         });
     }
     

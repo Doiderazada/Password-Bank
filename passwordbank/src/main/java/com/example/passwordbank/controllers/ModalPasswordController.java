@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
@@ -57,10 +58,12 @@ public class ModalPasswordController {
 
     private void setActions() {
         buttonViewPass.getStyleClass().setAll("button-HidePass");
-        buttonSave.getStyleClass().setAll("button-SaveChange");
+        buttonSave.getStyleClass().setAll("button-SavePass");
         buttonCancel.getStyleClass().setAll("button-Cancel");
         buttonCancel.setOnMouseClicked(event -> closeModal());
+        buttonCancel.setOnKeyReleased(event -> {if(event.getCode() == KeyCode.ENTER) closeModal();});
         buttonSave.setOnMouseClicked(event -> saveChanges());
+        buttonSave.setOnKeyReleased(event -> {if(event.getCode() == KeyCode.ENTER) saveChanges();});
         buttonViewPass.setOnMousePressed(event -> {
             tFPassword.setText(pFPassword.getText());
             pFPassword.setVisible(false);

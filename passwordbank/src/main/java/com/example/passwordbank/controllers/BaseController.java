@@ -63,11 +63,14 @@ public class BaseController {
         setActions();
         setStyle();
         
-        new Thread(() -> {
-            try {Thread.sleep(200);} 
-            catch (InterruptedException e) {e.printStackTrace();}
+        App.getStage().setOnShowing(event -> {
             new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
-        }).start();
+        });
+        // new Thread(() -> {
+        //     try {Thread.sleep(500);} 
+        //     catch (InterruptedException e) {e.printStackTrace();}
+        //     new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
+        // }).start();
     }
 
 
@@ -80,17 +83,15 @@ public class BaseController {
             homeCtrl.findOldestPass();
             changePage(homePane);
         });
-        buttonPassword.setOnMouseClicked(event -> {changePage(passPane);});
-        buttonSettings.setOnMouseClicked(event -> {changePage(settPane);});
+        buttonPassword.setOnMouseClicked(event -> changePage(passPane));
+        buttonSettings.setOnMouseClicked(event -> changePage(settPane));
         
         buttonMenu.setOnMouseClicked(event -> {
-            if (menuMaximized) {
-                gPaneMenu.setPrefWidth(minXMenu);
-            } else {
-                gPaneMenu.setPrefWidth(maxXMenu);
-            }
-            editMenuButtonsSize(menuMaximized);
             menuMaximized = !menuMaximized;
+            if (menuMaximized) 
+                 {gPaneMenu.setPrefWidth(maxXMenu);} 
+            else {gPaneMenu.setPrefWidth(minXMenu);}
+            editMenuButtonsSize(menuMaximized);
         });
     }
 
