@@ -236,10 +236,13 @@
       </HBox>
       <HBox alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
-            <Button fx:id="buttonSaveChanges" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" stylesheets="@../styles/buttons.css" text="Save changes">
+            <Button fx:id="buttonSaveChanges" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" stylesheets="@../styles/buttons.css">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
             </Button>
          </children>
       </HBox>

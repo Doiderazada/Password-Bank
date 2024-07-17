@@ -61,7 +61,7 @@
             <Insets bottom="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="buttonAppearence" layoutX="831.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <Button fx:id="buttonAppearence" layoutX="831.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" stylesheets="@../styles/buttons.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </GridPane.margin>

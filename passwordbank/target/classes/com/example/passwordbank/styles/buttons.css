@@ -47,25 +47,6 @@
 
 
 
-.button-ViewPass {
-    -fx-background-image: url("../Opened-eye.png");
-    -fx-background-color: transparent;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-}
-.button-HidePass {
-    -fx-background-image: url("../Closed-eye.png");
-    -fx-background-color: transparent;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-}
-
-
-
-
-
 .button-menu {
     -fx-background-image: url("../Menu.png");
     -fx-background-color: transparent;
@@ -73,7 +54,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
 }
-
 .button-home {
     -fx-background-image: url("../Home.png");
     -fx-background-color: transparent;
@@ -81,7 +61,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
 }
-
 .button-settings {
     -fx-background-image: url("../Settings.png");
     -fx-background-color: transparent;
@@ -89,7 +68,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
 }
-
 .button-password {
     -fx-background-image: url("../Password.png");
     -fx-background-color: transparent;
@@ -154,138 +132,24 @@
 
 
 
-
-.button-PDF-white {
-    -fx-background-image: url("../PDF-Icon-white.png");
+.button-ViewPass {
+    -fx-background-image: url("../Opened-eye.png");
     -fx-background-color: transparent;
-    -fx-background-position: right 10px center;
+    -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 35px;
-    -fx-border-color: white;
-    -fx-border-width: 2px;
-    -fx-border-radius: 2px;
+    -fx-background-size: 30px;
 }
-.button-PDF-white:hover {
-    -fx-background-image: url("../PDF-Icon-white.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 35px;
-    -fx-border-color: white;
-    -fx-border-width: 2px;
-    -fx-border-radius: 2px;
-}
-.button-PDF-white:focus-visible {
-    -fx-background-image: url("../PDF-Icon-white.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 35px;
-    -fx-border-color: white;
-    -fx-border-width: 2px;
-    -fx-border-radius: 2px;
-}
-
-.button-PDF-black {
-    -fx-background-image: url("../PDF-Icon-black.png");
+.button-HidePass {
+    -fx-background-image: url("../Closed-eye.png");
     -fx-background-color: transparent;
-    -fx-background-position: right 10px center;
+    -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 35px;
-    -fx-border-color: black;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-PDF-black:hover {
-    -fx-background-image: url("../PDF-Icon-black.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 35px;
-    -fx-border-color: black;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-PDF-black:focus-visible {
-    -fx-background-image: url("../PDF-Icon-black.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 35px;
-    -fx-border-color: black;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
+    -fx-background-size: 30px;
 }
 
 
 
 
-
-.button-Logout {
-    -fx-background-image: url("../Logout.png");
-    -fx-background-color: transparent;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 40px;
-    -fx-border-color: #8A59EE; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-Logout:hover {
-    -fx-background-image: url("../Logout.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 40px;
-    -fx-border-color: #8A59EE; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-Logout:focus-visible {
-    -fx-background-image: url("../Logout.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 40px;
-    -fx-border-color: #8A59EE; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-
-.button-Delete {
-    -fx-background-image: url("../Delete.png");
-    -fx-background-color: transparent;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 40px;
-    -fx-border-color: RED; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-.button-Delete:hover {
-    -fx-background-image: url("../Delete.png");
-    -fx-background-color: rgb(0, 0, 0, 0.1);
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 40px;
-    -fx-background-radius: 5px;
-    -fx-border-color: RED; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
-<<<<<<< Updated upstream
-=======
-.button-Delete:focus-visible {
-    -fx-background-image: url("../Delete.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 40px;
-    -fx-background-radius: 5px;
-    -fx-border-color: RED; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-}
 .button-DeletePass {
     -fx-background-image: url("../Delete.png");
     -fx-background-color: transparent;
@@ -351,9 +215,173 @@
     -fx-border-radius: 5px;
 }
 
+.button-PDF-white {
+    -fx-background-image: url("../PDF-Icon-white.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+}
+.button-PDF-white:hover {
+    -fx-background-image: url("../PDF-Icon-white.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+}
+.button-PDF-white:focus-visible {
+    -fx-background-image: url("../PDF-Icon-white.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+}
+
+.button-PDF-black {
+    -fx-background-image: url("../PDF-Icon-black.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-PDF-black:hover {
+    -fx-background-image: url("../PDF-Icon-black.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-PDF-black:focus-visible {
+    -fx-background-image: url("../PDF-Icon-black.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 35px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
 
 
->>>>>>> Stashed changes
+
+.button-Logout {
+    -fx-background-image: url("../Logout.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: #8A59EE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-Logout:hover {
+    -fx-background-image: url("../Logout.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: #8A59EE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-Logout:focus-visible {
+    -fx-background-image: url("../Logout.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: #8A59EE; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-Delete {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-Delete:hover {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: rgb(0, 0, 0, 0.1);
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+<<<<<<< Updated upstream
+=======
+.button-Delete:focus-visible {
+    -fx-background-image: url("../Delete.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 10px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 40px;
+    -fx-background-radius: 5px;
+    -fx-border-color: RED; 
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.button-SaveChange {
+    -fx-background-image: url("../Finish.png");
+    -fx-background-color: transparent;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #8A59EE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
+}
+.button-SaveChange:hover {
+    -fx-background-image: url("../Finish.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #8A59EE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
+}
+.button-SaveChange:focus-visible {
+    -fx-background-image: url("../Finish.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: right 20px center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #8A59EE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #8A59EE;
+}
+
+
+
 
 
 
@@ -450,7 +478,7 @@
     -fx-border-radius: 5px;
 }
 
-.button-SaveChange {
+.button-Finish {
     -fx-background-image: url("../Finish.png");
     -fx-background-color: transparent;
     -fx-background-position: right 20px center;
@@ -460,9 +488,8 @@
     -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-text-fill: #8A59EE;
 }
-.button-SaveChange:hover {
+.button-Finish:hover {
     -fx-background-image: url("../Finish.png");
     -fx-background-color: #0000002a;
     -fx-background-position: right 20px center;
@@ -472,9 +499,8 @@
     -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-text-fill: #8A59EE;
 }
-.button-SaveChange:focus-visible {
+.button-Finish:focus-visible {
     -fx-background-image: url("../Finish.png");
     -fx-background-color: #0000002a;
     -fx-background-position: right 20px center;
@@ -484,44 +510,12 @@
     -fx-border-color: #8A59EE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-text-fill: #8A59EE;
 }
-.button-SaveChange2 {
-    -fx-background-image: url("../Finish-2.png");
-    -fx-background-color: transparent;
-    -fx-background-position: right 20px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-    -fx-background-radius: 5px;
-    -fx-border-color: WHITE;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-text-fill: WHITE;
-}
-.button-SaveChange2:hover {
-    -fx-background-image: url("../Finish-2.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 20px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-    -fx-background-radius: 5px;
-    -fx-border-color: WHITE;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-text-fill: WHITE;
-}
-.button-SaveChange2:focus-visible {
-    -fx-background-image: url("../Finish-2.png");
-    -fx-background-color: #0000002a;
-    -fx-background-position: right 20px center;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 30px;
-    -fx-background-radius: 5px;
-    -fx-border-color: WHITE;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-text-fill: WHITE;
-}
+
+
+
+
+
 .button-Cancel {
     -fx-background-color: transparent;
     -fx-background-position: right 20px center;
@@ -556,40 +550,44 @@
     -fx-text-fill: RED;
     -fx-text-alignment: center 10px left;
 }
-
-.button-Finish {
-    -fx-background-image: url("../Finish.png");
+.button-SavePass {
+    -fx-background-image: url("../Finish-white.png");
     -fx-background-color: transparent;
     -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
     -fx-background-radius: 5px;
-    -fx-border-color: #8A59EE;
+    -fx-border-color: WHITE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
 }
-.button-Finish:hover {
-    -fx-background-image: url("../Finish.png");
+.button-SavePass:hover {
+    -fx-background-image: url("../Finish-white.png");
     -fx-background-color: #0000002a;
     -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
     -fx-background-radius: 5px;
-    -fx-border-color: #8A59EE;
+    -fx-border-color: WHITE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
 }
-.button-Finish:focus-visible {
-    -fx-background-image: url("../Finish.png");
+.button-SavePass:focus-visible {
+    -fx-background-image: url("../Finish-white.png");
     -fx-background-color: #0000002a;
     -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
     -fx-background-radius: 5px;
-    -fx-border-color: #8A59EE;
+    -fx-border-color: WHITE;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-text-fill: WHITE;
 }
+
+
 
 
 
