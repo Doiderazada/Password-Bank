@@ -51,8 +51,7 @@ public class App extends Application {
         if (stayLoggedIn) {
             mainScene = sceneManager.loadPage("base");
             setDefAppSize();
-        }
-        else {
+        } else {
             mainScene = sceneManager.loadPage("start");
             setMinAppSize();
         }
@@ -147,9 +146,11 @@ public class App extends Application {
 
 
     public static void changePage(String sceneName) {
+        primaryStage.hide();
         primaryStage.setX(primaryStage.getX());
         primaryStage.setY(primaryStage.getY());
         primaryStage.setScene(sceneManager.loadPage(sceneName));
         primaryStage.centerOnScreen();
+        primaryStage.show();
     }
 }

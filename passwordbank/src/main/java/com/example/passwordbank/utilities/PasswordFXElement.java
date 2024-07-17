@@ -49,20 +49,12 @@ public class PasswordFXElement {
     private final double innVBoxW = 300;
     private final double innVBoxH = 60;
 
-    // private final String style = "-fx-fill: Black; -fx-stroke: White; -fx-stroke-width: 2px;";
     private final String cssFile = "styles/buttons.css";
     private Login login;
 
 
 
-    // public PasswordFXElement() {
-    //     createComponents();
-    //     setComponents();
-    //     setActions();
-    // }
-
     public PasswordFXElement(Login login) {
-        // this();
         this.login = login;
         createComponents();
         setComponents();
@@ -194,6 +186,7 @@ public class PasswordFXElement {
     private void setActions() {
 
         bViewPass.setOnMousePressed(event -> {
+            this.login.increaseCount();
             tFPass.setText(pFPass.getText());
             pFPass.setVisible(false);
             bViewPass.getStyleClass().setAll("button-ViewPass");
