@@ -11,22 +11,22 @@ import javafx.scene.paint.Color;
 
 public class SceneManager {
     
-    private Scene screen;
+    private Scene scene;
 
-    public Scene loadScreen(String name) {
+    public Scene loadPage(String name) {
         
         try {
-            FXMLLoader screenLoader = new FXMLLoader(App.class.getResource("views/" + name + ".fxml"));
-            Parent rootScreen = screenLoader.load();
-            screen = new Scene(rootScreen);
-            screen.setFill(Color.rgb(0, 0, 0, 0.01));
-            return screen;
+            FXMLLoader sceneLoader = new FXMLLoader(App.class.getResource("views/" + name + ".fxml"));
+            Parent rootScene = sceneLoader.load();
+            scene = new Scene(rootScene);
+            scene.setFill(Color.rgb(0, 0, 0, 0.01));
+            return scene;
 
         } catch (IOException e) {
             System.out.println("ERROR: There was an error trying to load the desired file... ");
             System.out.println(e.getMessage() + "\n\n");
             e.printStackTrace();
         }
-        return screen;
+        return scene;
     }
 }

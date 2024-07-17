@@ -10,7 +10,6 @@ import com.example.passwordbank.utilities.LoginList;
 import com.example.passwordbank.utilities.SceneManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,7 +20,6 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
 
-    private static Scene mainScene;
     private static Stage primaryStage;
     private static SceneManager sceneManager = new SceneManager();
     private static FilesManager filesManager = new FilesManager();
@@ -34,7 +32,7 @@ public class App extends Application {
     public  static boolean darkMode = true;
     public  static boolean stayLoggedIn = false;
     public  static AppUser user;
-    public  static Login[] logs;
+    public  static LoginList logs;
 
     
     public static void main(String[] args) {
@@ -48,13 +46,13 @@ public class App extends Application {
         setStage(stage);
         configStage();
         setStartAction();
+        Scene mainScene;
 
         if (stayLoggedIn) {
-            mainScene = sceneManager.loadScene("base");
+            mainScene = sceneManager.loadPage("base");
             setDefAppSize();
-        }
-        else {
-            mainScene = sceneManager.loadScene("start");
+        } else {
+            mainScene = sceneManager.loadPage("start");
             setMinAppSize();
         }
         primaryStage.setScene(mainScene);
@@ -147,11 +145,12 @@ public class App extends Application {
     
 
 
-    public static void changeScreen(String sceneName) {
+    public static void changePage(String sceneName) {
+        primaryStage.hide();
         primaryStage.setX(primaryStage.getX());
         primaryStage.setY(primaryStage.getY());
-        primaryStage.setScene(sceneManager.loadScene(sceneName));
+        primaryStage.setScene(sceneManager.loadPage(sceneName));
         primaryStage.centerOnScreen();
+        primaryStage.show();
     }
-
 }
