@@ -38,10 +38,11 @@ public class PasswordScreenController {
 
         App.getStage().maximizedProperty().addListener((a, b, c) -> {
             if (c) {limCount = colsMax;
-            gPanePassReg.setHgap(100);}
+                gPanePassReg.setHgap(100);}
             else {limCount = colsMin;
-            gPanePassReg.setHgap(60);}
-            printLogins();
+                gPanePassReg.setHgap(50);}
+
+            if (App.logs != null) printLogins();
         });
     }
 
@@ -50,14 +51,14 @@ public class PasswordScreenController {
     
     private void setUpGridPane() {
         gPanePassReg.getColumnConstraints().add(cons);
-        gPanePassReg.setHgap(60);
+        gPanePassReg.setHgap(50);
         gPanePassReg.setVgap(80);
     }
 
 
 
 
-    private void printLogins() {
+    protected void printLogins() {
         int rowCount = 0, colCount = 0;
         gPanePassReg.getChildren().clear();
         for (Login login : logins) {
@@ -69,6 +70,7 @@ public class PasswordScreenController {
                 gPanePassReg.addRow(rowCount);
             }
         }
+        PasswordFXElement.setStokeByTheme();
     }
 
 

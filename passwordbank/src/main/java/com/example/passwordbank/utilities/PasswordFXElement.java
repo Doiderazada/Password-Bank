@@ -1,5 +1,7 @@
 package com.example.passwordbank.utilities;
 
+import javax.swing.border.StrokeBorder;
+
 import com.example.passwordbank.App;
 import com.example.passwordbank.model.Login;
 
@@ -32,7 +34,7 @@ public class PasswordFXElement {
     private HBox hBoxButtons;
     private Label labelPass;
     private Label labelUser;
-    private Rectangle mainRectangle;
+    private static Rectangle mainRectangle;
     private StackPane mainStackPane;
     private StackPane passStackPane;
     private PasswordField pFPass;
@@ -100,7 +102,7 @@ public class PasswordFXElement {
         mainRectangle.setArcWidth(20);
         mainRectangle.setArcHeight(20);
         mainRectangle.setFill(Color.valueOf("#8A59EE"));
-        mainRectangle.setStroke(Color.WHITE);
+        setStokeByTheme();
         mainRectangle.setStrokeWidth(1.5);
         mainRectangle.setStrokeType(StrokeType.INSIDE);
         mainRectangle.setSmooth(true);
@@ -241,5 +243,13 @@ public class PasswordFXElement {
 
     public Node getRoot() {
         return this.mainStackPane;
+    }
+
+
+
+    public static void setStokeByTheme() {
+        if (App.darkMode) 
+             mainRectangle.setStroke(Color.WHITE);
+        else mainRectangle.setStroke(Color.BLACK);
     }
 }

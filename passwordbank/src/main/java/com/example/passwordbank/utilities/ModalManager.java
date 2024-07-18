@@ -3,7 +3,7 @@ package com.example.passwordbank.utilities;
 import java.io.IOException;
 
 import com.example.passwordbank.App;
-import com.example.passwordbank.controllers.ModalPasswordController;
+import com.example.passwordbank.controllers.ModalController;
 import com.example.passwordbank.model.Login;
 
 import javafx.fxml.FXMLLoader;
@@ -50,10 +50,11 @@ public class ModalManager {
         Stage modalStage = new Stage();
         modalStage.setResizable(false);
         modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initStyle(StageStyle.UNDECORATED);
+        modalStage.initStyle(StageStyle.TRANSPARENT);
 
-        Scene modalScene = new Scene(modalRoot);
-        modalScene.setFill(Color.rgb(0, 0, 0, 0.05));
+        Scene modalScene;
+        modalScene = new Scene(modalRoot);
+        modalScene.setFill(Color.rgb(0, 0, 0, 0.01));
         modalStage.setScene(modalScene);
         modalStage.sizeToScene();
         
@@ -67,19 +68,19 @@ public class ModalManager {
 
         switch (state) {
             case CREATE:
-                ModalPasswordController.setLoginToShow(null);
+                ModalController.setLoginToShow(null);
                 modalStage.showAndWait();
-                if (ModalPasswordController.getLogin() != null) {
-                    setLoginUpdated(ModalPasswordController.getLogin());
+                if (ModalController.getLogin() != null) {
+                    setLoginUpdated(ModalController.getLogin());
                 }
                 break;
                 case EDIT:
-                ModalPasswordController.setLoginToShow(managedLogin);
+                ModalController.setLoginToShow(managedLogin);
                 modalStage.showAndWait();
-                setLoginUpdated(ModalPasswordController.getLogin());
+                setLoginUpdated(ModalController.getLogin());
                 break;
         }
-        ModalPasswordController.setLoginToShow(null);
+        ModalController.setLoginToShow(null);
     }
 
 

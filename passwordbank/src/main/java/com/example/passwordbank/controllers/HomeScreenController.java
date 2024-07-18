@@ -28,19 +28,21 @@ public class HomeScreenController {
         setTexts();
         setTextTheme();
         setUpGridPanes();
-        findMostUsedPass();
-        findOldestPass();
+        loadGridPanes();
     }
     
     
     
 
 
+
+
+
     private void setUpGridPanes() {
         gPaneLastUsed.getColumnConstraints().add(cons);
-        gPaneLastUsed.setVgap(60);
+        gPaneLastUsed.setHgap(50);
         gPaneOldstReg.getColumnConstraints().add(cons);
-        gPaneOldstReg.setVgap(60);;
+        gPaneOldstReg.setHgap(50);
     }
 
 
@@ -79,6 +81,15 @@ public class HomeScreenController {
         for (Login login : updatedList) {
             PasswordFXElement pass = new PasswordFXElement(login);
             gPaneOldstReg.add(pass.getRoot(), colCount++, 0);
+        }
+    }
+
+
+    protected void loadGridPanes() {
+        if (App.logs != null) {
+            findMostUsedPass();
+            findOldestPass();
+            PasswordFXElement.setStokeByTheme();
         }
     }
 }

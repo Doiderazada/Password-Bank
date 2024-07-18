@@ -623,6 +623,7 @@
     -fx-background-color: transparent;
     -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
     -fx-background-radius: 5px;
     -fx-border-color: WHITE;
     -fx-border-width: 2px;
@@ -634,6 +635,7 @@
     -fx-background-color: #0000002a;
     -fx-background-position: right 10px center;
     -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
     -fx-background-radius: 5px;
     -fx-border-color: WHITE;
     -fx-border-width: 2px;

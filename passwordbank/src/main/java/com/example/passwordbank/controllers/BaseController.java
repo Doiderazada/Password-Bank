@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.passwordbank.App;
 import com.example.passwordbank.utilities.FXWindowControl;
+import com.example.passwordbank.utilities.PasswordFXElement;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,11 +80,13 @@ public class BaseController {
 
     private void setActions() {
         buttonHome.setOnMouseClicked(event -> {
-            homeCtrl.findMostUsedPass();
-            homeCtrl.findOldestPass();
+            if (App.logs != null) homeCtrl.loadGridPanes();
             changePage(homePane);
         });
-        buttonPassword.setOnMouseClicked(event -> changePage(passPane));
+        buttonPassword.setOnMouseClicked(event -> {
+            passCtrl.printLogins();
+            changePage(passPane);
+        });
         buttonSettings.setOnMouseClicked(event -> changePage(settPane));
         
         buttonMenu.setOnMouseClicked(event -> {

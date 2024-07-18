@@ -1,5 +1,6 @@
 package com.example.passwordbank.controllers;
 
+import com.example.passwordbank.App;
 import com.example.passwordbank.model.Login;
 import animatefx.animation.Shake;
 import javafx.fxml.FXML;
@@ -10,11 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ModalPasswordController {
+public class ModalController {
     
     @FXML private Button buttonCancel;
     @FXML private Button buttonSave;
@@ -25,6 +27,7 @@ public class ModalPasswordController {
     @FXML private Label labelIdentifier;
     @FXML private Label labelPassword;
     @FXML private Label labelUsername;
+    @FXML private Pane paneModal;
     @FXML private PasswordField pFPassword;
     @FXML private StackPane sPaneBackground;
     @FXML private TextField tFIdentifier;
@@ -36,11 +39,14 @@ public class ModalPasswordController {
 
 
     public void initialize() {
+        sPaneBackground.setBackground(Background.fill(Color.TRANSPARENT));
         setTexts();
         if (login != null) setFields();
         setActions();
-        sPaneBackground.setBackground(Background.fill(Color.TRANSPARENT));
     }
+
+
+    
 
 
     private void setTexts() {
@@ -145,6 +151,9 @@ public class ModalPasswordController {
 
         return true;
     }
+
+
+
 
     public static void setLoginToShow(Login loginToShow) {
         login = loginToShow;

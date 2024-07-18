@@ -29,7 +29,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="NEVER" />
          </rowConstraints>
          <children>
-            <Button fx:id="buttonMenu" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@../styles/buttons.css" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Button fx:id="buttonMenu" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@../styles/buttons.css" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -37,7 +37,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@../styles/buttons.css" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="buttonPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@../styles/buttons.css" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -45,7 +45,7 @@
                   <Insets left="70.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonHome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@../styles/buttons.css" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="buttonHome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" stylesheets="@../styles/buttons.css" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -69,7 +69,7 @@
       </GridPane>
    </left>
    <center>
-      <ScrollPane fx:id="sPaneMain" fitToHeight="true" fitToWidth="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="sPaneMain" fitToHeight="true" fitToWidth="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <content>
             <StackPane fx:id="stackPaneMain" minHeight="-Infinity" minWidth="-Infinity" />
         </content>
