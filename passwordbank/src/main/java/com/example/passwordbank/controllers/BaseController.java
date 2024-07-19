@@ -7,6 +7,7 @@ import com.example.passwordbank.utilities.FXWindowControl;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,11 +67,6 @@ public class BaseController {
         App.getStage().setOnShowing(event -> {
             new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
         });
-        // new Thread(() -> {
-        //     try {Thread.sleep(500);} 
-        //     catch (InterruptedException e) {e.printStackTrace();}
-        //     new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
-        // }).start();
     }
 
 
@@ -93,6 +89,11 @@ public class BaseController {
             else {gPaneMenu.setPrefWidth(minXMenu);}
             editMenuButtonsSize(menuMaximized);
         });
+
+        buttonMenu.setOnMouseMoved(event -> {buttonMenu.setCursor(Cursor.HAND);});
+        buttonHome.setOnMouseMoved(event -> {buttonHome.setCursor(Cursor.HAND);});
+        buttonPassword.setOnMouseMoved(event -> {buttonPassword.setCursor(Cursor.HAND);});
+        buttonSettings.setOnMouseMoved(event -> {buttonSettings.setCursor(Cursor.HAND);});
     }
 
 

@@ -14,7 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ModalPasswordController {
+public class ModalController {
     
     @FXML private Button buttonCancel;
     @FXML private Button buttonSave;

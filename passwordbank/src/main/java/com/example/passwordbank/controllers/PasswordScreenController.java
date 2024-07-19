@@ -38,11 +38,15 @@ public class PasswordScreenController {
         
 
         App.getStage().maximizedProperty().addListener((a, b, c) -> {
-            if (c) {limCount = colsMax;
-            gPanePassReg.setHgap(100);}
-            else {limCount = colsMin;
-            gPanePassReg.setHgap(60);}
-            printLogins();
+            if (c) setColumnWidth(colsMax, 100);
+            else setColumnWidth(colsMin, 50);
+
+            if (App.logs != null) printLogins();
+        });
+        App.getStage().widthProperty().addListener((a, b, c) -> {
+            if (c.doubleValue() >= (1800 + 50)) 
+                 setColumnWidth(colsMax, 100);
+            else setColumnWidth(colsMin, 50);
         });
     }
 
@@ -51,10 +55,14 @@ public class PasswordScreenController {
     
     private void setUpGridPane() {
         gPanePassReg.getColumnConstraints().add(cons);
-        gPanePassReg.setHgap(60);
-        gPanePassReg.setVgap(80);
+        gPanePassReg.setHgap(50);   gPanePassReg.setVgap(80);
     }
 
+
+    private void setColumnWidth(int colC, double hGap) {
+        limCount = colC;     gPanePassReg.setHgap(hGap);
+        if (App.logs != null) printLogins();
+    }
 
 
 
