@@ -32,7 +32,7 @@ public class PasswordFXElement {
     private HBox hBoxButtons;
     private Label labelPass;
     private Label labelUser;
-    private Rectangle mainRectangle;
+    private static Rectangle mainRectangle;
     private StackPane mainStackPane;
     private StackPane passStackPane;
     private PasswordField pFPass;
@@ -100,7 +100,7 @@ public class PasswordFXElement {
         mainRectangle.setArcWidth(20);
         mainRectangle.setArcHeight(20);
         mainRectangle.setFill(Color.valueOf("#8A59EE"));
-        mainRectangle.setStroke(Color.WHITE);
+        setStokeByTheme();
         mainRectangle.setStrokeWidth(1.5);
         mainRectangle.setStrokeType(StrokeType.INSIDE);
         mainRectangle.setSmooth(true);
@@ -218,6 +218,19 @@ public class PasswordFXElement {
             this.login = modal.getLoginUpdated();
             completeFields();
         });
+
+        Tooltip delete = new Tooltip("Delete password");
+        delete.setAutoHide(true);
+        delete.setShowDelay(Duration.millis(100));
+        delete.setShowDuration(Duration.millis(800));
+        
+        Tooltip edit = new Tooltip("Edit password");
+        edit.setAutoHide(true);
+        edit.setShowDelay(Duration.millis(100));
+        edit.setShowDuration(Duration.millis(800));
+
+        buttonDelete.setTooltip(delete);
+        buttonEdit.setTooltip(edit);
     }
 
     private void completeFields() {
@@ -241,5 +254,13 @@ public class PasswordFXElement {
 
     public Node getRoot() {
         return this.mainStackPane;
+    }
+
+
+
+    public static void setStokeByTheme() {
+        if (App.darkMode) 
+             mainRectangle.setStroke(Color.WHITE);
+        else mainRectangle.setStroke(Color.BLACK);
     }
 }
