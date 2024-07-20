@@ -20,7 +20,7 @@ public class HomeScreenController {
     @FXML private Text textOldestRegistered;  
 
 
-    ColumnConstraints cons = new ColumnConstraints(350, 350, 350);
+    ColumnConstraints cons = new ColumnConstraints(50, 350, 350);
 
 
     @FXML
@@ -28,27 +28,29 @@ public class HomeScreenController {
         setTexts();
         setTextTheme();
         setUpGridPanes();
-        findMostUsedPass();
-        findOldestPass();
+        loadGridPanes();
     }
     
     
     
 
 
+
+
+
     private void setUpGridPanes() {
         gPaneLastUsed.getColumnConstraints().add(cons);
-        gPaneLastUsed.setVgap(60);
+        gPaneLastUsed.setHgap(50);
         gPaneOldstReg.getColumnConstraints().add(cons);
-        gPaneOldstReg.setVgap(60);;
+        gPaneOldstReg.setHgap(50);
     }
 
 
 
 
     private void setTexts() {
-        textLastUsed.setText("Last used passwords");
-        textOldestRegistered.setText("Last registered passwords");
+        textLastUsed.setText("Most used passwords");
+        textOldestRegistered.setText("Oldest registered passwords");
     }
 
     protected void setTextTheme() {
@@ -57,20 +59,20 @@ public class HomeScreenController {
 
     
     protected void findMostUsedPass() {
-        if (App.logs != null) {
-            LoginList logins = App.logs;
-            LoginList updatedList = LoginList.getMostUsed(logins);
-            int colCount = 0;
-            
-            gPaneLastUsed.getChildren().clear();
-            for (Login login : updatedList) {
-                PasswordFXElement pass = new PasswordFXElement(login);
-                gPaneLastUsed.add(pass.getRoot(), colCount++, 0);;
-            }
+        gPaneLastUsed.getChildren().clear();
+        LoginList logins = App.logs;
+        LoginList updatedList = LoginList.getMostUsed(logins);
+        int colCount = 0;
+        
+        gPaneLastUsed.getChildren().clear();
+        for (Login login : updatedList) {
+            PasswordFXElement pass = new PasswordFXElement(login);
+            gPaneLastUsed.add(pass.getRoot(), colCount++, 0);;
         }
     }
     
     protected void findOldestPass() {
+        gPaneOldstReg.getChildren().clear();
         LoginList logins = App.logs;
         LoginList updatedList = LoginList.getOldestEdited(logins);
         int colCount = 0;
@@ -79,6 +81,16 @@ public class HomeScreenController {
         for (Login login : updatedList) {
             PasswordFXElement pass = new PasswordFXElement(login);
             gPaneOldstReg.add(pass.getRoot(), colCount++, 0);
+        }
+        
+    }
+
+
+    protected void loadGridPanes() {
+        if ((App.logs != null) && (App.logs.size() >= 3)) {
+            findMostUsedPass();
+            findOldestPass();
+            PasswordFXElement.setStokeByTheme();
         }
     }
 }

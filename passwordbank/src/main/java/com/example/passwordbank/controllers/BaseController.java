@@ -63,6 +63,7 @@ public class BaseController {
         changePage(homePane);
         setActions();
         setStyle();
+
         
         App.getStage().setOnShowing(event -> {
             new FXWindowControl(buttonMinimize, buttonMaximize, buttonClose);
@@ -75,11 +76,13 @@ public class BaseController {
 
     private void setActions() {
         buttonHome.setOnMouseClicked(event -> {
-            homeCtrl.findMostUsedPass();
-            homeCtrl.findOldestPass();
+            if (App.logs != null) homeCtrl.loadGridPanes();
             changePage(homePane);
         });
-        buttonPassword.setOnMouseClicked(event -> changePage(passPane));
+        buttonPassword.setOnMouseClicked(event -> {
+            passCtrl.printLogins();
+            changePage(passPane);
+        });
         buttonSettings.setOnMouseClicked(event -> changePage(settPane));
         
         buttonMenu.setOnMouseClicked(event -> {
@@ -90,10 +93,10 @@ public class BaseController {
             editMenuButtonsSize(menuMaximized);
         });
 
-        buttonMenu.setOnMouseMoved(event -> {buttonMenu.setCursor(Cursor.HAND);});
-        buttonHome.setOnMouseMoved(event -> {buttonHome.setCursor(Cursor.HAND);});
-        buttonPassword.setOnMouseMoved(event -> {buttonPassword.setCursor(Cursor.HAND);});
-        buttonSettings.setOnMouseMoved(event -> {buttonSettings.setCursor(Cursor.HAND);});
+        buttonMenu.setOnMouseMoved(event -> buttonMenu.setCursor(Cursor.HAND));
+        buttonHome.setOnMouseMoved(event -> buttonHome.setCursor(Cursor.HAND));
+        buttonPassword.setOnMouseMoved(event -> buttonPassword.setCursor(Cursor.HAND));
+        buttonSettings.setOnMouseMoved(event -> buttonSettings.setCursor(Cursor.HAND));
     }
 
 
@@ -192,9 +195,17 @@ public class BaseController {
 
     protected void setStyle() {
         bPaneMain.setBackground(Background.fill(Color.TRANSPARENT));
+        gPaneTitleBar.setStyle("-fx-background-color: #292929aa; -fx-background-radius: 5 5 0 0; -fx-border-radius: 5 5 0 0;");
+        gPaneTop.setStyle("-fx-background-color: #804DE5; -fx-background-radius: 5 5 0 0; -fx-border-radius: 5 5 0 0;");
+        sPaneMain.setStyle("-fx-background-radius: 0 0 5 0; -fx-border-radius: 0 0 5 0;");
         if (App.darkMode) 
-             gPaneMenu.setBackground(Background.fill(Color.valueOf("#3B3B3B")));
-        else gPaneMenu.setBackground(Background.fill(Color.valueOf("#8A8A8A")));
+             gPaneMenu.setStyle("-fx-background-color: #3B3B3B;" +
+                                "-fx-background-radius: 0 0 0 5;" + 
+                                "-fx-border-radius: 0 0 0 5;");
+        else gPaneMenu.setStyle("-fx-background-color: #8A8A8A;" +
+                                "-fx-background-radius: 0 0 0 5;" + 
+                                "-fx-border-radius: 0 0 0 5;");
+        
         
         homeCtrl.setTextTheme();
         passCtrl.setTextTheme();

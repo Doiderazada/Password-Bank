@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class ModalController {
     @FXML private Label labelIdentifier;
     @FXML private Label labelPassword;
     @FXML private Label labelUsername;
+    @FXML private Pane paneModal;
     @FXML private PasswordField pFPassword;
     @FXML private StackPane sPaneBackground;
     @FXML private TextField tFIdentifier;
@@ -36,11 +38,12 @@ public class ModalController {
 
 
     public void initialize() {
+        sPaneBackground.setBackground(Background.fill(Color.TRANSPARENT));
         setTexts();
         if (login != null) setFields();
         setActions();
-        sPaneBackground.setBackground(Background.fill(Color.TRANSPARENT));
     }
+    
 
 
     private void setTexts() {
@@ -50,10 +53,11 @@ public class ModalController {
     }
 
 
-    private void setFields() {
+    public void setFields() {
         tFIdentifier.setText(login.getIdentifier());
         tFUsername.setText(login.getUserName());
         pFPassword.setText(login.getPassword().getPass());
+        paneModal.requestFocus();
     }
 
     private void setActions() {
@@ -110,8 +114,7 @@ public class ModalController {
             lHIntIdentifier.setText("The field cannot be empty");
             lHIntIdentifier.setTextFill(Color.RED);
             lHIntIdentifier.setVisible(true);
-            shake.setSpeed(1);
-            shake.play();
+            shake.setSpeed(1);          shake.play();
             return false;
         }
         
@@ -121,8 +124,7 @@ public class ModalController {
             lHIntUsername.setText("The field cannot be empty");
             lHIntUsername.setTextFill(Color.RED);
             lHIntUsername.setVisible(true);
-            shake.setSpeed(1);
-            shake.play();
+            shake.setSpeed(1);          shake.play();
             return false;
         }
         
@@ -134,17 +136,16 @@ public class ModalController {
             lHintPassword.setText("The field cannot be empty");
             lHintPassword.setTextFill(Color.RED);
             lHintPassword.setVisible(true);
-            shake1.setSpeed(1);
-            shake1.play();
-            shake2.setSpeed(1);
-            shake2.play();
-            shake3.setSpeed(1);
-            shake3.play();
+            shake1.setSpeed(1);         shake1.play();
+            shake2.setSpeed(1);         shake2.play();
+            shake3.setSpeed(1);         shake3.play();
             return false;
         }
-
         return true;
     }
+
+
+
 
     public static void setLoginToShow(Login loginToShow) {
         login = loginToShow;
@@ -153,7 +154,6 @@ public class ModalController {
     public static Login getLogin() {
         return login;
     }
-
 
     private void closeModal() {
         Stage closeStage = (Stage) buttonCancel.getScene().getWindow();

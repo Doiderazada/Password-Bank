@@ -25,7 +25,7 @@ public class PasswordScreenController {
     private LoginList logins = App.logs;
     int colsMin = 3, colsMax = 4, limCount = 3;
     int minW = 350, minH = 300;
-    ColumnConstraints cons = new ColumnConstraints(350, 350, 350);
+    ColumnConstraints cons = new ColumnConstraints(50, 350, 350);
 
     public void initialize() {
         setActions();
@@ -35,48 +35,50 @@ public class PasswordScreenController {
         setUpGridPane();
 
         if (logins != null) printLogins();
-        
 
         App.getStage().maximizedProperty().addListener((a, b, c) -> {
-            if (c) setColumnWidth(colsMax, 100);
-            else setColumnWidth(colsMin, 50);
-
-            if (App.logs != null) printLogins();
+            if (c) setGridItems(colsMax, 100);
+            else setGridItems(colsMin, 50);
         });
-        App.getStage().widthProperty().addListener((a, b, c) -> {
-            if (c.doubleValue() >= (1800 + 50)) 
-                 setColumnWidth(colsMax, 100);
-            else setColumnWidth(colsMin, 50);
+        App.getStage().widthProperty().addListener((a, b, c) ->{
+            if (c.doubleValue() >= (1820)) 
+                 setGridItems(colsMax, 100);
+            else setGridItems(colsMin, 50);
         });
     }
 
     
     
-    
-    private void setUpGridPane() {
-        gPanePassReg.getColumnConstraints().add(cons);
-        gPanePassReg.setHgap(50);   gPanePassReg.setVgap(80);
-    }
-
-
-    private void setColumnWidth(int colC, double hGap) {
-        limCount = colC;     gPanePassReg.setHgap(hGap);
+    private void setGridItems(int colCount, int hGap) {
+        limCount = colCount;
+        gPanePassReg.setHgap(hGap);
         if (App.logs != null) printLogins();
     }
 
+    
+    private void setUpGridPane() {
+        gPanePassReg.getColumnConstraints().add(cons);
+        gPanePassReg.setHgap(50);
+        gPanePassReg.setVgap(80);
+    }
 
 
-    private void printLogins() {
-        int rowCount = 0, colCount = 0;
-        gPanePassReg.getChildren().clear();
-        for (Login login : logins) {
-            PasswordFXElement pass = new PasswordFXElement(login);
-            gPanePassReg.add(pass.getRoot(), colCount++, rowCount);
-            if (colCount == limCount) {
-                colCount = 0;
-                rowCount++;
-                gPanePassReg.addRow(rowCount);
+
+
+    protected void printLogins() {
+        if (App.logs != null) {    
+            int rowCount = 0, colCount = 0;
+            gPanePassReg.getChildren().clear();
+            for (Login login : logins) {
+                PasswordFXElement pass = new PasswordFXElement(login);
+                gPanePassReg.add(pass.getRoot(), colCount++, rowCount);
+                if (colCount == limCount) {
+                    colCount = 0;
+                    rowCount++;
+                    gPanePassReg.addRow(rowCount);
+                }
             }
+            PasswordFXElement.setStokeByTheme();
         }
     }
 

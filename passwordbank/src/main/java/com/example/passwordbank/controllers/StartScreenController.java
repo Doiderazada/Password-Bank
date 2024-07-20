@@ -139,8 +139,7 @@ public class StartScreenController {
     private final String labelStyleBad    = "-fx-text-fill: red;";
     private final String emailRegexGroup  = "((?>@gmail\\.com)|(?>@outlook\\.com)|(?>@yahoo\\.com)|(?>@hotmail\\.com))$";
     private final String genericRegexText = "^[\\w^(.\\-_)]+";
-    private final String defaultText = "Select an item in list";
-    private final QuestionsList questions = new QuestionsList();
+    private final String defQuestString   = "Select an item in list";
     private AppUser user;
     private String password;
     private String username;
@@ -153,6 +152,8 @@ public class StartScreenController {
     private String answer2;
     private String question3;
     private String answer3;
+
+    private QuestionsList qList = new QuestionsList();
     
 
     public void initialize() {
@@ -425,54 +426,49 @@ public class StartScreenController {
             animatePageTransition(panePage5, panePage4, false);
         });
         buttonFinish.setOnMouseClicked(event -> {if (verifyQuestionFields()) finishRegistration();});
-        buttonFinish.setOnKeyReleased(event ->     {
-            if (event.getCode().equals(KeyCode.ENTER) && 
-                verifyQuestionFields()) {finishRegistration();}
-        });
+        buttonFinish.setOnKeyTyped(event ->     {if (verifyQuestionFields()) finishRegistration();});
         tAAnswer1.setOnMouseClicked(event -> {
             tAAnswer1.setStyle(null);
-            if (lHintQuestions.isVisible()) tAAnswer1.clear();
+            tAAnswer1.clear();
             lHintQuestions.setVisible(false);
         });
         tAAnswer2.setOnMouseClicked(event -> {
             tAAnswer2.setStyle(null);
-            if (lHintQuestions.isVisible()) tAAnswer2.clear();
+            tAAnswer2.clear();
             lHintQuestions.setVisible(false);
         });
         tAAnswer3.setOnMouseClicked(event -> {
             tAAnswer3.setStyle(null);
-            if (lHintQuestions.isVisible()) tAAnswer3.clear();
+            tAAnswer3.clear();
             lHintQuestions.setVisible(false);
         });
-
-        cBoxQuestion1.valueProperty().addListener((a, b, c) -> {
-            if (!c.equals(defaultText)) {
-                lHintQuestions.setVisible(false);
+        cBoxQuestion1.valueProperty().addListener(listener -> {
+            if (!cBoxQuestion1.getSelectionModel().getSelectedItem().equals(defQuestString)) {
                 cBoxQuestion1.setStyle(null);
+                lHintQuestions.setVisible(false);
             }
         });
-        cBoxQuestion2.valueProperty().addListener((a, b, c) -> {
-            if (!c.equals(defaultText)) {
-                lHintQuestions.setVisible(false);
+        cBoxQuestion2.valueProperty().addListener(listener -> {
+            if (!cBoxQuestion2.getSelectionModel().getSelectedItem().equals(defQuestString)) {
                 cBoxQuestion2.setStyle(null);
-            }
-        });
-        cBoxQuestion3.valueProperty().addListener((a, b, c) -> {
-            if (!c.equals(defaultText)) {
                 lHintQuestions.setVisible(false);
+            }
+        });
+        cBoxQuestion3.valueProperty().addListener(listener -> {
+            if (!cBoxQuestion3.getSelectionModel().getSelectedItem().equals(defQuestString)) {
                 cBoxQuestion3.setStyle(null);
+                lHintQuestions.setVisible(false);
             }
         });
 
-
+        cBoxQuestion1.setItems(qList.getList());
+        cBoxQuestion1.setValue(defQuestString);
+        cBoxQuestion2.setItems(qList.getList());
+        cBoxQuestion2.setValue(defQuestString);
+        cBoxQuestion3.setItems(qList.getList());
+        cBoxQuestion3.setValue(defQuestString);
         lHintQuestions.setVisible(false);
         textRegRec3.setText("Select a question and give an answer to each one, you will need this when recovering your account");
-        cBoxQuestion1.setValue(defaultText);
-        cBoxQuestion2.setValue(defaultText);
-        cBoxQuestion3.setValue(defaultText);
-        cBoxQuestion1.setItems(questions.getList());
-        cBoxQuestion2.setItems(questions.getList());
-        cBoxQuestion3.setItems(questions.getList());
     }
 
 
@@ -531,7 +527,8 @@ public class StartScreenController {
     private void createAccount() {
         this.user = new AppUser();
         App.user = user;
-        user.setMainEmail(mainEmail.toLowerCase());
+        App.haveUser = true;
+        user.setMainEmail(mainEmail);
         user.setPassword(password);
         user.setUsername(username);
         user.setRecoverInfo(false);
@@ -572,7 +569,7 @@ public class StartScreenController {
     private void checkBoxSelect1() {
         if (cBoxUsername.isSelected()) {
             tFUsernameReg.setText(mainEmail);
-            username = mainEmail.toLowerCase();
+            username = mainEmail;
             tFUsernameReg.setStyle(null);
             lHintUsernameReg.setVisible(false);
         } else {tFUsernameReg.clear();  username = null;}
@@ -682,29 +679,31 @@ public class StartScreenController {
 
     private boolean verifyQuestionFields() {
         String emptyText = "The field cannot be empty";
-        String cBoxItem = "Select an item for question ";
-        
-        if (cBoxQuestion1.getSelectionModel().getSelectedItem().equals(defaultText)) {
+        String questString = "Select a valid item for question ";
+
+        if (cBoxQuestion1.getSelectionModel().getSelectedItem().equals(defQuestString)) {
             cBoxQuestion1.setStyle(tFieldErrorStyle);
-            lHintQuestions.setText(cBoxItem + "1");
+            lHintQuestions.setText(questString + "1");
             lHintQuestions.setStyle(labelStyleBad);
             lHintQuestions.setVisible(true);
             return false;
         }
-        if (cBoxQuestion2.getSelectionModel().getSelectedItem().equals(defaultText)) {
+        if (cBoxQuestion2.getSelectionModel().getSelectedItem().equals(defQuestString)) {
             cBoxQuestion2.setStyle(tFieldErrorStyle);
-            lHintQuestions.setText(cBoxItem + "2");
+            lHintQuestions.setText(questString + "2");
             lHintQuestions.setStyle(labelStyleBad);
             lHintQuestions.setVisible(true);
             return false;
         }
-        if (cBoxQuestion3.getSelectionModel().getSelectedItem().equals(defaultText)) {
+        if (cBoxQuestion3.getSelectionModel().getSelectedItem().equals(defQuestString)) {
             cBoxQuestion3.setStyle(tFieldErrorStyle);
-            lHintQuestions.setText(cBoxItem + "3");
+            lHintQuestions.setText(questString + "3");
             lHintQuestions.setStyle(labelStyleBad);
             lHintQuestions.setVisible(true);
             return false;
         }
+
+        
 
         if (tAAnswer1.getText().isBlank()) {
             Shake shake = new Shake(tAAnswer1);
