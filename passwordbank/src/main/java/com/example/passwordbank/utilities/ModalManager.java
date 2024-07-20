@@ -21,13 +21,14 @@ public class ModalManager {
     private Pane modalRoot;
     private Node rootNode;
     private ModalState state;
+    private ModalController controller;
 
 
 
     public ModalManager(Login login, Node rootNode, ModalState state) {
         loadModal();
         this.state = state;
-        managedLogin = login;
+        this.managedLogin = login;
         this.rootNode = rootNode;
     }
 
@@ -37,6 +38,7 @@ public class ModalManager {
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("views/modal.fxml"));
             modalRoot = (Pane) loader.load();
+            controller = loader.getController();
 
         } catch (IOException e) {
             System.out.println(e.getLocalizedMessage());
@@ -68,19 +70,22 @@ public class ModalManager {
 
         switch (state) {
             case CREATE:
-                ModalController.setLoginToShow(null);
+                ModalController.setLoginToShow(managedLogin);
                 modalStage.showAndWait();
                 if (ModalController.getLogin() != null) {
                     setLoginUpdated(ModalController.getLogin());
+                    ModalController.setLoginToShow(null);
                 }
                 break;
+                
                 case EDIT:
                 ModalController.setLoginToShow(managedLogin);
+                controller.setFields();
                 modalStage.showAndWait();
                 setLoginUpdated(ModalController.getLogin());
-                break;
+                ModalController.setLoginToShow(null);
+            break;
         }
-        ModalController.setLoginToShow(null);
     }
 
 

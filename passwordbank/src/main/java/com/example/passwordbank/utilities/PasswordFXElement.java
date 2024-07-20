@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -215,10 +216,18 @@ public class PasswordFXElement {
         });
 
         buttonEdit.setOnMouseClicked(event -> {
-            ModalManager modal = new ModalManager(login, bViewPass, ModalState.EDIT);
+            ModalManager modal = new ModalManager(this.login, bViewPass, ModalState.EDIT);
             modal.showModal();
             this.login = modal.getLoginUpdated();
             completeFields();
+        });
+        buttonDelete.setOnMouseClicked(event -> {
+            GridPane parent = (GridPane) this.mainStackPane.getParent();
+            GridPane.clearConstraints(this.mainStackPane);
+            parent.getChildren().remove(this.mainStackPane);
+            App.logs.remove(login);
+            login = null;
+            this.mainStackPane = null;
         });
     }
 
