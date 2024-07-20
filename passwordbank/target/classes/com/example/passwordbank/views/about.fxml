@@ -71,7 +71,7 @@
          <children>
             <Text fx:id="textGuideDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="600.0">
                <font>
-                  <Font size="20.0" />
+                  <Font size="25.0" />
                </font></Text>
             <Button fx:id="buttonPDF" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" stylesheets="@../styles/buttons.css">
                <font>

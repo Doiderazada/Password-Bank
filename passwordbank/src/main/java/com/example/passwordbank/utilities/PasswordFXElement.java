@@ -1,7 +1,5 @@
 package com.example.passwordbank.utilities;
 
-import javax.swing.border.StrokeBorder;
-
 import com.example.passwordbank.App;
 import com.example.passwordbank.model.Login;
 

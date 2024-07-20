@@ -7,7 +7,7 @@ import java.io.Serializable;
 public final class Login implements Serializable, Comparable<Login> {
 
     @SuppressWarnings("unused")
-    private static final long serialVersion = 1000000111L;
+    private static final long serialVersion = 1000000011L;
 
     private String identifier;
     private String userName;

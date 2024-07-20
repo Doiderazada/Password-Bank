@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.example.passwordbank.App;
 import com.example.passwordbank.model.AppUser;
 import com.example.passwordbank.model.Password;
+import com.example.passwordbank.utilities.QuestionsList;
 
 import animatefx.animation.Shake;
 import animatefx.animation.SlideAnimation;
@@ -138,6 +139,7 @@ public class StartScreenController {
     private final String labelStyleBad    = "-fx-text-fill: red;";
     private final String emailRegexGroup  = "((?>@gmail\\.com)|(?>@outlook\\.com)|(?>@yahoo\\.com)|(?>@hotmail\\.com))$";
     private final String genericRegexText = "^[\\w^(.\\-_)]+";
+    private final String defQuestString   = "Select an item in list";
     private AppUser user;
     private String password;
     private String username;
@@ -150,6 +152,8 @@ public class StartScreenController {
     private String answer2;
     private String question3;
     private String answer3;
+
+    private QuestionsList qList = new QuestionsList();
     
 
     public void initialize() {
@@ -438,6 +442,31 @@ public class StartScreenController {
             tAAnswer3.clear();
             lHintQuestions.setVisible(false);
         });
+        cBoxQuestion1.valueProperty().addListener(listener -> {
+            if (!cBoxQuestion1.getSelectionModel().getSelectedItem().equals(defQuestString)) {
+                cBoxQuestion1.setStyle(null);
+                lHintQuestions.setVisible(false);
+            }
+        });
+        cBoxQuestion2.valueProperty().addListener(listener -> {
+            if (!cBoxQuestion2.getSelectionModel().getSelectedItem().equals(defQuestString)) {
+                cBoxQuestion2.setStyle(null);
+                lHintQuestions.setVisible(false);
+            }
+        });
+        cBoxQuestion3.valueProperty().addListener(listener -> {
+            if (!cBoxQuestion3.getSelectionModel().getSelectedItem().equals(defQuestString)) {
+                cBoxQuestion3.setStyle(null);
+                lHintQuestions.setVisible(false);
+            }
+        });
+
+        cBoxQuestion1.setItems(qList.getList());
+        cBoxQuestion1.setValue(defQuestString);
+        cBoxQuestion2.setItems(qList.getList());
+        cBoxQuestion2.setValue(defQuestString);
+        cBoxQuestion3.setItems(qList.getList());
+        cBoxQuestion3.setValue(defQuestString);
         lHintQuestions.setVisible(false);
         textRegRec3.setText("Select a question and give an answer to each one, you will need this when recovering your account");
     }
@@ -498,6 +527,7 @@ public class StartScreenController {
     private void createAccount() {
         this.user = new AppUser();
         App.user = user;
+        App.haveUser = true;
         user.setMainEmail(mainEmail);
         user.setPassword(password);
         user.setUsername(username);
@@ -649,6 +679,32 @@ public class StartScreenController {
 
     private boolean verifyQuestionFields() {
         String emptyText = "The field cannot be empty";
+        String questString = "Select a valid item for question ";
+
+        if (cBoxQuestion1.getSelectionModel().getSelectedItem().equals(defQuestString)) {
+            cBoxQuestion1.setStyle(tFieldErrorStyle);
+            lHintQuestions.setText(questString + "1");
+            lHintQuestions.setStyle(labelStyleBad);
+            lHintQuestions.setVisible(true);
+            return false;
+        }
+        if (cBoxQuestion2.getSelectionModel().getSelectedItem().equals(defQuestString)) {
+            cBoxQuestion2.setStyle(tFieldErrorStyle);
+            lHintQuestions.setText(questString + "2");
+            lHintQuestions.setStyle(labelStyleBad);
+            lHintQuestions.setVisible(true);
+            return false;
+        }
+        if (cBoxQuestion3.getSelectionModel().getSelectedItem().equals(defQuestString)) {
+            cBoxQuestion3.setStyle(tFieldErrorStyle);
+            lHintQuestions.setText(questString + "3");
+            lHintQuestions.setStyle(labelStyleBad);
+            lHintQuestions.setVisible(true);
+            return false;
+        }
+
+        
+
         if (tAAnswer1.getText().isBlank()) {
             Shake shake = new Shake(tAAnswer1);
             tAAnswer1.setStyle(tFieldErrorStyle + labelStyleBad);

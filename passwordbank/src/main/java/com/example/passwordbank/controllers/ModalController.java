@@ -1,6 +1,5 @@
 package com.example.passwordbank.controllers;
 
-import com.example.passwordbank.App;
 import com.example.passwordbank.model.Login;
 import animatefx.animation.Shake;
 import javafx.fxml.FXML;
@@ -44,8 +43,6 @@ public class ModalController {
         if (login != null) setFields();
         setActions();
     }
-
-
     
 
 
@@ -56,10 +53,11 @@ public class ModalController {
     }
 
 
-    private void setFields() {
+    public void setFields() {
         tFIdentifier.setText(login.getIdentifier());
         tFUsername.setText(login.getUserName());
         pFPassword.setText(login.getPassword().getPass());
+        paneModal.requestFocus();
     }
 
     private void setActions() {
@@ -116,8 +114,7 @@ public class ModalController {
             lHIntIdentifier.setText("The field cannot be empty");
             lHIntIdentifier.setTextFill(Color.RED);
             lHIntIdentifier.setVisible(true);
-            shake.setSpeed(1);
-            shake.play();
+            shake.setSpeed(1);          shake.play();
             return false;
         }
         
@@ -127,8 +124,7 @@ public class ModalController {
             lHIntUsername.setText("The field cannot be empty");
             lHIntUsername.setTextFill(Color.RED);
             lHIntUsername.setVisible(true);
-            shake.setSpeed(1);
-            shake.play();
+            shake.setSpeed(1);          shake.play();
             return false;
         }
         
@@ -140,15 +136,11 @@ public class ModalController {
             lHintPassword.setText("The field cannot be empty");
             lHintPassword.setTextFill(Color.RED);
             lHintPassword.setVisible(true);
-            shake1.setSpeed(1);
-            shake1.play();
-            shake2.setSpeed(1);
-            shake2.play();
-            shake3.setSpeed(1);
-            shake3.play();
+            shake1.setSpeed(1);         shake1.play();
+            shake2.setSpeed(1);         shake2.play();
+            shake3.setSpeed(1);         shake3.play();
             return false;
         }
-
         return true;
     }
 
@@ -162,7 +154,6 @@ public class ModalController {
     public static Login getLogin() {
         return login;
     }
-
 
     private void closeModal() {
         Stage closeStage = (Stage) buttonCancel.getScene().getWindow();
