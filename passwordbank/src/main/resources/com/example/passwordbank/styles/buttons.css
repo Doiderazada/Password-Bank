@@ -4,6 +4,8 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 12px;
+    -fx-background-radius: 0, 5, 0, 0;
+    -fx-boder-radius: 0, 5, 0, 0;
 }
 .button-close:hover {
     -fx-background-image: url("../Close-sign.png");
@@ -11,6 +13,8 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 12px;
+    -fx-background-radius: 0 5 0 0;
+    -fx-border-radius: 0 5 0 0;
 }
 
 .button-maximize {
@@ -223,7 +227,7 @@
     -fx-background-size: 35px;
     -fx-border-color: white;
     -fx-border-width: 2px;
-    -fx-border-radius: 2px;
+    -fx-border-radius: 5px;
 }
 .button-PDF-white:hover {
     -fx-background-image: url("../PDF-Icon-white.png");
@@ -233,7 +237,7 @@
     -fx-background-size: 35px;
     -fx-border-color: white;
     -fx-border-width: 2px;
-    -fx-border-radius: 2px;
+    -fx-border-radius: 5px;
 }
 .button-PDF-white:focus-visible {
     -fx-background-image: url("../PDF-Icon-white.png");
@@ -243,7 +247,7 @@
     -fx-background-size: 35px;
     -fx-border-color: white;
     -fx-border-width: 2px;
-    -fx-border-radius: 2px;
+    -fx-border-radius: 5px;
 }
 
 .button-PDF-black {
@@ -277,7 +281,36 @@
     -fx-border-radius: 5px;
 }
 
-
+.button-GitHub-white {
+    -fx-background-image: url("../github-mark-white.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+.button-GitHub-white:hover {
+    -fx-background-image: url("../github-mark-white.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+    -fx-background-radius: 15px;
+}
+.button-GitHub-black {
+    -fx-background-image: url("../github-mark.png");
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+}
+.button-GitHub-black:hover {
+    -fx-background-image: url("../github-mark.png");
+    -fx-background-color: #0000002a;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80px;
+    -fx-background-radius: 15px;
+}
 
 .button-Logout {
     -fx-background-image: url("../Logout.png");

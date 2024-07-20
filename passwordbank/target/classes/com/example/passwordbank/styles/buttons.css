@@ -330,6 +330,8 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
+<<<<<<< Updated upstream
+=======
 .button-Delete:focus-visible {
     -fx-background-image: url("../Delete.png");
     -fx-background-color: #0000002a;
@@ -409,6 +411,8 @@
 .button-RightArrow {
     -fx-background-image: url("../Right-arrow.png");
     -fx-background-color: transparent;
+<<<<<<< Updated upstream
+=======
     -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
@@ -621,7 +625,7 @@
 .button-SavePass {
     -fx-background-image: url("../Finish-white.png");
     -fx-background-color: transparent;
-    -fx-background-position: right 10px center;
+    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
     -fx-background-radius: 5px;
@@ -633,7 +637,7 @@
 .button-SavePass:hover {
     -fx-background-image: url("../Finish-white.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
+    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
     -fx-background-radius: 5px;
@@ -645,7 +649,7 @@
 .button-SavePass:focus-visible {
     -fx-background-image: url("../Finish-white.png");
     -fx-background-color: #0000002a;
-    -fx-background-position: right 10px center;
+    -fx-background-position: right 20px center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 30px;
     -fx-background-radius: 5px;
@@ -712,6 +716,7 @@
 .button-CloseStart {
     -fx-background-image: url("../Start-close.png");
     -fx-background-color: transparent;
+>>>>>>> Stashed changes
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 22px;

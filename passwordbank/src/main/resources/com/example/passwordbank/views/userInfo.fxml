@@ -87,7 +87,7 @@
                               </Label>
                               <StackPane>
                                  <children>
-                                    <TextField fx:id="tFieldPassword" />
+                                    <TextField fx:id="tFieldPassword" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="265.0" />
                                     <PasswordField fx:id="pFieldPassword" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="265.0" />
                                     <Button fx:id="buttonShowPass" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" stylesheets="@../styles/buttons.css" StackPane.alignment="CENTER_RIGHT" />
                                  </children>
@@ -129,6 +129,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="tFieldAltEmail" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" promptText="exampleEmail@email.com" />
+                              <Label fx:id="labelHintAltEmail" text="Label" />
                            </children>
                         </VBox>
                         <VBox>
@@ -230,6 +231,11 @@
                         </VBox>
                      </children>
                   </VBox>
+                  <Label fx:id="labelHintQuestions" text="Label">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
          </children>
