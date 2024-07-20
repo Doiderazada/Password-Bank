@@ -22,12 +22,13 @@ public class App extends Application {
 
     private static Stage primaryStage;
     private static SceneManager sceneManager = new SceneManager();
-    private static FilesManager filesManager = new FilesManager();
+    public  static FilesManager filesManager = new FilesManager();
     public  static BaseController baseCtrlInstance;
     public  static final double defH = 724;
     public  static final double defW = 1284;
     public  static final double minH = 600;
     public  static final double minW = 400;
+    public  static boolean deletedAcc;
     public  static boolean haveUser;
     public  static boolean darkMode = true;
     public  static boolean stayLoggedIn = false;
@@ -86,7 +87,7 @@ public class App extends Application {
     }
 
     private final void closeApplication() {
-        if(user != null) {
+        if((user != null) && !deletedAcc) {
             System.out.println("Saving files");
             user.getPassword().protectPassword();
             if (logs != null) {

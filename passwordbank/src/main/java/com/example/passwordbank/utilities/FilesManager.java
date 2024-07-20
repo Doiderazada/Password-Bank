@@ -9,13 +9,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+
 import com.example.passwordbank.model.AppUser;
 
 public final class FilesManager {
 
     private final String filesDirectory = System.getProperty("user.home")+"\\AppData\\Local\\Password-Bank\\";
-    private final String userFileName = "User.bin";
-    private final String passFileName = "PassReg.bin";
+    private final String userFileName = "User.pbu";
+    private final String passFileName = "PassReg.pbp";
 
     private static AppUser user = null;
     private static LoginList logs = null;
@@ -119,6 +121,20 @@ public final class FilesManager {
             
         } catch (IOException e) {
             System.out.println("It was not possible to write the Object on the output. \n");
+        }
+    }
+
+
+
+    public void deleteFiles() {
+        try {
+            Files.deleteIfExists(userFile.toPath());
+            Files.deleteIfExists(passFile.toPath());
+            Files.deleteIfExists(Path.of(filesDirectory));
+        } catch (IOException e) {
+            System.out.println("Error: An error happened trying to delete the files");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -213,24 +214,19 @@ public class PasswordFXElement {
         });
 
         buttonEdit.setOnMouseClicked(event -> {
-            ModalManager modal = new ModalManager(login, bViewPass, ModalState.EDIT);
+            ModalManager modal = new ModalManager(this.login, bViewPass, ModalState.EDIT);
             modal.showModal();
             this.login = modal.getLoginUpdated();
             completeFields();
         });
-
-        Tooltip delete = new Tooltip("Delete password");
-        delete.setAutoHide(true);
-        delete.setShowDelay(Duration.millis(100));
-        delete.setShowDuration(Duration.millis(800));
-        
-        Tooltip edit = new Tooltip("Edit password");
-        edit.setAutoHide(true);
-        edit.setShowDelay(Duration.millis(100));
-        edit.setShowDuration(Duration.millis(800));
-
-        buttonDelete.setTooltip(delete);
-        buttonEdit.setTooltip(edit);
+        buttonDelete.setOnMouseClicked(event -> {
+            GridPane parent = (GridPane) this.mainStackPane.getParent();
+            GridPane.clearConstraints(this.mainStackPane);
+            parent.getChildren().remove(this.mainStackPane);
+            App.logs.remove(login);
+            login = null;
+            this.mainStackPane = null;
+        });
     }
 
     private void completeFields() {
