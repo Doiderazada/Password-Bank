@@ -81,6 +81,7 @@ public class UserInfoScreenController {
         setTextTheme();
         setButtonsStyle();
         setFields();
+        BaseController.setStyle(gPaneUserInfo);
     }
 
 
@@ -112,7 +113,7 @@ public class UserInfoScreenController {
 
     private void setActions() {
         buttonBack.setOnMouseClicked(event -> {
-            App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("settings"));
+            App.baseCtrlInstance.prevPage();
         });
         buttonLogout.setOnMouseClicked(event -> {
             App.stayLoggedIn = false;

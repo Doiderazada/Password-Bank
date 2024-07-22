@@ -60,9 +60,9 @@ public class BaseController {
     public void initialize() {
         App.baseCtrlInstance = this;
         loadMainPages();
+        setStyle();
         changePage(homePane);
         setActions();
-        setStyle();
 
         
         App.getStage().setOnShowing(event -> {
@@ -170,6 +170,7 @@ public class BaseController {
             FXMLLoader loader3 = new FXMLLoader(App.class.getResource("views/settings.fxml"));
             Parent root3 = loader3.load();
             settPane = (Pane) root3;
+
         } catch (IOException e) {System.out.println(e.getMessage());         e.printStackTrace();}
     }
 
@@ -186,33 +187,44 @@ public class BaseController {
 
     
 
-    protected void changePage(Pane nextPane) {
+    private void changePage(Pane nextPane) {
         stackPaneMain.getChildren().clear();
         stackPaneMain.getChildren().add(nextPane);
+        setStyle();
     }
 
+    protected void prevPage() {
+        stackPaneMain.getChildren().remove(1);
+    }
+    protected void nextPage(Pane page) {
+        stackPaneMain.getChildren().add(page);
+    }
 
 
     protected void setStyle() {
         bPaneMain.setBackground(Background.fill(Color.TRANSPARENT));
-        gPaneTitleBar.setStyle("-fx-background-color: #292929aa; -fx-background-radius: 5 5 0 0; -fx-border-radius: 5 5 0 0;");
-        gPaneTop.setStyle("-fx-background-color: #804DE5; -fx-background-radius: 5 5 0 0; -fx-border-radius: 5 5 0 0;");
-        sPaneMain.setStyle("-fx-background-radius: 0 0 5 0; -fx-border-radius: 0 0 5 0;");
-        if (App.darkMode) 
-             gPaneMenu.setStyle("-fx-background-color: #3B3B3B;" +
-                                "-fx-background-radius: 0 0 0 5;" + 
-                                "-fx-border-radius: 0 0 0 5;");
-        else gPaneMenu.setStyle("-fx-background-color: #8A8A8A;" +
-                                "-fx-background-radius: 0 0 0 5;" + 
-                                "-fx-border-radius: 0 0 0 5;");
-        
+        gPaneTitleBar.setStyle("-fx-background-color: #292929aa; -fx-background-radius: 8 8 0 0; -fx-border-radius: 8 8 0 0;");
+        gPaneTop.setStyle("-fx-background-color: #804DE5; -fx-background-radius: 8 8 0 0; -fx-border-radius: 8 8 0 0;");
+        if (App.darkMode) {
+            sPaneMain.setStyle(sPaneMain.getStyle() + "-fx-background-color: #292929;");
+            gPaneMenu.setStyle("-fx-background-color: #3B3B3B;" +
+            "-fx-background-radius: 0 0 0 8;" + 
+            "-fx-border-radius: 0 0 0 8;");
+        }
+        else {
+            sPaneMain.setStyle(sPaneMain.getStyle() + "-fx-background-color: WHITE;");
+            gPaneMenu.setStyle("-fx-background-color: #8A8A8A;" +
+                                "-fx-background-radius: 0 0 0 8;" + 
+                                "-fx-border-radius: 0 0 0 8;");
+        }
+
         
         homeCtrl.setTextTheme();
         passCtrl.setTextTheme();
         setButtonsStyle();
         createMenuText();
         editMenuButtonsSize(menuMaximized);
-        setStyle(sPaneMain, stackPaneMain, homePane, passPane, settPane);
+        setStyle(stackPaneMain, passPane, settPane);
     }
 
     public static void setStyle(Region... panes){

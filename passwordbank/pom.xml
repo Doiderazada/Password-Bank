@@ -4,27 +4,40 @@
     <groupId>com.example.passwordbank</groupId>
     <artifactId>passwordbank</artifactId>
     <version>0.0.1</version>
+    <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <javafx.version>21.0.4</javafx.version>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>21.0.4</version>
+            <type>pom</type>
+        </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21</version>
+            <version>${javafx.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21</version>
+            <version>${javafx.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.github.typhon0</groupId>
             <artifactId>AnimateFX</artifactId>
             <version>1.3.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
         <dependency>
             <groupId>org.controlsfx</groupId>
@@ -35,14 +48,36 @@
     </dependencies>
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
+                <configurations>
+                    <configuration>
+                        <release>17</release>
+                    </configuration>
+                </configurations>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <release>17</release>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>com.example.passwordbank</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                    <additionalOptions> 
+                        <option>--add-modules</option>
+                        <option>javafx-application</option>
+                        <option>javafx-controls</option>
+                        <option>javafx-fxml</option>
+                    </additionalOptions>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -53,7 +88,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.passwordbank.App</mainClass>
+                            <mainClass>com.example.passwordbank.Main</mainClass>
                         </configuration>
                     </execution>
                     <execution>
@@ -64,7 +99,7 @@
                             <options>
                                 <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:8000</option>
                             </options>
-                            <mainClass>com.example.passwordbank.App</mainClass>
+                            <mainClass>com.example.passwordbank.Main</mainClass>
                         </configuration>
                     </execution>
                     <execution>
@@ -74,11 +109,12 @@
                             <options>
                                 <option>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</option>
                             </options>
-                            <mainClass>com.example.passwordbank.App</mainClass>
+                            <mainClass>com.example.passwordbank.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 </project>

@@ -11,36 +11,43 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<GridPane fx:id="gPaneAbout" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.AboutScreenController">
+<GridPane fx:id="gPaneAbout" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.AboutScreenController">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
-    <ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity" prefWidth="600.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="300.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity" prefWidth="760.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="330.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="NEVER" />
     <RowConstraints minHeight="-Infinity" prefHeight="400.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
     <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="NEVER" />
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="200.0" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <VBox spacing="35.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <VBox spacing="50.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <children>
-            <Text fx:id="textProjectGitHub" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0">
+            <Text fx:id="textProjectGitHub" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="310.0">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </Text>
             <Button fx:id="buttonGitHub" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" stylesheets="@../styles/buttons.css">
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="50.0" />
                </VBox.margin>
             </Button>
          </children>
          <padding>
-            <Insets left="30.0" top="30.0" />
+            <Insets top="30.0" />
          </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </VBox>
       <Button fx:id="buttonBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" stylesheets="@../styles/buttons.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <Text fx:id="textAbout" strokeType="OUTSIDE" strokeWidth="0.0" text="About" GridPane.columnIndex="1">
@@ -56,10 +63,10 @@
             <Font size="25.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="80.0" left="100.0" top="30.0" />
+            <Insets bottom="50.0" left="100.0" top="30.0" />
          </GridPane.margin>
       </Text>
-      <Text fx:id="textUserGuide" strokeType="OUTSIDE" strokeWidth="0.0" text="User guide" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Text fx:id="textUserGuide" strokeType="OUTSIDE" strokeWidth="0.0" text="User guide" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="50.0" />
          </GridPane.margin>
@@ -67,9 +74,9 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <VBox spacing="40.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <VBox spacing="40.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <children>
-            <Text fx:id="textGuideDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="600.0">
+            <Text fx:id="textGuideDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                <font>
                   <Font size="25.0" />
                </font></Text>
@@ -89,7 +96,7 @@
             <Insets left="100.0" />
          </padding>
       </VBox>
-      <TextFlow textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+      <TextFlow textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
          <children>
             <Label fx:id="labelDev" focusTraversable="false" text="Developed by ">
                <font>

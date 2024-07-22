@@ -1,7 +1,6 @@
 package com.example.passwordbank.utilities;
 
 import java.io.IOException;
-
 import com.example.passwordbank.App;
 
 import javafx.fxml.FXMLLoader;

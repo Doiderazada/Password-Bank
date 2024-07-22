@@ -14,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane fx:id="bPaneMain" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordbank.controllers.BaseController">
    <left>
       <GridPane fx:id="gPaneMenu" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="50.0" BorderPane.alignment="CENTER_LEFT">
@@ -70,13 +69,16 @@
       </GridPane>
    </left>
    <center>
-      <ScrollPane fx:id="sPaneMain" fitToHeight="true" fitToWidth="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="sPaneMain" fitToHeight="true" fitToWidth="true" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/buttons.css" BorderPane.alignment="CENTER">
         <content>
             <StackPane fx:id="stackPaneMain" minHeight="-Infinity" minWidth="-Infinity" />
         </content>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
+         <padding>
+            <Insets bottom="2.0" right="2.0" />
+         </padding>
       </ScrollPane>
    </center>
    <top>
@@ -119,7 +121,7 @@
                   <Button fx:id="buttonMinimize" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" stylesheets="@../styles/buttons.css" GridPane.columnIndex="2" />
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
-                        <Image url="@../Temporary%20Logo.png" />
+                        <Image url="@../Logo.png" />
                      </image>
                   </ImageView>
                </children>

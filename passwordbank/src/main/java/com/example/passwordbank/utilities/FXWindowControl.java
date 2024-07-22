@@ -367,7 +367,7 @@ public class FXWindowControl {
 
     private void setScenePadding(boolean set) {
         if (set) parentNode.setPadding(new Insets(mouseResizeOffset));
-        else parentNode.setPadding(new Insets(0));
+        else     parentNode.setPadding(new Insets(0));
     }
 
 

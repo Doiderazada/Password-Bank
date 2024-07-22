@@ -6,7 +6,6 @@ import com.example.passwordbank.utilities.LoginList;
 import com.example.passwordbank.utilities.PasswordFXElement;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -19,8 +18,6 @@ public class HomeScreenController {
     @FXML private Text textLastUsed;
     @FXML private Text textOldestRegistered;  
 
-
-    ColumnConstraints cons = new ColumnConstraints(50, 350, 350);
 
 
     @FXML
@@ -39,9 +36,7 @@ public class HomeScreenController {
 
 
     private void setUpGridPanes() {
-        gPaneLastUsed.getColumnConstraints().add(cons);
         gPaneLastUsed.setHgap(50);
-        gPaneOldstReg.getColumnConstraints().add(cons);
         gPaneOldstReg.setHgap(50);
     }
 

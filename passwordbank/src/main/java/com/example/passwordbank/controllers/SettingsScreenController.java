@@ -44,7 +44,7 @@ public class SettingsScreenController {
 
 
     private void changeTo(String page) {
-        App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane(page));
+        App.baseCtrlInstance.nextPage(App.baseCtrlInstance.loadPane(page));
     }
 
 

@@ -37,26 +37,28 @@ public class AboutScreenController {
         setTextTheme();
         setText();
         buttonPDF.setText("Open user guide");
+        BaseController.setStyle(gPaneAbout);
 
         gPaneAbout.widthProperty().addListener((a, b, c) -> {
-            textAboutDescription.setWrappingWidth(c.doubleValue()-550);
+            textAboutDescription.setWrappingWidth(c.doubleValue()-580);
+            textGuideDescription.setWrappingWidth(c.doubleValue()-580);
         });
     }
     
     
     private void setActions() {
-        buttonBack.setOnMouseClicked(event -> App.baseCtrlInstance.changePage(App.baseCtrlInstance.loadPane("settings")));
+        buttonBack.setOnMouseClicked(event -> App.baseCtrlInstance.prevPage());
         buttonGitHub.setOnMouseClicked(event -> {
             try{
-                    String url = "https://github.com/Doiderazada/Password-Bank";
-                    Desktop desktop = Desktop.getDesktop();
-                    if (Desktop.isDesktopSupported()) {
-                        desktop.browse(new URI(url));
-                    }
-                } catch(IOException | URISyntaxException e) {
-                    System.out.println("There was an error trying to follow the link" + e.getMessage());
-                    e.printStackTrace();
+                String url = "https://github.com/Doiderazada/Password-Bank";
+                Desktop desktop = Desktop.getDesktop();
+                if (Desktop.isDesktopSupported()) {
+                    desktop.browse(new URI(url));
                 }
+            } catch(IOException | URISyntaxException e) {
+                System.out.println("There was an error trying to follow the link" + e.getMessage());
+                e.printStackTrace();
+            }
         });
         Tooltip gitTip = new Tooltip("Github projet page");
         gitTip.setShowDelay(Duration.millis(150));

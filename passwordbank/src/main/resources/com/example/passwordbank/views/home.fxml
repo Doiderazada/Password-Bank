@@ -44,7 +44,7 @@
           <RowConstraints minHeight="250.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <GridPane.margin>
-            <Insets bottom="15.0" left="55.0" right="15.0" />
+            <Insets bottom="15.0" left="60.0" right="15.0" />
          </GridPane.margin>
       </GridPane>
       <GridPane fx:id="gPaneOldstReg" layoutX="60.0" layoutY="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
@@ -57,7 +57,7 @@
             <RowConstraints minHeight="250.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <GridPane.margin>
-            <Insets bottom="15.0" left="55.0" right="15.0" />
+            <Insets bottom="15.0" left="60.0" right="15.0" />
          </GridPane.margin>
       </GridPane>
    </children>

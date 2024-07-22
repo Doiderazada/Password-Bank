@@ -10,6 +10,7 @@ import com.example.passwordbank.utilities.LoginList;
 import com.example.passwordbank.utilities.SceneManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -45,7 +46,7 @@ public class App extends Application {
     public void start(Stage stage) {
         primaryStage = stage;
         setStage(stage);
-        configStage();
+        configApplication();
         setStartAction();
         Scene mainScene;
 
@@ -121,7 +122,8 @@ public class App extends Application {
 
 
 
-    private void configStage() {
+    private void configApplication() {
+        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("Icon.png")));
         primaryStage.setTitle("Password Bank");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(true);
