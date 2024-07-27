@@ -163,7 +163,7 @@ public class AppUser implements Serializable {
     }
 
 
-    public boolean isRecoverInfo() {
+    public boolean hasRecoverInfo() {
         return haveRecoverInfo;
     }
     public void setRecoverInfo(boolean recoverInfo) {

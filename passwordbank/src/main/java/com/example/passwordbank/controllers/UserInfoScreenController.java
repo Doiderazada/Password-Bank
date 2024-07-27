@@ -92,7 +92,7 @@ public class UserInfoScreenController {
         tFieldMainEmail.setText(user.getMainEmail());
         pFieldPassword.setText(user.getPassword().getPass());
         tFieldusername.setText(user.getUsername());
-        if (user.isRecoverInfo()) {
+        if (user.hasRecoverInfo()) {
             tFieldAltEmail.setText(user.getAltEmail());
             if (user.getMobileNumber() != null) 
                 tFieldPhoneNum.setText(user.getMobileNumber());
@@ -210,7 +210,7 @@ public class UserInfoScreenController {
         user.setPassword(pFieldPassword.getText());
         user.setAltEmail(tFieldAltEmail.getText());
         
-        if (!tFieldPhoneNum.getText().equals(null)) {
+        if (!(tFieldPhoneNum.getText() == null)) {
             user.setMobileNumber(tFieldPhoneNum.getText());
         }
 

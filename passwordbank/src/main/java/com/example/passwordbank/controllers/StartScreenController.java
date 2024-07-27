@@ -9,13 +9,17 @@ import com.example.passwordbank.utilities.QuestionsList;
 
 import animatefx.animation.Shake;
 import animatefx.animation.SlideAnimation;
+import animatefx.animation.SlideInDown;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
+import animatefx.animation.SlideInUp;
+import animatefx.animation.ZoomIn;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -43,7 +47,7 @@ public class StartScreenController {
     @FXML private Label lHintUsernameStart;
     @FXML private Label lPassword;
     @FXML private Label lUsername;
-    @FXML private Pane pLogin;
+    @FXML protected Pane pLogin;
     @FXML private PasswordField pFPassword;
     @FXML private StackPane stackPaneMain;
     @FXML private TextField tFPassword;
@@ -133,6 +137,7 @@ public class StartScreenController {
     private Pane panePage3;
     private Pane panePage4;
     private Pane panePage5;
+    private Pane forgotPage;
 
     private final String tFieldErrorStyle = "-fx-border-color: red;";
     private final String labelStyleGood   = "-fx-text-fill: green;";
@@ -159,8 +164,12 @@ public class StartScreenController {
     public void initialize() {
         App.getStage().setOnShown(event -> {
             if (!App.haveUser) loadNextPages();
+            else {user = App.user; loadForgotPasswordScene();}
         });
-        if (App.haveUser) user = App.user;
+        // if (App.haveUser) {
+        //     user = App.user;
+        //     loadForgotPasswordScene();
+        // }
         startPageActions();
     }
 
@@ -192,6 +201,7 @@ public class StartScreenController {
         buttonClose.setOnMouseMoved(event -> buttonClose.setCursor(Cursor.HAND));
          
         if (App.haveUser) {
+            tWelcome.setText("Complete the fields to enter");
             buttonLogReg.setText("Login");
             buttonLogReg.setOnMouseClicked(event -> {if (verifyStartFields()) goToApp();});
             buttonLogReg.setOnKeyPressed(event -> {
@@ -229,12 +239,13 @@ public class StartScreenController {
                 } else App.stayLoggedIn = false;
             }
         });
+        tForgotPass.setOnMousePressed(event -> tForgotPass.requestFocus());
         tForgotPass.focusedProperty().addListener((a, b, c) -> {
             if (c) tForgotPass.setFill(Color.BLUE);
             else tForgotPass.setFill(Color.WHITE);
         });
         tForgotPass.setOnMouseClicked(event -> {
-
+            changePage(true, forgotPage);
         });
         lHintPasswordStart.setVisible(false);
         lHintUsernameStart.setVisible(false);
@@ -282,7 +293,7 @@ public class StartScreenController {
         buttonBackStartPage.getStyleClass().setAll("button-LeftArrow");
         buttonBackStartPage.setOnMouseClicked(event -> {
             App.getStage().setWidth(pLogin.getWidth());
-            animatePageTransition(panePage1, pLogin, false);
+            changePage(pLogin, false);
             startPageActions();
         });
         buttonNextPageReg.getStyleClass().setAll("button-RightArrow");
@@ -326,7 +337,7 @@ public class StartScreenController {
         buttonNextPageRecovery.getStyleClass().setAll("button-RightArrow");
 
         buttonBackPageReg.setOnMouseClicked(event -> {
-            animatePageTransition(panePage2, panePage1, false);
+            changePage(panePage1, false);
         });
         buttonNextPageRecovery.setOnMouseClicked(event -> goToPage3());
         buttonNextPageRecovery.setOnKeyPressed(event -> {if (event.getCode().equals(KeyCode.ENTER)) goToPage3();});
@@ -423,7 +434,7 @@ public class StartScreenController {
 
         buttonBackPageRec3.setOnMouseClicked(event -> {
             App.getStage().setHeight(600);
-            animatePageTransition(panePage5, panePage4, false);
+            changePage(panePage4, false);
         });
         buttonFinish.setOnMouseClicked(event -> {if (verifyQuestionFields()) finishRegistration();});
         buttonFinish.setOnKeyTyped(event ->     {if (verifyQuestionFields()) finishRegistration();});
@@ -480,7 +491,7 @@ public class StartScreenController {
 
     private void goToPage1() {
         App.getStage().setWidth(500);
-        animatePageTransition(pLogin, panePage1, true);
+        changePage(panePage1, true);
         registerPage1Actions();
         textRegInfo.requestFocus();
     }
@@ -489,7 +500,7 @@ public class StartScreenController {
         if (verifyRegisterFields()) {
             mainEmail = tFEmailReg.getText();
             password  = pFPasswordReg.getText();
-            animatePageTransition(panePage1, panePage2, true);
+            changePage(panePage2, true);
             registerPage2Actions();
         }
     }
@@ -500,13 +511,13 @@ public class StartScreenController {
             animateFieldsError(tFUsernameReg, null, lHintUsernameReg, null);
         } else {
             username = tFUsernameReg.getText();
-            animatePageTransition(panePage2, panePage3, true);
+            changePage(panePage3, true);
             recoveryInfoPageActions();
         }
     }
 
     private void goToPage4() {
-        animatePageTransition(panePage3, panePage4, true);
+        changePage(panePage4, true);
         recoveryPage1Actions();
     }
 
@@ -518,7 +529,7 @@ public class StartScreenController {
             
             if (!tFPhoneNum.getText().isBlank()) {phoneNum = tFPhoneNum.getText();}
             App.getStage().setHeight(720);
-            animatePageTransition(panePage4, panePage5, true);
+            changePage(panePage5, true);
             recoveryPage2Actions();
         }
     }
@@ -756,23 +767,71 @@ public class StartScreenController {
         shake.play();
     }
 
-    private void animatePageTransition(Pane actualPage, Pane nextPage, boolean isFoward) {
-        if (isFoward) {
-            stackPaneMain.getChildren().add(nextPage);
-            SlideAnimation slide = new SlideInRight(nextPage);
-            slide.setSpeed(2);
+    /**
+     * <p> Method used to animate transition betweeen pages
+     * , this method is solely to be used inside the class.
+     * @param pageToGo - the destination page (page to be animated)
+     * @param isForward - determines if the transition is forward or not
+     */
+    private void animatePageTransition(Pane pageToGo, boolean isForward) {
+        if (isForward) {
+            SlideAnimation slide = new SlideInRight(pageToGo);
+            slide.setSpeed(1.5);
             slide.play();
-            stackPaneMain.getChildren().remove(actualPage);
+            stackPaneMain.getChildren().clear();
+            stackPaneMain.getChildren().add(pageToGo);
         } else {
-            stackPaneMain.getChildren().add(nextPage);
-            SlideAnimation slide = new SlideInLeft(nextPage);
-            slide.setSpeed(2);
+            SlideAnimation slide = new SlideInLeft(pageToGo);
+            slide.setSpeed(1.5);
             slide.play();
-            stackPaneMain.getChildren().remove(actualPage);
+            stackPaneMain.getChildren().clear();
+            stackPaneMain.getChildren().add(pageToGo);
+        }
+    }
+    
+    /**
+     * <p> Method used to animate transition betweeen pages
+     * , although this method is {@code private} 
+     * it is designed to be used by dependent classes.
+     * 
+     * <p> It is encapsulated by {@link com.example.passwordbank.controllers.StartScreenController#changePage(boolean, Pane) changePage()}
+     * 
+     * @param pageToGo - the destination page (page to be animated)
+     * @param isForward - determines if the transition is forward or not
+     */
+    private void animatePageTransition(boolean isForward, Pane pageToGo) {
+        if (isForward) {
+            App.getStage().setWidth(500);
+            SlideAnimation slide = new SlideInUp(pageToGo);
+            slide.setSpeed(1.5);
+            stackPaneMain.getChildren().clear();
+            stackPaneMain.getChildren().add(pageToGo);
+            slide.play();
+        } else {
+            App.getStage().setWidth(400);
+            SlideAnimation slide = new SlideInDown(pageToGo);
+            slide.setSpeed(1.5);
+            stackPaneMain.getChildren().clear();
+            stackPaneMain.getChildren().add(pageToGo);
+            slide.play();
         }
     }
 
 
+    /**
+     * <p> Method responsible to change the pages of this controller.
+     * 
+     * @param pageToGo - the page to change to.
+     * @param isForward - determines if the changing is forward or not.
+     */
+    private void changePage(Pane pageToGo, boolean isForward) {
+        animatePageTransition(pageToGo, isForward);
+    }
+
+
+    protected void changePage(boolean isForward, Pane pageToGo) {
+        animatePageTransition(isForward, pageToGo);
+    }
 
 
 
@@ -809,4 +868,20 @@ public class StartScreenController {
             System.out.println(e.getMessage());                    e.printStackTrace();
         }
     }
+
+
+
+    private void loadForgotPasswordScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("views/recoverPres.fxml"));
+            Parent root = loader.load();
+            RecoverAccountController controller = loader.getController();
+            controller.startController = this;
+
+            forgotPage = (Pane) root;
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
 }

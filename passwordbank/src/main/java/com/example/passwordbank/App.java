@@ -1,13 +1,14 @@
 package com.example.passwordbank;
 
 import java.util.Collections;
-import com.example.passwordbank.controllers.BaseController;
 
-import com.example.passwordbank.model.Login;
+import com.example.passwordbank.controllers.BaseController;
 import com.example.passwordbank.model.AppUser;
+import com.example.passwordbank.model.Login;
 import com.example.passwordbank.utilities.FilesManager;
 import com.example.passwordbank.utilities.LoginList;
 import com.example.passwordbank.utilities.SceneManager;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -22,8 +23,8 @@ public class App extends Application {
 
 
     private static Stage primaryStage;
-    private static SceneManager sceneManager = new SceneManager();
-    public  static FilesManager filesManager = new FilesManager();
+    private static final SceneManager sceneManager = new SceneManager();
+    public  static final FilesManager filesManager = new FilesManager();
     public  static BaseController baseCtrlInstance;
     public  static final double defH = 724;
     public  static final double defW = 1284;
@@ -87,7 +88,7 @@ public class App extends Application {
         }
     }
 
-    private final void closeApplication() {
+    private void closeApplication() {
         if((user != null) && !deletedAcc) {
             System.out.println("Saving files");
             user.getPassword().protectPassword();

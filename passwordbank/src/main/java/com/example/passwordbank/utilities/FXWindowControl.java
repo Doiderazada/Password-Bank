@@ -9,6 +9,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -82,9 +83,7 @@ public class FXWindowControl {
         bMaximize.getStyleClass().setAll("button-maximize");
         bMinimize.getStyleClass().setAll("button-minimize");
 
-        bClose.setOnMouseClicked(event -> Platform.exit());
-        bMaximize.setOnMouseClicked(event -> doMaximizing());
-        bMinimize.setOnMouseClicked(event -> primaryStage.setIconified(true));
+        windowMainOperations();
 
         parentNode.setOnMouseMoved(positionControl());
         parentNode.setOnMousePressed(event -> {
@@ -111,6 +110,16 @@ public class FXWindowControl {
 
 
 
+    private void windowMainOperations() {
+        activeScene.setOnKeyPressed(event -> {
+            if (event.isAltDown() && 
+                event.getCode().equals(KeyCode.F4)) 
+                closeApplication();
+        });
+        bClose.setOnMouseClicked(event -> closeApplication());
+        bMaximize.setOnMouseClicked(event -> doMaximizing());
+        bMinimize.setOnMouseClicked(event -> primaryStage.setIconified(true));
+    }
 
 
 
@@ -141,6 +150,9 @@ public class FXWindowControl {
     }
 
 
+    private final void closeApplication() {
+        Platform.exit();
+    }
     
 
     private EventHandler<MouseEvent> positionControl() {
